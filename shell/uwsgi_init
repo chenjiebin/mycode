@@ -1,0 +1,79 @@
+#!/bin/sh
+
+# source function library
+. /etc/rc.d/init.d/functions
+
+# uWSGI config
+CONFIG=/web/wwwroot/down/uwsgi_config.xml
+PID=/var/run/www.fixdown.com.pid
+UWSGI=/usr/local/bin/uwsgi
+LOCKFILE=/var/lock/subsys/uwsgi
+RETVAL=0
+
+prog="uwsg.www.fixdown.com"
+
+start() {
+    # Check that networking is up.
+    [ "${NETWORKING}" = "no" ] && exit 1
+
+    # The process must be configured first.
+    [ -f $CONFIG ] || exit 6
+
+    echo -en $"Starting $prog. \t\t"
+
+    $UWSGI $CONFIG >/dev/null 2>&1
+    RETVAL=$?
+    if [ $RETVAL -eq 0 ] && touch $LOCKFILE; then
+        echo -e "\033[32m [ OK ] \033[0m"
+    fi
+    return $RETVAL
+}
+
+stop() {
+    echo -en $"Shutting down $prog: \t"
+    kill -9 `cat $PID` > /dev/null 2>&1
+    RETVAL=$?
+    if [ $RETVAL -eq 0 ] && rm -f $LOCKFILE; then
+        echo -e "\033[32m [ OK ] \033[0m"
+    else
+        echo -e "\033[31m [ FAILED ] \033[0m"
+        if [ ! -f $LOCKFILE ]; then
+            echo -e "Server is not running."
+        fi
+    fi
+    return $RETVAL
+}
+
+restart() {
+    stop
+    sleep 1
+    start
+}
+
+
+
+reload() {
+    echo -en $"reload $prog: \t\t"
+    $UWSGI --reload $PID
+    RETVAL=$?
+    if [ $RETVAL -eq 0 ]; then
+        echo -e "\033[32m [ OK ] \033[0m"
+    fi
+}
+
+case "$1" in
+  start)
+    $1
+    ;;
+  stop)
+    $1
+    ;;
+  restart|reload)
+    $1
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|restart|reload}"
+    exit 2
+esac
+
+exit $RETVAL
