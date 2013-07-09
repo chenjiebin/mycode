@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 #coding=utf-8
+
+'''
+redis的并发连接测试
+'''
 import time
 import threading
 import redis
