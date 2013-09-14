@@ -5,3 +5,4 @@
 # c temp files
 *.out
 
+/nbproject/
