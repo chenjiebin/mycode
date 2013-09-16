@@ -12,6 +12,6 @@ namespace Mapper;
 class UserModel extends \Mapper\AbstractModel {
 
     protected $_tableName = 'user';
-//    protected $_dbModelClass = '\BehaviorModel';
+    protected $_dbModelClass = '\UserModel';
 
 }

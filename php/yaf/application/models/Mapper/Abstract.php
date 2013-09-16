@@ -7,7 +7,6 @@ namespace Mapper;
  *
  * @package Mapper
  */
-
 use \Zend\Db\Sql\Sql;
 use \Zend\Db\TableGateway\TableGateway;
 use \Zend\Db\Sql\Select;
@@ -17,15 +16,13 @@ abstract class AbstractModel {
 
     /**
      * 表名
-    */
-    protected  $_tableName = null;
-
+     */
+    protected $_tableName = null;
 
     /**
      * 表结构模型
      */
     protected $_dbModelClass = null;
-
 
     /**
      * 返回 Zend 的适配器
@@ -34,8 +31,15 @@ abstract class AbstractModel {
     static public function getAdapter() {
         static $dbAdapter = null;
 
-        if (!$dbAdapter)
-            $dbAdapter = \Yaf\Registry::get('dbAdapter');
+        if (!$dbAdapter) {
+            $config = \Yaf\Application::app()->getConfig();
+            $conf = $config->get('resources.database.params');
+            if (!$conf)
+                return false;
+
+            $dbAdapter = new \Zend\Db\Adapter\Adapter($conf->toArray());
+            \Yaf\Registry::set('dbAdapter', $dbAdapter);
+        }
 
         return $dbAdapter;
     }
@@ -61,7 +65,7 @@ abstract class AbstractModel {
         static $select = null;
 
         if (!$select) {
-            $sql    = new Sql(self::getAdapter(), $this->_tableName);
+            $sql = new Sql(self::getAdapter(), $this->_tableName);
             $select = $sql->select();
         }
 
@@ -76,7 +80,6 @@ abstract class AbstractModel {
         $resultSet = $this->getDbTableGateway()->select(array('id' => $id));
         if (!$resultSet->count())
             return null;
-
         return new $this->_dbModelClass($resultSet->current());
     }
 
@@ -90,7 +93,7 @@ abstract class AbstractModel {
     public function fetchAll($where = null, $order = null, $count = null) {
         $adapter = self::getAdapter();
 
-        $sql    = new Sql($adapter, $this->_tableName);
+        $sql = new Sql($adapter, $this->_tableName);
         $select = $sql->select();
         $select->where($where);
 
@@ -100,7 +103,7 @@ abstract class AbstractModel {
         if ($order)
             $select->order($order);
         $selectString = $sql->getSqlStringForSqlObject($select);
-        $rows         = $adapter->query($selectString, $adapter::QUERY_MODE_EXECUTE);
+        $rows = $adapter->query($selectString, $adapter::QUERY_MODE_EXECUTE);
 
         $entries = array();
         foreach ($rows as $row)
@@ -126,7 +129,7 @@ abstract class AbstractModel {
      * @return int The number of rows updated.
      */
     public function update($model) {
-        $data  = $model->toArray();
+        $data = $model->toArray();
         unset($data['id']);
         $where = array("`id` = ?" => $model->getId());
         return $this->getDbTableGateway()->update($data, $where);
