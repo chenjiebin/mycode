@@ -3,15 +3,10 @@
 namespace Mapper;
 
 /**
- * abstract model mapper.
+ * 数据读取模型抽象类
  *
  * @package Mapper
  */
-use \Zend\Db\Sql\Sql;
-use \Zend\Db\TableGateway\TableGateway;
-use \Zend\Db\Sql\Select;
-use Zend\Form\Element\DateSelect;
-
 abstract class AbstractModel {
 
     /**
@@ -32,13 +27,7 @@ abstract class AbstractModel {
         static $dbAdapter = null;
 
         if (!$dbAdapter) {
-            $config = \Yaf\Application::app()->getConfig();
-            $conf = $config->get('resources.database.params');
-            if (!$conf)
-                return false;
-
-            $dbAdapter = new \Zend\Db\Adapter\Adapter($conf->toArray());
-            \Yaf\Registry::set('dbAdapter', $dbAdapter);
+            $dbAdapter = \Yaf\Registry::get('dbAdapter');
         }
 
         return $dbAdapter;
@@ -49,37 +38,35 @@ abstract class AbstractModel {
      * @return \Zend\Db\TableGateway\TableGateway
      */
     public function getDbTableGateway() {
-        static $tableGateway = null;
-
-        if (!$tableGateway)
-            $tableGateway = new TableGateway($this->_tableName, self::getAdapter());
-
+        $tableGateway = new TableGateway($this->_tableName, self::getAdapter());
         return $tableGateway;
     }
 
     /**
      * 返回 Zend 的 TableGateway
-     * @return \Zend\Db\TableGateway\TableGateway
+     * @return Zend\Db\Sql\Select
      */
     public function getDbSelect() {
-        static $select = null;
+        return $this->getDbSql()->select();
+    }
 
-        if (!$select) {
-            $sql = new Sql(self::getAdapter(), $this->_tableName);
-            $select = $sql->select();
-        }
-
-        return $select;
+    /**
+     * 返回 Zend 的 Sql
+     * @return Zend\Db\Sql
+     */
+    public function getDbSql() {
+        return new Sql(self::getAdapter(), $this->_tableName);
     }
 
     /**
      * @param int $id,主键
      * @return \SiteModel | null
      */
-    public function find($id = null) {
+    public function find($id) {
         $resultSet = $this->getDbTableGateway()->select(array('id' => $id));
         if (!$resultSet->count())
             return null;
+
         return new $this->_dbModelClass($resultSet->current());
     }
 

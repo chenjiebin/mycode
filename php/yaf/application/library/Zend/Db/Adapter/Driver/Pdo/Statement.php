@@ -237,6 +237,8 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
         }
 
         try {
+//            echo $this->getSql(), ' &nbsp;&nbsp;&nbsp;&nbsp;  ', print_r($this->getParameterContainer()->getNamedArray());
+//            echo '<br /><br />';
             $this->resource->execute();
         } catch (\PDOException $e) {
             if ($this->profiler) {

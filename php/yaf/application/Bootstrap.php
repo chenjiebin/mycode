@@ -13,7 +13,7 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
      *
      * @var \Yaf\Config\Ini
      */
-    protected $config = null;
+    protected $_config = null;
 
     /**
      * 把配置存到注册表
@@ -21,28 +21,8 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
     public function _initConfig() {
         $config = \Yaf\Application::app()->getConfig();
 
-        $this->config = $config;
+        $this->_config = $config;
         \Yaf\Registry::set('config', $config);
-    }
-
-    /**
-     * 设置默认值
-     *
-     * @param \Yaf\Dispatcher $dispatcher
-     */
-    public function _initDefaultName(\Yaf\Dispatcher $dispatcher) {
-        $dispatcher->setDefaultModule('index')
-                ->setDefaultController('index')
-                ->setDefaultAction('index');
-    }
-
-    /**
-     * 处理会话
-     * Session 直接交由Yaf自带的类去处理.
-     */
-    public function _initSession() {
-        $session = \Yaf\Session::getInstance();
-        \Yaf\Registry::set('session', $session);
     }
 
     /**
@@ -50,85 +30,14 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
      */
     public function _initRegisterLocalNamespace() {
         //申明本地类
-        \Yaf\Loader::getInstance()->registerLocalNamespace(array('Zend', 'Ku'));
-    }
-
-    /**
-     * Redis数据库
-     *
-     * @throws Exception 'Redis is need redis Extension!
-     */
-    public function _initRedis() {
-        if (!extension_loaded('redis')) {
-            throw new Exception('Redis is need redis Extension!');
-        }
-
-        $conf = $this->config->get('resources.redis');
-
-        if (!$conf)
-            return false;
-
-        $redis = new \Redis();
-
-        /*
-         * 连接Redis
-         *
-         * 当没有定义 port 时, 可以支持 sock.
-         * 但是, 需要注意: 如果host是IP或者主机名时, port 的默认值是 6379
-         */
-        if ($conf->get('port'))
-            $status = $redis->pconnect($conf->get('host'), $conf->get('port'));
-        else
-            $status = $redis->pconnect($conf->get('host'));
-
-        if (!$status)
-            throw new \Exception('Unable to connect to the redis:' . $conf->get('host'));
-
-        // 是否有密码
-        if ($conf->get('auth'))
-            $redis->auth($conf->get('auth'));
-
-        // 是否要切换Db
-        if ($conf->get('db'))
-            $redis->select($conf->get('db'));
-
-        // Key前缀
-        if ($conf->get('options.prefix'))
-            $redis->setOption(\Redis::OPT_PREFIX, $conf->get('options.prefix'));
-
-        \Yaf\Registry::set('redis', $redis);
-    }
-
-    /**
-     * 通过派遣器得到默认的路由器
-     * 主要有以下几种路由协议
-     *
-     * Yaf\Route_Simple
-     * Yaf\Route_Supervar
-     * Yaf\Route_Static
-     * Yaf\Route_Map
-     * Yaf\Route_Rewrite
-     * Yaf\Route_Regex
-     *
-     * @param \Yaf\Dispatcher $dispatcher
-     */
-    public function _initRoute(\Yaf\Dispatcher $dispatcher) {
-        // 通过派遣器得到默认的路由器
-        $router = $dispatcher->getRouter();
-
-        if ($this->config->routes)
-            $router->addConfig($this->config->routes);
-
-        // 添加一个以 Module\Controller\Acation 方式优先的路由.
-        $mcaRoute = new \Ku\Route();
-        $router->addRoute('Kumca', $mcaRoute);
+        \Yaf\Loader::getInstance()->registerLocalNamespace(array('Zend', 'Our'));
     }
 
     /**
      * 连接 MySQL
      */
     public function _initMySQL() {
-        $conf = $this->config->get('resources.database.params');
+        $conf = $this->_config->get('resources.database.params');
 
         if (!$conf)
             return false;
@@ -138,14 +47,44 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
     }
 
     /**
-     * 设置Layout
-     *
+     * 自定义路由规则
+     * 
+     * @param Yaf_Dispatcher $dispatcher
+     */
+    public function _initRoute(\Yaf\Dispatcher $dispatcher) {
+        $router = \Yaf\Dispatcher::getInstance()->getRouter();
+
+        $config = new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/route.ini', 'common');
+        if ($config->routes)
+            $router->addConfig($config->routes);
+    }
+
+    /**
+     * 使用自定义的View
+     * 
      * @param \Yaf\Dispatcher $dispatcher
      */
-    public function _initLayout(\Yaf\Dispatcher $dispatcher) {
-        $layout = new \Ku\Layout($this->config->get('application.layout.directory'));
-        $dispatcher->setView($layout);
-        \Yaf\Registry::set('layout', $layout);
+    public function _initView(\Yaf\Dispatcher $dispatcher) {
+        $dispatcher->setView(new \Our\View(self::getViewPath()));
+    }
+
+    /**
+     * 获取视图目录
+     * 
+     * @return string
+     */
+    public static function getViewPath() {
+        return APPLICATION_PATH . '/application/views';
+    }
+
+    /**
+     * 获取自定义的网络地址
+     * 
+     * @param string $name
+     * @return string 
+     */
+    public static function getConfigUrl($name) {
+        return \Yaf\Registry::get('config')->get('config.url.' . $name);
     }
 
 }

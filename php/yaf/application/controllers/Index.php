@@ -1,9 +1,13 @@
 <?php
 
-class IndexController extends \Yaf\Controller_Abstract {
+class IndexController extends \Our\Controller_Abstract {
 
-    public function indexAction() {//默认Action
-        $this->getView()->assign("content", "Hello World");
+    public function init() {
+        \Yaf\Dispatcher::getInstance()->disableView();
+    }
+
+    public function indexAction() {
+        $this->getView()->display('index/index.phtml');
     }
 
 }
