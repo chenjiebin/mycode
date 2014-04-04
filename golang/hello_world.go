@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import {
+    "fmt"
+    "redis"    
+}
 
 func main() {
 	fmt.Println("Hello, 世界")
