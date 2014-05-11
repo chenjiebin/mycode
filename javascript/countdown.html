@@ -13,12 +13,12 @@
             var EventObject = {
                 createNew: function() {
                     var eventObject = {};
-                    
+
                     /**
                      * 事件执行时间
                      */
                     eventObject.excuteTime = 0;
-                    
+
                     /**
                      * 事件执行方法
                      * @param {int} timestamp
@@ -30,7 +30,7 @@
                     return eventObject;
                 }
             };
-            
+
             /**
              * 倒计时类
              */
@@ -63,6 +63,9 @@
                                 } else {//有设定执行时间，则校验当前时间和事件执行时间是否匹配
                                     if (eventObjects[i].excuteTime === timestamp) {
                                         setTimeout(eventObjects[i].excute(timestamp), 1000);
+
+                                        //事件执行后，则移除该事件。这里并没有考虑事件执行成功与否
+                                        self.removeEvent(i);
                                     }
                                 }
                             }
@@ -75,7 +78,7 @@
                     timeThreading.end = function() {
                         clearInterval(this.t);
                     };
-        
+
                     /**
                      * 注册事件
                      * @param {type} eventObject
@@ -85,7 +88,17 @@
                         this.eventObjects.push(eventObject);
                         return this;
                     };
-                    
+
+                    /**
+                     * 移除事件
+                     * @param {type} eventObject
+                     * @returns {TimeThreading}
+                     */
+                    timeThreading.removeEvent = function(index) {
+                        this.getEventObjects().splice(index, 1);
+                        return this;
+                    };
+
                     /**
                      * 获取所有注册的事件
                      * @returns {Array}
@@ -135,6 +148,7 @@
             };
             timeThreading.registerEvent(endEvent);
 
+            //开始倒计时
             timeThreading.start();
 
         </script>
