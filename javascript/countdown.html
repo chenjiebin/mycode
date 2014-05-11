@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>js倒计时功能</title>
+    </head>
+    <body>
+        <div id="show-timestamp"></div>
+        <div><button id="status-btn">立即预约</button></div>
+        <script type="text/javascript">
+
+            //事件类
+            var EventObject = {
+                createNew: function() {
+                    var eventObject = {};
+                    
+                    /**
+                     * 事件执行时间
+                     */
+                    eventObject.excuteTime = 0;
+                    
+                    /**
+                     * 事件执行方法
+                     * @param {int} timestamp
+                     * @returns
+                     */
+                    eventObject.excute = function(timestamp) {
+                    };
+
+                    return eventObject;
+                }
+            };
+            
+            /**
+             * 倒计时类
+             */
+            var TimeThreading = {
+                createNew: function() {
+                    var timeThreading = {};
+                    /**
+                     * setInterval返回ID
+                     */
+                    timeThreading.t = {};
+                    /**
+                     * 注册要执行的事件
+                     */
+                    timeThreading.eventObjects = new Array();
+
+                    /**
+                     * 开始执行
+                     * @returns {undefined}
+                     */
+                    timeThreading.start = function() {
+                        var self = this;
+                        this.t = setInterval(function() {
+                            //获取当期时间戳
+                            var timestamp = Math.ceil((new Date().getTime()) / 1000);
+
+                            var eventObjects = self.getEventObjects();
+                            for (var i in eventObjects) {
+                                if (!eventObjects[i].excuteTime) {//如果没有设定执行时间，则直接执行事件
+                                    setTimeout(eventObjects[i].excute(timestamp), 1000);
+                                } else {//有设定执行时间，则校验当前时间和事件执行时间是否匹配
+                                    if (eventObjects[i].excuteTime === timestamp) {
+                                        setTimeout(eventObjects[i].excute(timestamp), 1000);
+                                    }
+                                }
+                            }
+                        }, 1000);
+                    };
+
+                    /**
+                     * 结束执行
+                     */
+                    timeThreading.end = function() {
+                        clearInterval(this.t);
+                    };
+        
+                    /**
+                     * 注册事件
+                     * @param {type} eventObject
+                     * @returns {TimeThreading}
+                     */
+                    timeThreading.registerEvent = function(eventObject) {
+                        this.eventObjects.push(eventObject);
+                        return this;
+                    };
+                    
+                    /**
+                     * 获取所有注册的事件
+                     * @returns {Array}
+                     */
+                    timeThreading.getEventObjects = function() {
+                        return this.eventObjects;
+                    };
+
+                    return timeThreading;
+                }
+            };
+            //当前时间戳
+            var timestamp = Math.ceil((new Date().getTime()) / 1000);
+
+            //实例化倒计时线程
+            var timeThreading = TimeThreading.createNew();
+
+            //注册时间戳显示事件
+            var eventObject = EventObject.createNew();
+            eventObject.excute = function(timestamp) {
+                document.getElementById('show-timestamp').innerHTML = timestamp;
+            };
+            timeThreading.registerEvent(eventObject);
+
+            //注册按钮切换到即将开始事件
+            var willBeginEvent = EventObject.createNew();
+            willBeginEvent.excuteTime = timestamp + 5;
+            willBeginEvent.excute = function() {
+                document.getElementById('status-btn').innerHTML = "即将开始";
+            };
+            timeThreading.registerEvent(willBeginEvent);
+
+            //注册按钮切换到立即抢购事件
+            var snapUpEvent = EventObject.createNew();
+            var timestamp = Math.ceil((new Date().getTime()) / 1000);
+            snapUpEvent.excuteTime = timestamp + 10;
+            snapUpEvent.excute = function() {
+                document.getElementById('status-btn').innerHTML = "立即抢购";
+            };
+            timeThreading.registerEvent(snapUpEvent);
+
+            //注册按钮切换到已经结束事件
+            var endEvent = EventObject.createNew();
+            endEvent.excuteTime = timestamp + 15;
+            endEvent.excute = function() {
+                document.getElementById('status-btn').innerHTML = "已经结束";
+            };
+            timeThreading.registerEvent(endEvent);
+
+            timeThreading.start();
+
+        </script>
+    </body>
+
+</html>
