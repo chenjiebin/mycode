@@ -6,3 +6,5 @@
 *.out
 
 /nbproject/
+
+*.DS_Store
