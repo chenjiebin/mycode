@@ -24,6 +24,12 @@ public class DailyAdviceServer {
             while (true) {
                 Socket sock = serverSock.accept();
 
+                InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
+                BufferedReader reader = new BufferedReader(streamReader);
+
+                String info = reader.readLine();
+                System.out.println("accept from client:" + info);
+
                 PrintWriter writer = new PrintWriter(sock.getOutputStream());
                 String advice = getAdvice();
                 writer.println(advice);
