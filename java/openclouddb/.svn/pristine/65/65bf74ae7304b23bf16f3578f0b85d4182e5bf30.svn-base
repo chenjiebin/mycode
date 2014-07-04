@@ -1,0 +1,10 @@
+#
+#Mon Jan 16 15:37:36 CST 2012
+jdbc.url=jdbc:sqlite:./openclouddb.db
+jdbc.driverClassName=org.sqlite.JDBC
+jdbc.maxActive=50
+
+mycat.jdbc.driverClassName=com.mysql.jdbc.Driver
+mycat.jdbc.url=jdbc:mysql://127.0.0.1:9066/TESTDB?characterEncoding=UTF8
+mycat.jdbc.username=test
+mycat.jdbc.password=test

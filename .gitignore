@@ -8,3 +8,18 @@
 /nbproject/
 
 *.DS_Store
+/java/MyLib/nbproject/private/
+/java/MyLib/build/
+/java/WebApplication1/nbproject/private/
+/java/WebApplication1/build/
+/java/javaweb/nbproject/private/
+/java/javaweb/build/
+/java/javawebhibernate/nbproject/private/
+/java/struts/nbproject/private/
+/java/struts/build/
+/java/DVDStore/nbproject/private/
+/java/DVDStore/build/
+/java/DVDStore/dist/
+/java/hibernate/nbproject/private/
+/java/Hibernate/nbproject/private/
+/java/Hibernate/build/

@@ -30,6 +30,16 @@ public class UserHelp {
 
         this.session = sessionFactory.openSession();
     }
+    
+    public void addUser(User user) {
+        try {
+            org.hibernate.Transaction transaction = session.beginTransaction();
+            session.save(user);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public List getUser() {
         List<User> users = null;

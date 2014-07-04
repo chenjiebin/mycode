@@ -1,0 +1,4141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>FindBugs Report</title>
+<style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+
+		.tablerow0:hover, .tablerow1:hover {
+			background: #aaffaa;
+		}
+
+		.priority-1 {
+		    color: red;
+		    font-weight: bold;
+		}
+		.priority-2 {
+		    color: orange;
+		    font-weight: bold;
+		}
+		.priority-3 {
+		    color: green;
+		    font-weight: bold;
+		}
+		.priority-4 {
+		    color: blue;
+		    font-weight: bold;
+		}
+		</style>
+<script type="text/javascript">
+			function toggleRow(elid) {
+				if (document.getElementById) {
+					element = document.getElementById(elid);
+					if (element) {
+						if (element.style.display == 'none') {
+							element.style.display = 'block';
+							//window.status = 'Toggle on!';
+						} else {
+							element.style.display = 'none';
+							//window.status = 'Toggle off!';
+						}
+					}
+				}
+			}
+		</script>
+</head>
+<body>
+<h1>
+<a href="http://findbugs.sourceforge.net">FindBugs</a> Report</h1>
+<h2>Project Information</h2>
+<p>Project: 
+		</p>
+<p>FindBugs version: 2.0.2</p>
+<p>Code analyzed:</p>
+<ul>
+<li>/root/MyCAT/target/classes</li>
+</ul>
+<p>
+<br/>
+<br/>
+</p>
+<h2>Metrics</h2>
+<p>55071 lines of code analyzed,
+	in 686 classes, 
+	in 46 packages.</p>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Metric</th>
+<th align="right">Total</th>
+<th align="right">Density*</th>
+</tr>
+<tr class="tablerow0">
+<td>High Priority Warnings</td>
+<td align="right">95</td>
+<td align="right">1.73</td>
+</tr>
+<tr class="tablerow1">
+<td>Medium Priority Warnings</td>
+<td align="right">143</td>
+<td align="right">2.60</td>
+</tr>
+<tr class="$totalClass">
+<td>
+<b>Total Warnings</b>
+</td>
+<td align="right">
+<b>238</b>
+</td>
+<td align="right">
+<b>4.32</b>
+</td>
+</tr>
+</table>
+<p>
+<i>(* Defects per Thousand lines of non-commenting source statements)</i>
+</p>
+<p>
+<br/>
+<br/>
+</p>
+<h2>Contents</h2>
+<ul>
+<li>
+<a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</li>
+<li>
+<a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+</li>
+<li>
+<a href="#Warnings_EXPERIMENTAL">Experimental Warnings</a>
+</li>
+<li>
+<a href="#Warnings_I18N">Internationalization Warnings</a>
+</li>
+<li>
+<a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</li>
+<li>
+<a href="#Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+</li>
+<li>
+<a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+</li>
+<li>
+<a href="#Warnings_STYLE">Dodgy code Warnings</a>
+</li>
+<li>
+<a href="#Details">Details</a>
+</li>
+</ul>
+<h1>Summary</h1>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Warning Type</th>
+<th align="right">Number</th>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</td>
+<td align="right">28</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+</td>
+<td align="right">7</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_EXPERIMENTAL">Experimental Warnings</a>
+</td>
+<td align="right">6</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_I18N">Internationalization Warnings</a>
+</td>
+<td align="right">77</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</td>
+<td align="right">5</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+</td>
+<td align="right">5</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+</td>
+<td align="right">19</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_STYLE">Dodgy code Warnings</a>
+</td>
+<td align="right">90</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<b>Total</b>
+</td>
+<td align="right">
+<b>237</b>
+</td>
+</tr>
+</table>
+<h1>Warnings</h1>
+<p>Click on a warning row to see full context information.</p>
+<h2>
+<a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68899');">
+<td>
+<span class="priority-2">CN</span>
+</td>
+<td>org.opencloudb.config.util.BeanConfig.clone() does not call super.clone()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68899" style="display: none;">
+<a href="#CN_IDIOM_NO_SUPER_CALL">Bug type CN_IDIOM_NO_SUPER_CALL (click for details)</a>
+<br/>In class org.opencloudb.config.util.BeanConfig<br/>In method org.opencloudb.config.util.BeanConfig.clone()<br/>At BeanConfig.java:[lines 74-89]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N76817');">
+<td>
+<span class="priority-2">DE</span>
+</td>
+<td>org.opencloudb.route.function.AutoPartitionByLong.initialize() might ignore java.lang.Exception</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N76817" style="display: none;">
+<a href="#DE_MIGHT_IGNORE">Bug type DE_MIGHT_IGNORE (click for details)</a>
+<br/>In class org.opencloudb.route.function.AutoPartitionByLong<br/>In method org.opencloudb.route.function.AutoPartitionByLong.initialize()<br/>Exception class java.lang.Exception<br/>At AutoPartitionByLong.java:[line 91]<br/>At AutoPartitionByLong.java:[line 91]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76963');">
+<td>
+<span class="priority-2">DE</span>
+</td>
+<td>org.opencloudb.route.function.PartitionByFileMap.initialize() might ignore java.lang.Exception</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76963" style="display: none;">
+<a href="#DE_MIGHT_IGNORE">Bug type DE_MIGHT_IGNORE (click for details)</a>
+<br/>In class org.opencloudb.route.function.PartitionByFileMap<br/>In method org.opencloudb.route.function.PartitionByFileMap.initialize()<br/>Exception class java.lang.Exception<br/>At PartitionByFileMap.java:[line 81]<br/>At PartitionByFileMap.java:[line 81]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N77109');">
+<td>
+<span class="priority-2">DE</span>
+</td>
+<td>org.opencloudb.route.function.PartitionByPattern.initialize() might ignore java.lang.Exception</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N77109" style="display: none;">
+<a href="#DE_MIGHT_IGNORE">Bug type DE_MIGHT_IGNORE (click for details)</a>
+<br/>In class org.opencloudb.route.function.PartitionByPattern<br/>In method org.opencloudb.route.function.PartitionByPattern.initialize()<br/>Exception class java.lang.Exception<br/>At PartitionByPattern.java:[line 110]<br/>At PartitionByPattern.java:[line 110]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N77255');">
+<td>
+<span class="priority-2">DE</span>
+</td>
+<td>org.opencloudb.route.function.PartitionByPrefixPattern.initialize() might ignore java.lang.Exception</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N77255" style="display: none;">
+<a href="#DE_MIGHT_IGNORE">Bug type DE_MIGHT_IGNORE (click for details)</a>
+<br/>In class org.opencloudb.route.function.PartitionByPrefixPattern<br/>In method org.opencloudb.route.function.PartitionByPrefixPattern.initialize()<br/>Exception class java.lang.Exception<br/>At PartitionByPrefixPattern.java:[line 107]<br/>At PartitionByPrefixPattern.java:[line 107]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N80517');">
+<td>
+<span class="priority-2">Eq</span>
+</td>
+<td>org.opencloudb.statistic.SQLRecord defines compareTo(SQLRecord) and uses Object.equals()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N80517" style="display: none;">
+<a href="#EQ_COMPARETO_USE_OBJECT_EQUALS">Bug type EQ_COMPARETO_USE_OBJECT_EQUALS (click for details)</a>
+<br/>In class org.opencloudb.statistic.SQLRecord<br/>In method org.opencloudb.statistic.SQLRecord.compareTo(SQLRecord)<br/>At SQLRecord.java:[line 33]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66036');">
+<td>
+<span class="priority-2">FS</span>
+</td>
+<td>Format string should use %n rather than \n in com.akiban.sql.parser.IndexColumnList.toString()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66036" style="display: none;">
+<a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+<br/>In class com.akiban.sql.parser.IndexColumnList<br/>In method com.akiban.sql.parser.IndexColumnList.toString()<br/>Called method String.format(String, Object[])<br/>Format string "\nmethodName: %s\nfirstArg: %s\nlastArg: %s\n"<br/>At IndexColumnList.java:[line 99]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68053');">
+<td>
+<span class="priority-1">HE</span>
+</td>
+<td>com.akiban.sql.types.CharacterTypeAttributes defines equals and uses Object.hashCode()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68053" style="display: none;">
+<a href="#HE_EQUALS_USE_HASHCODE">Bug type HE_EQUALS_USE_HASHCODE (click for details)</a>
+<br/>In class com.akiban.sql.types.CharacterTypeAttributes<br/>In method com.akiban.sql.types.CharacterTypeAttributes.equals(Object)<br/>At CharacterTypeAttributes.java:[lines 98-100]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68106');">
+<td>
+<span class="priority-1">HE</span>
+</td>
+<td>com.akiban.sql.types.DataTypeDescriptor defines equals and uses Object.hashCode()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68106" style="display: none;">
+<a href="#HE_EQUALS_USE_HASHCODE">Bug type HE_EQUALS_USE_HASHCODE (click for details)</a>
+<br/>In class com.akiban.sql.types.DataTypeDescriptor<br/>In method com.akiban.sql.types.DataTypeDescriptor.equals(Object)<br/>At DataTypeDescriptor.java:[lines 693-705]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67538');">
+<td>
+<span class="priority-2">Nm</span>
+</td>
+<td>The method name com.akiban.sql.parser.StringCharStream.BeginToken() doesn't start with a lower case letter</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67538" style="display: none;">
+<a href="#NM_METHOD_NAMING_CONVENTION">Bug type NM_METHOD_NAMING_CONVENTION (click for details)</a>
+<br/>In class com.akiban.sql.parser.StringCharStream<br/>In method com.akiban.sql.parser.StringCharStream.BeginToken()<br/>At StringCharStream.java:[lines 53-56]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67591');">
+<td>
+<span class="priority-2">Nm</span>
+</td>
+<td>The method name com.akiban.sql.parser.StringCharStream.Done() doesn't start with a lower case letter</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67591" style="display: none;">
+<a href="#NM_METHOD_NAMING_CONVENTION">Bug type NM_METHOD_NAMING_CONVENTION (click for details)</a>
+<br/>In class com.akiban.sql.parser.StringCharStream<br/>In method com.akiban.sql.parser.StringCharStream.Done()<br/>At StringCharStream.java:[line 155]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67644');">
+<td>
+<span class="priority-2">Nm</span>
+</td>
+<td>The method name com.akiban.sql.parser.StringCharStream.GetImage() doesn't start with a lower case letter</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67644" style="display: none;">
+<a href="#NM_METHOD_NAMING_CONVENTION">Bug type NM_METHOD_NAMING_CONVENTION (click for details)</a>
+<br/>In class com.akiban.sql.parser.StringCharStream<br/>In method com.akiban.sql.parser.StringCharStream.GetImage()<br/>At StringCharStream.java:[line 143]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67697');">
+<td>
+<span class="priority-2">Nm</span>
+</td>
+<td>The method name com.akiban.sql.parser.StringCharStream.GetSuffix(int) doesn't start with a lower case letter</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67697" style="display: none;">
+<a href="#NM_METHOD_NAMING_CONVENTION">Bug type NM_METHOD_NAMING_CONVENTION (click for details)</a>
+<br/>In class com.akiban.sql.parser.StringCharStream<br/>In method com.akiban.sql.parser.StringCharStream.GetSuffix(int)<br/>At StringCharStream.java:[lines 148-150]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67750');">
+<td>
+<span class="priority-2">Nm</span>
+</td>
+<td>The method name com.akiban.sql.parser.StringCharStream.ReInit(String) doesn't start with a lower case letter</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67750" style="display: none;">
+<a href="#NM_METHOD_NAMING_CONVENTION">Bug type NM_METHOD_NAMING_CONVENTION (click for details)</a>
+<br/>In class com.akiban.sql.parser.StringCharStream<br/>In method com.akiban.sql.parser.StringCharStream.ReInit(String)<br/>At StringCharStream.java:[lines 42-43]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N77473');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequenceBDBHandler.fetchNextPeriod(String) has Boolean return type and returns explicit null</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N77473" style="display: none;">
+<a href="#NP_BOOLEAN_RETURN_NULL">Bug type NP_BOOLEAN_RETURN_NULL (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequenceBDBHandler<br/>In method org.opencloudb.sequence.handler.IncrSequenceBDBHandler.fetchNextPeriod(String)<br/>At IncrSequenceBDBHandler.java:[line 34]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N77526');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequenceBDBHandler.updateCURIDVal(String, Long) has Boolean return type and returns explicit null</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N77526" style="display: none;">
+<a href="#NP_BOOLEAN_RETURN_NULL">Bug type NP_BOOLEAN_RETURN_NULL (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequenceBDBHandler<br/>In method org.opencloudb.sequence.handler.IncrSequenceBDBHandler.updateCURIDVal(String, Long)<br/>At IncrSequenceBDBHandler.java:[line 40]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N78820');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequenceZKHandler.fetchNextPeriod(String) has Boolean return type and returns explicit null</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N78820" style="display: none;">
+<a href="#NP_BOOLEAN_RETURN_NULL">Bug type NP_BOOLEAN_RETURN_NULL (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequenceZKHandler<br/>In method org.opencloudb.sequence.handler.IncrSequenceZKHandler.fetchNextPeriod(String)<br/>At IncrSequenceZKHandler.java:[line 23]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N78873');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequenceZKHandler.updateCURIDVal(String, Long) has Boolean return type and returns explicit null</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N78873" style="display: none;">
+<a href="#NP_BOOLEAN_RETURN_NULL">Bug type NP_BOOLEAN_RETURN_NULL (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequenceZKHandler<br/>In method org.opencloudb.sequence.handler.IncrSequenceZKHandler.updateCURIDVal(String, Long)<br/>At IncrSequenceZKHandler.java:[line 29]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N78437');">
+<td>
+<span class="priority-2">OS</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequencePropHandler.fetchNextPeriod(String) may fail to close stream</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N78437" style="display: none;">
+<a href="#OS_OPEN_STREAM">Bug type OS_OPEN_STREAM (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequencePropHandler<br/>In method org.opencloudb.sequence.handler.IncrSequencePropHandler.fetchNextPeriod(String)<br/>Need to close java.io.InputStream <br/>At IncrSequencePropHandler.java:[line 62]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N78503');">
+<td>
+<span class="priority-2">OS</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequencePropHandler.fetchNextPeriod(String) may fail to close stream</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N78503" style="display: none;">
+<a href="#OS_OPEN_STREAM">Bug type OS_OPEN_STREAM (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequencePropHandler<br/>In method org.opencloudb.sequence.handler.IncrSequencePropHandler.fetchNextPeriod(String)<br/>Need to close java.io.OutputStream <br/>At IncrSequencePropHandler.java:[line 75]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N78569');">
+<td>
+<span class="priority-2">OS</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequencePropHandler.getParaValMap(String) may fail to close stream</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N78569" style="display: none;">
+<a href="#OS_OPEN_STREAM">Bug type OS_OPEN_STREAM (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequencePropHandler<br/>In method org.opencloudb.sequence.handler.IncrSequencePropHandler.getParaValMap(String)<br/>Need to close java.io.InputStream <br/>At IncrSequencePropHandler.java:[line 41]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N78635');">
+<td>
+<span class="priority-2">OS</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequencePropHandler.updateCURIDVal(String, Long) may fail to close stream</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N78635" style="display: none;">
+<a href="#OS_OPEN_STREAM">Bug type OS_OPEN_STREAM (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequencePropHandler<br/>In method org.opencloudb.sequence.handler.IncrSequencePropHandler.updateCURIDVal(String, Long)<br/>Need to close java.io.InputStream <br/>At IncrSequencePropHandler.java:[line 88]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N78701');">
+<td>
+<span class="priority-2">OS</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequencePropHandler.updateCURIDVal(String, Long) may fail to close stream</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N78701" style="display: none;">
+<a href="#OS_OPEN_STREAM">Bug type OS_OPEN_STREAM (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequencePropHandler<br/>In method org.opencloudb.sequence.handler.IncrSequencePropHandler.updateCURIDVal(String, Long)<br/>Need to close java.io.OutputStream <br/>At IncrSequencePropHandler.java:[line 90]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65552');">
+<td>
+<span class="priority-2">RC</span>
+</td>
+<td>Suspicious comparison of Boolean references in com.akiban.sql.compiler.BooleanNormalizer.eliminateNots(ValueNode, boolean)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65552" style="display: none;">
+<a href="#RC_REF_COMPARISON_BAD_PRACTICE_BOOLEAN">Bug type RC_REF_COMPARISON_BAD_PRACTICE_BOOLEAN (click for details)</a>
+<br/>In class com.akiban.sql.compiler.BooleanNormalizer<br/>In method com.akiban.sql.compiler.BooleanNormalizer.eliminateNots(ValueNode, boolean)<br/>Actual type Boolean<br/>Value loaded from field java.lang.Boolean.TRUE<br/>At BooleanNormalizer.java:[line 382]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73942');">
+<td>
+<span class="priority-2">RV</span>
+</td>
+<td>exceptional return value of java.util.concurrent.BlockingQueue.offer(Object) ignored in org.opencloudb.net.NIOConnector.postConnect(BackendConnection)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73942" style="display: none;">
+<a href="#RV_RETURN_VALUE_IGNORED_BAD_PRACTICE">Bug type RV_RETURN_VALUE_IGNORED_BAD_PRACTICE (click for details)</a>
+<br/>In class org.opencloudb.net.NIOConnector<br/>In method org.opencloudb.net.NIOConnector.postConnect(BackendConnection)<br/>Called method java.util.concurrent.BlockingQueue.offer(Object)<br/>At NIOConnector.java:[line 58]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74007');">
+<td>
+<span class="priority-2">RV</span>
+</td>
+<td>exceptional return value of java.util.concurrent.BlockingQueue.offer(Object) ignored in org.opencloudb.net.NIOReactor.postRegister(NIOConnection)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74007" style="display: none;">
+<a href="#RV_RETURN_VALUE_IGNORED_BAD_PRACTICE">Bug type RV_RETURN_VALUE_IGNORED_BAD_PRACTICE (click for details)</a>
+<br/>In class org.opencloudb.net.NIOReactor<br/>In method org.opencloudb.net.NIOReactor.postRegister(NIOConnection)<br/>Called method java.util.concurrent.BlockingQueue.offer(Object)<br/>At NIOReactor.java:[line 52]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74072');">
+<td>
+<span class="priority-2">RV</span>
+</td>
+<td>exceptional return value of java.util.concurrent.BlockingQueue.offer(Object) ignored in org.opencloudb.net.NIOReactor.postWrite(NIOConnection)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74072" style="display: none;">
+<a href="#RV_RETURN_VALUE_IGNORED_BAD_PRACTICE">Bug type RV_RETURN_VALUE_IGNORED_BAD_PRACTICE (click for details)</a>
+<br/>In class org.opencloudb.net.NIOReactor<br/>In method org.opencloudb.net.NIOReactor.postWrite(NIOConnection)<br/>Called method java.util.concurrent.BlockingQueue.offer(Object)<br/>At NIOReactor.java:[line 65]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N76129');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>org.opencloudb.response.ShowDataNode$Comparators implements Comparator but not Serializable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N76129" style="display: none;">
+<a href="#SE_COMPARATOR_SHOULD_BE_SERIALIZABLE">Bug type SE_COMPARATOR_SHOULD_BE_SERIALIZABLE (click for details)</a>
+<br/>In class org.opencloudb.response.ShowDataNode$Comparators<br/>At ShowDataNode.java:[lines 1-185]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_CORRECTNESS">Correctness Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N79309');">
+<td>
+<span class="priority-1">GC</span>
+</td>
+<td>Long is incompatible with expected argument type String in org.opencloudb.server.handler.ServerPrepareHandler.execute(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N79309" style="display: none;">
+<a href="#GC_UNRELATED_TYPES">Bug type GC_UNRELATED_TYPES (click for details)</a>
+<br/>In class org.opencloudb.server.handler.ServerPrepareHandler<br/>In method org.opencloudb.server.handler.ServerPrepareHandler.execute(byte[])<br/>Actual type Long<br/>Expected String<br/>Called method java.util.Map.get(Object)<br/>Invoked on org.opencloudb.server.handler.ServerPrepareHandler.pstmtForSql<br/>Long.equals(Object) used to determine equality<br/>At ServerPrepareHandler.java:[line 62]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65911');">
+<td>
+<span class="priority-1">NP</span>
+</td>
+<td>Possible null pointer dereference of newValue in com.akiban.sql.parser.CharConstantNode.init(Object, Object)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65911" style="display: none;">
+<a href="#NP_NULL_ON_SOME_PATH">Bug type NP_NULL_ON_SOME_PATH (click for details)</a>
+<br/>In class com.akiban.sql.parser.CharConstantNode<br/>In method com.akiban.sql.parser.CharConstantNode.init(Object, Object)<br/>Value loaded from newValue<br/>Dereferenced at CharConstantNode.java:[line 87]<br/>Known null at CharConstantNode.java:[line 84]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67420');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Read of unwritten field sqlName in com.akiban.sql.parser.SpecialFunctionNode.isEquivalent(ValueNode)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67420" style="display: none;">
+<a href="#NP_UNWRITTEN_FIELD">Bug type NP_UNWRITTEN_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.SpecialFunctionNode<br/>In method com.akiban.sql.parser.SpecialFunctionNode.isEquivalent(ValueNode)<br/>Field com.akiban.sql.parser.SpecialFunctionNode.sqlName<br/>At SpecialFunctionNode.java:[line 94]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74973');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Possible null pointer dereference of o1 in org.opencloudb.parser.util.ListUtil.isEquals(List, List)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74973" style="display: none;">
+<a href="#NP_NULL_ON_SOME_PATH">Bug type NP_NULL_ON_SOME_PATH (click for details)</a>
+<br/>In class org.opencloudb.parser.util.ListUtil<br/>In method org.opencloudb.parser.util.ListUtil.isEquals(List, List)<br/>Value loaded from o1<br/>Dereferenced at ListUtil.java:[line 57]<br/>Known null at ListUtil.java:[line 56]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68539');">
+<td>
+<span class="priority-1">RV</span>
+</td>
+<td>Bad attempt to compute absolute value of signed random integer in org.opencloudb.backend.PhysicalDBPool.randomSelect(ArrayList)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68539" style="display: none;">
+<a href="#RV_ABSOLUTE_VALUE_OF_RANDOM_INT">Bug type RV_ABSOLUTE_VALUE_OF_RANDOM_INT (click for details)</a>
+<br/>In class org.opencloudb.backend.PhysicalDBPool<br/>In method org.opencloudb.backend.PhysicalDBPool.randomSelect(ArrayList)<br/>At PhysicalDBPool.java:[line 340]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68846');">
+<td>
+<span class="priority-1">RV</span>
+</td>
+<td>Bad attempt to compute absolute value of signed random integer in org.opencloudb.config.model.TableConfig.getRandomDataNode()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68846" style="display: none;">
+<a href="#RV_ABSOLUTE_VALUE_OF_RANDOM_INT">Bug type RV_ABSOLUTE_VALUE_OF_RANDOM_INT (click for details)</a>
+<br/>In class org.opencloudb.config.model.TableConfig<br/>In method org.opencloudb.config.model.TableConfig.getRandomDataNode()<br/>At TableConfig.java:[line 173]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67487');">
+<td>
+<span class="priority-2">UwF</span>
+</td>
+<td>Unwritten field: com.akiban.sql.parser.SpecialFunctionNode.sqlName</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67487" style="display: none;">
+<a href="#UWF_UNWRITTEN_FIELD">Bug type UWF_UNWRITTEN_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.SpecialFunctionNode<br/>Field com.akiban.sql.parser.SpecialFunctionNode.sqlName<br/>At SpecialFunctionNode.java:[line 87]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_EXPERIMENTAL">Experimental Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N77579');">
+<td>
+<span class="priority-2">OBL</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequencePropHandler.fetchNextPeriod(String) may fail to clean up java.io.InputStream</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N77579" style="display: none;">
+<a href="#OBL_UNSATISFIED_OBLIGATION">Bug type OBL_UNSATISFIED_OBLIGATION (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequencePropHandler<br/>In method org.opencloudb.sequence.handler.IncrSequencePropHandler.fetchNextPeriod(String)<br/>Reference type java.io.InputStream<br/>1 instances of obligation remaining<br/>Obligation to clean up resource created at IncrSequencePropHandler.java:[line 62] is not discharged<br/>Path continues at IncrSequencePropHandler.java:[line 63]<br/>Path continues at IncrSequencePropHandler.java:[line 64]<br/>Path continues at IncrSequencePropHandler.java:[line 65]<br/>Path continues at IncrSequencePropHandler.java:[line 66]<br/>Path continues at IncrSequencePropHandler.java:[line 67]<br/>Path continues at IncrSequencePropHandler.java:[line 68]<br/>Path continues at IncrSequencePropHandler.java:[line 66]<br/>Path continues at IncrSequencePropHandler.java:[line 69]<br/>Path continues at IncrSequencePropHandler.java:[line 70]<br/>Path continues at IncrSequencePropHandler.java:[line 71]<br/>Path continues at IncrSequencePropHandler.java:[line 72]<br/>Path continues at IncrSequencePropHandler.java:[line 73]<br/>Path continues at IncrSequencePropHandler.java:[line 72]<br/>Path continues at IncrSequencePropHandler.java:[line 74]<br/>Path continues at IncrSequencePropHandler.java:[line 75]<br/>Path continues at IncrSequencePropHandler.java:[line 76]<br/>Path continues at IncrSequencePropHandler.java:[line 77]<br/>Path continues at IncrSequencePropHandler.java:[line 81]<br/>Remaining obligations: {InputStream x 1,OutputStream x 1}</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N77854');">
+<td>
+<span class="priority-2">OBL</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequencePropHandler.fetchNextPeriod(String) may fail to clean up java.io.OutputStream</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N77854" style="display: none;">
+<a href="#OBL_UNSATISFIED_OBLIGATION">Bug type OBL_UNSATISFIED_OBLIGATION (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequencePropHandler<br/>In method org.opencloudb.sequence.handler.IncrSequencePropHandler.fetchNextPeriod(String)<br/>Reference type java.io.OutputStream<br/>1 instances of obligation remaining<br/>Obligation to clean up resource created at IncrSequencePropHandler.java:[line 75] is not discharged<br/>Path continues at IncrSequencePropHandler.java:[line 76]<br/>Path continues at IncrSequencePropHandler.java:[line 77]<br/>Path continues at IncrSequencePropHandler.java:[line 81]<br/>Remaining obligations: {InputStream x 1,OutputStream x 1}</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N77964');">
+<td>
+<span class="priority-2">OBL</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequencePropHandler.getParaValMap(String) may fail to clean up java.io.InputStream</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N77964" style="display: none;">
+<a href="#OBL_UNSATISFIED_OBLIGATION">Bug type OBL_UNSATISFIED_OBLIGATION (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequencePropHandler<br/>In method org.opencloudb.sequence.handler.IncrSequencePropHandler.getParaValMap(String)<br/>Reference type java.io.InputStream<br/>1 instances of obligation remaining<br/>Obligation to clean up resource created at IncrSequencePropHandler.java:[line 41] is not discharged<br/>Path continues at IncrSequencePropHandler.java:[line 42]<br/>Path continues at IncrSequencePropHandler.java:[line 43]<br/>Path continues at IncrSequencePropHandler.java:[line 42]<br/>Path continues at IncrSequencePropHandler.java:[line 44]<br/>Path continues at IncrSequencePropHandler.java:[line 45]<br/>Path continues at IncrSequencePropHandler.java:[line 44]<br/>Path continues at IncrSequencePropHandler.java:[line 46]<br/>Path continues at IncrSequencePropHandler.java:[line 47]<br/>Path continues at IncrSequencePropHandler.java:[line 46]<br/>Path continues at IncrSequencePropHandler.java:[line 48]<br/>Path continues at IncrSequencePropHandler.java:[line 49]<br/>Path continues at IncrSequencePropHandler.java:[line 48]<br/>Path continues at IncrSequencePropHandler.java:[line 50]<br/>Path continues at IncrSequencePropHandler.java:[line 55]<br/>Remaining obligations: {InputStream x 1}</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N78195');">
+<td>
+<span class="priority-2">OBL</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequencePropHandler.updateCURIDVal(String, Long) may fail to clean up java.io.InputStream</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N78195" style="display: none;">
+<a href="#OBL_UNSATISFIED_OBLIGATION">Bug type OBL_UNSATISFIED_OBLIGATION (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequencePropHandler<br/>In method org.opencloudb.sequence.handler.IncrSequencePropHandler.updateCURIDVal(String, Long)<br/>Reference type java.io.InputStream<br/>1 instances of obligation remaining<br/>Obligation to clean up resource created at IncrSequencePropHandler.java:[line 88] is not discharged<br/>Path continues at IncrSequencePropHandler.java:[line 89]<br/>Path continues at IncrSequencePropHandler.java:[line 90]<br/>Path continues at IncrSequencePropHandler.java:[line 91]<br/>Path continues at IncrSequencePropHandler.java:[line 92]<br/>Path continues at IncrSequencePropHandler.java:[line 96]<br/>Remaining obligations: {InputStream x 1,OutputStream x 1}</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N78327');">
+<td>
+<span class="priority-2">OBL</span>
+</td>
+<td>org.opencloudb.sequence.handler.IncrSequencePropHandler.updateCURIDVal(String, Long) may fail to clean up java.io.OutputStream</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N78327" style="display: none;">
+<a href="#OBL_UNSATISFIED_OBLIGATION">Bug type OBL_UNSATISFIED_OBLIGATION (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequencePropHandler<br/>In method org.opencloudb.sequence.handler.IncrSequencePropHandler.updateCURIDVal(String, Long)<br/>Reference type java.io.OutputStream<br/>1 instances of obligation remaining<br/>Obligation to clean up resource created at IncrSequencePropHandler.java:[line 90] is not discharged<br/>Path continues at IncrSequencePropHandler.java:[line 91]<br/>Path continues at IncrSequencePropHandler.java:[line 92]<br/>Path continues at IncrSequencePropHandler.java:[line 96]<br/>Remaining obligations: {InputStream x 1,OutputStream x 1}</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66390');">
+<td>
+<span class="priority-2">SKIPPED</span>
+</td>
+<td>com.akiban.sql.parser.SQLGrammar is too big for analysis</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66390" style="display: none;">
+<a href="#SKIPPED_CLASS_TOO_BIG">Bug type SKIPPED_CLASS_TOO_BIG (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammar<br/>At SQLGrammar.java:[lines 19-24549]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_I18N">Internationalization Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67854');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in new com.akiban.sql.parser.UCode_CharStream(InputStream, int, int, int): new java.io.InputStreamReader(InputStream)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67854" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class com.akiban.sql.parser.UCode_CharStream<br/>In method new com.akiban.sql.parser.UCode_CharStream(InputStream, int, int, int)<br/>Called method new java.io.InputStreamReader(InputStream)<br/>At UCode_CharStream.java:[line 389]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67923');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in com.akiban.sql.parser.UCode_CharStream.ReInit(InputStream, int, int, int): new java.io.InputStreamReader(InputStream)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67923" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class com.akiban.sql.parser.UCode_CharStream<br/>In method com.akiban.sql.parser.UCode_CharStream.ReInit(InputStream, int, int, int)<br/>Called method new java.io.InputStreamReader(InputStream)<br/>At UCode_CharStream.java:[line 401]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68726');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.config.Versions.&lt;static initializer for Versions&gt;(): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68726" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.config.Versions<br/>In method org.opencloudb.config.Versions.&lt;static initializer for Versions&gt;()<br/>Called method String.getBytes()<br/>At Versions.java:[line 27]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69188');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.handler.ConfFileHandler.showConfigFile(ManagerConnection, ByteBuffer, byte, String): new java.io.FileReader(File)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69188" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.handler.ConfFileHandler<br/>In method org.opencloudb.handler.ConfFileHandler.showConfigFile(ManagerConnection, ByteBuffer, byte, String)<br/>Called method new java.io.FileReader(File)<br/>At ConfFileHandler.java:[line 260]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69335');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.handler.ShowServerLog.showLogRange(ManagerConnection, ByteBuffer, byte, String, String, int, int, String): new java.io.FileReader(File)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69335" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.handler.ShowServerLog<br/>In method org.opencloudb.handler.ShowServerLog.showLogRange(ManagerConnection, ByteBuffer, byte, String, String, int, int, String)<br/>Called method new java.io.FileReader(File)<br/>At ShowServerLog.java:[line 119]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69404');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.handler.ShowServerLog.showLogSum(ManagerConnection, ByteBuffer, byte): new java.io.FileReader(File)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69404" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.handler.ShowServerLog<br/>In method org.opencloudb.handler.ShowServerLog.showLogSum(ManagerConnection, ByteBuffer, byte)<br/>Called method new java.io.FileReader(File)<br/>At ShowServerLog.java:[line 177]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69579');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.heartbeat.MyCATDetector.getPass(String, HandshakePacket): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69579" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MyCATDetector<br/>In method org.opencloudb.heartbeat.MyCATDetector.getPass(String, HandshakePacket)<br/>Called method String.getBytes()<br/>At MyCATDetector.java:[line 210]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69648');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.heartbeat.MyCATDetector.heartbeat(): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69648" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MyCATDetector<br/>In method org.opencloudb.heartbeat.MyCATDetector.heartbeat()<br/>Called method String.getBytes()<br/>At MyCATDetector.java:[line 145]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69717');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.heartbeat.MyCATDetectorAuthenticator.handle(byte[]): new String(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69717" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MyCATDetectorAuthenticator<br/>In method org.opencloudb.heartbeat.MyCATDetectorAuthenticator.handle(byte[])<br/>Called method new String(byte[])<br/>At MyCATDetectorAuthenticator.java:[line 66]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69786');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.heartbeat.MyCATDetectorHandler.handleErrorPacket(byte[]): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69786" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MyCATDetectorHandler<br/>In method org.opencloudb.heartbeat.MyCATDetectorHandler.handleErrorPacket(byte[])<br/>Called method new String(byte[])<br/>At MyCATDetectorHandler.java:[line 121]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69855');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.heartbeat.MyCATHeartbeat.requestMessage(int, byte[]): new String(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69855" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MyCATHeartbeat<br/>In method org.opencloudb.heartbeat.MyCATHeartbeat.requestMessage(int, byte[])<br/>Called method new String(byte[])<br/>At MyCATHeartbeat.java:[line 309]<br/>Another occurrence at MyCATHeartbeat.java:[line 315]<br/>Another occurrence at MyCATHeartbeat.java:[line 321]<br/>Another occurrence at MyCATHeartbeat.java:[line 327]<br/>Another occurrence at MyCATHeartbeat.java:[line 333]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70021');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.heartbeat.MySQLDetector.getPass(String, HandshakePacket): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70021" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MySQLDetector<br/>In method org.opencloudb.heartbeat.MySQLDetector.getPass(String, HandshakePacket)<br/>Called method String.getBytes()<br/>At MySQLDetector.java:[line 238]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70090');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.heartbeat.MySQLDetector.heartbeat(): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70090" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MySQLDetector<br/>In method org.opencloudb.heartbeat.MySQLDetector.heartbeat()<br/>Called method String.getBytes()<br/>At MySQLDetector.java:[line 155]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70231');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.heartbeat.MySQLDetectorAuthenticator.auth323(byte): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70231" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MySQLDetectorAuthenticator<br/>In method org.opencloudb.heartbeat.MySQLDetectorAuthenticator.auth323(byte)<br/>Called method new String(byte[])<br/>At MySQLDetectorAuthenticator.java:[line 101]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70300');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.heartbeat.MySQLDetectorAuthenticator.auth323(byte): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70300" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MySQLDetectorAuthenticator<br/>In method org.opencloudb.heartbeat.MySQLDetectorAuthenticator.auth323(byte)<br/>Called method String.getBytes()<br/>At MySQLDetectorAuthenticator.java:[line 102]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70369');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.heartbeat.MySQLDetectorAuthenticator.handle(byte[]): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70369" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MySQLDetectorAuthenticator<br/>In method org.opencloudb.heartbeat.MySQLDetectorAuthenticator.handle(byte[])<br/>Called method new String(byte[])<br/>At MySQLDetectorAuthenticator.java:[line 58]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70438');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.heartbeat.MySQLDetectorHandler.handleErrorPacket(byte[]): new String(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70438" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MySQLDetectorHandler<br/>In method org.opencloudb.heartbeat.MySQLDetectorHandler.handleErrorPacket(byte[])<br/>Called method new String(byte[])<br/>At MySQLDetectorHandler.java:[line 116]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70754');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mpp.RowDataPacketGrouper.mertFields(byte[], byte[], int, int): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70754" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mpp.RowDataPacketGrouper<br/>In method org.opencloudb.mpp.RowDataPacketGrouper.mertFields(byte[], byte[], int, int)<br/>Called method new String(byte[])<br/>At RowDataPacketGrouper.java:[line 69]<br/>Another occurrence at RowDataPacketGrouper.java:[line 70]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71860');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.MySQLMessage.readString(): new String(byte[], int, int)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71860" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.MySQLMessage<br/>In method org.opencloudb.mysql.MySQLMessage.readString()<br/>Called method new String(byte[], int, int)<br/>At MySQLMessage.java:[line 205]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71929');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.MySQLMessage.readStringWithLength(): new String(byte[], int, int)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71929" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.MySQLMessage<br/>In method org.opencloudb.mysql.MySQLMessage.readStringWithLength()<br/>Called method new String(byte[], int, int)<br/>At MySQLMessage.java:[line 278]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71998');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.MySQLMessage.readStringWithNull(): new String(byte[], int, int)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71998" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.MySQLMessage<br/>In method org.opencloudb.mysql.MySQLMessage.readStringWithNull()<br/>Called method new String(byte[], int, int)<br/>At MySQLMessage.java:[line 232]<br/>Another occurrence at MySQLMessage.java:[line 237]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72964');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.handler.FetchStoreNodeOfChildTableHandler.errorResponse(byte[], PhysicalConnection): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72964" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.handler.FetchStoreNodeOfChildTableHandler<br/>In method org.opencloudb.mysql.nio.handler.FetchStoreNodeOfChildTableHandler.errorResponse(byte[], PhysicalConnection)<br/>Called method new String(byte[])<br/>At FetchStoreNodeOfChildTableHandler.java:[line 100]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73033');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.handler.FetchStoreNodeOfChildTableHandler.fieldEofResponse(byte[], List, byte[], PhysicalConnection): new String(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73033" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.handler.FetchStoreNodeOfChildTableHandler<br/>In method org.opencloudb.mysql.nio.handler.FetchStoreNodeOfChildTableHandler.fieldEofResponse(byte[], List, byte[], PhysicalConnection)<br/>Called method new String(byte[])<br/>At FetchStoreNodeOfChildTableHandler.java:[line 121]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N73102');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.handler.FetchStoreNodeOfChildTableHandler.rowResponse(byte[], PhysicalConnection): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N73102" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.handler.FetchStoreNodeOfChildTableHandler<br/>In method org.opencloudb.mysql.nio.handler.FetchStoreNodeOfChildTableHandler.rowResponse(byte[], PhysicalConnection)<br/>Called method new String(byte[])<br/>At FetchStoreNodeOfChildTableHandler.java:[line 134]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73171');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.handler.GetConnectionHandler.errorResponse(byte[], PhysicalConnection): new String(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73171" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.handler.GetConnectionHandler<br/>In method org.opencloudb.mysql.nio.handler.GetConnectionHandler.errorResponse(byte[], PhysicalConnection)<br/>Called method new String(byte[])<br/>At GetConnectionHandler.java:[line 52]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N73240');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.handler.GetConnectionHandler.okResponse(byte[], PhysicalConnection): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N73240" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.handler.GetConnectionHandler<br/>In method org.opencloudb.mysql.nio.handler.GetConnectionHandler.okResponse(byte[], PhysicalConnection)<br/>Called method new String(byte[])<br/>At GetConnectionHandler.java:[line 58]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73309');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.handler.KillConnectionHandler.connectionAcquired(PhysicalConnection): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73309" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.handler.KillConnectionHandler<br/>In method org.opencloudb.mysql.nio.handler.KillConnectionHandler.connectionAcquired(PhysicalConnection)<br/>Called method String.getBytes()<br/>At KillConnectionHandler.java:[line 61]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N73378');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.handler.KillConnectionHandler.errorResponse(byte[], PhysicalConnection): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N73378" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.handler.KillConnectionHandler<br/>In method org.opencloudb.mysql.nio.handler.KillConnectionHandler.errorResponse(byte[], PhysicalConnection)<br/>Called method new String(byte[])<br/>At KillConnectionHandler.java:[line 106]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73447');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.handler.MultiNodeHandler.errorResponse(byte[], PhysicalConnection): new String(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73447" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.handler.MultiNodeHandler<br/>In method org.opencloudb.mysql.nio.handler.MultiNodeHandler.errorResponse(byte[], PhysicalConnection)<br/>Called method new String(byte[])<br/>At MultiNodeHandler.java:[line 105]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N73516');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.handler.MultiNodeQueryHandler.errorResponse(byte[], PhysicalConnection): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N73516" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.handler.MultiNodeQueryHandler<br/>In method org.opencloudb.mysql.nio.handler.MultiNodeQueryHandler.errorResponse(byte[], PhysicalConnection)<br/>Called method new String(byte[])<br/>At MultiNodeQueryHandler.java:[line 158]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73585');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.handler.MultiNodeQueryHandler.fieldEofResponse(byte[], List, byte[], PhysicalConnection): new String(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73585" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.handler.MultiNodeQueryHandler<br/>In method org.opencloudb.mysql.nio.handler.MultiNodeQueryHandler.fieldEofResponse(byte[], List, byte[], PhysicalConnection)<br/>Called method new String(byte[])<br/>At MultiNodeQueryHandler.java:[line 320]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72279');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.MySQLConnection.&lt;static initializer for MySQLConnection&gt;(): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72279" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.MySQLConnection<br/>In method org.opencloudb.mysql.nio.MySQLConnection.&lt;static initializer for MySQLConnection&gt;()<br/>Called method String.getBytes()<br/>At MySQLConnection.java:[line 93]<br/>Another occurrence at MySQLConnection.java:[line 97]<br/>Another occurrence at MySQLConnection.java:[line 101]<br/>Another occurrence at MySQLConnection.java:[line 105]<br/>Another occurrence at MySQLConnection.java:[line 108]<br/>Another occurrence at MySQLConnection.java:[line 111]<br/>Another occurrence at MySQLConnection.java:[line 114]<br/>Another occurrence at MySQLConnection.java:[line 117]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72425');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.MySQLConnection.passwd(String, HandshakePacket): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72425" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.MySQLConnection<br/>In method org.opencloudb.mysql.nio.MySQLConnection.passwd(String, HandshakePacket)<br/>Called method String.getBytes()<br/>At MySQLConnection.java:[line 628]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72547');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.MySQLConnection$StatusSync.getChangeSchemaCommand(String): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72547" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.MySQLConnection$StatusSync<br/>In method org.opencloudb.mysql.nio.MySQLConnection$StatusSync.getChangeSchemaCommand(String)<br/>Called method String.getBytes()<br/>At MySQLConnection.java:[line 450]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72616');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.MySQLConnection$StatusSync.getCharsetCommand(int): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72616" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.MySQLConnection$StatusSync<br/>In method org.opencloudb.mysql.nio.MySQLConnection$StatusSync.getCharsetCommand(int)<br/>Called method String.getBytes()<br/>At MySQLConnection.java:[line 440]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72757');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.MySQLConnectionAuthenticator.auth323(byte): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72757" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.MySQLConnectionAuthenticator<br/>In method org.opencloudb.mysql.nio.MySQLConnectionAuthenticator.auth323(byte)<br/>Called method new String(byte[])<br/>At MySQLConnectionAuthenticator.java:[line 121]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72826');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.MySQLConnectionAuthenticator.auth323(byte): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72826" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.MySQLConnectionAuthenticator<br/>In method org.opencloudb.mysql.nio.MySQLConnectionAuthenticator.auth323(byte)<br/>Called method String.getBytes()<br/>At MySQLConnectionAuthenticator.java:[line 122]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72895');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.nio.MySQLConnectionAuthenticator.handle(byte[]): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72895" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.MySQLConnectionAuthenticator<br/>In method org.opencloudb.mysql.nio.MySQLConnectionAuthenticator.handle(byte[])<br/>Called method new String(byte[])<br/>At MySQLConnectionAuthenticator.java:[line 72]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72078');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.PacketUtil.encode(String, String): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72078" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.PacketUtil<br/>In method org.opencloudb.mysql.PacketUtil.encode(String, String)<br/>Called method String.getBytes()<br/>At PacketUtil.java:[line 46]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72147');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.mysql.PacketUtil.getShutdown(): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72147" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.mysql.PacketUtil<br/>In method org.opencloudb.mysql.PacketUtil.getShutdown()<br/>Called method String.getBytes()<br/>At PacketUtil.java:[line 71]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73862');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.net.FrontendConnection.encodeString(String, String): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73862" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.net.FrontendConnection<br/>In method org.opencloudb.net.FrontendConnection.encodeString(String, String)<br/>Called method String.getBytes()<br/>At FrontendConnection.java:[line 438]<br/>Another occurrence at FrontendConnection.java:[line 443]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74137');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.net.handler.FrontendAuthenticator.checkPassword(byte[], String): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74137" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.net.handler.FrontendAuthenticator<br/>In method org.opencloudb.net.handler.FrontendAuthenticator.checkPassword(byte[], String)<br/>Called method String.getBytes()<br/>At FrontendAuthenticator.java:[line 105]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74206');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.net.handler.FrontendAuthenticator.success(AuthPacket): new String(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74206" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.net.handler.FrontendAuthenticator<br/>In method org.opencloudb.net.handler.FrontendAuthenticator.success(AuthPacket)<br/>Called method new String(byte[])<br/>At FrontendAuthenticator.java:[line 151]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74275');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.net.mysql.AuthPacket.write(OutputStream): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74275" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.net.mysql.AuthPacket<br/>In method org.opencloudb.net.mysql.AuthPacket.write(OutputStream)<br/>Called method String.getBytes()<br/>At AuthPacket.java:[line 91]<br/>Another occurrence at AuthPacket.java:[line 101]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74355');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.net.mysql.AuthPacket.write(BackendConnection): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74355" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.net.mysql.AuthPacket<br/>In method org.opencloudb.net.mysql.AuthPacket.write(BackendConnection)<br/>Called method String.getBytes()<br/>At AuthPacket.java:[line 118]<br/>Another occurrence at AuthPacket.java:[line 133]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74435');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.net.mysql.ErrorPacket.&lt;static initializer for ErrorPacket&gt;(): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74435" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.net.mysql.ErrorPacket<br/>In method org.opencloudb.net.mysql.ErrorPacket.&lt;static initializer for ErrorPacket&gt;()<br/>Called method String.getBytes()<br/>At ErrorPacket.java:[line 44]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74708');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.net.mysql.FieldPacket.&lt;static initializer for FieldPacket&gt;(): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74708" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.net.mysql.FieldPacket<br/>In method org.opencloudb.net.mysql.FieldPacket.&lt;static initializer for FieldPacket&gt;()<br/>Called method String.getBytes()<br/>At FieldPacket.java:[line 53]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75220');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.ReloadConfig.execute(ManagerConnection): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75220" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.ReloadConfig<br/>In method org.opencloudb.response.ReloadConfig.execute(ManagerConnection)<br/>Called method String.getBytes()<br/>At ReloadConfig.java:[line 54]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75289');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.ReloadUser.execute(ManagerConnection): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75289" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.ReloadUser<br/>In method org.opencloudb.response.ReloadUser.execute(ManagerConnection)<br/>Called method String.getBytes()<br/>At ReloadUser.java:[line 40]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75358');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.RollbackConfig.execute(ManagerConnection): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75358" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.RollbackConfig<br/>In method org.opencloudb.response.RollbackConfig.execute(ManagerConnection)<br/>Called method String.getBytes()<br/>At RollbackConfig.java:[line 53]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75427');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.RollbackUser.execute(ManagerConnection): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75427" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.RollbackUser<br/>In method org.opencloudb.response.RollbackUser.execute(ManagerConnection)<br/>Called method String.getBytes()<br/>At RollbackUser.java:[line 40]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75652');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.SelectVersionComment.&lt;static initializer for SelectVersionComment&gt;(): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75652" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.SelectVersionComment<br/>In method org.opencloudb.response.SelectVersionComment.&lt;static initializer for SelectVersionComment&gt;()<br/>Called method String.getBytes()<br/>At SelectVersionComment.java:[line 33]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75721');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.ShowBackend.getRow(BackendConnection, String): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75721" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.ShowBackend<br/>In method org.opencloudb.response.ShowBackend.getRow(BackendConnection, String)<br/>Called method String.getBytes()<br/>At ShowBackend.java:[line 111]<br/>Another occurrence at ShowBackend.java:[line 119]<br/>Another occurrence at ShowBackend.java:[line 123]<br/>Another occurrence at ShowBackend.java:[line 124]<br/>Another occurrence at ShowBackend.java:[line 125]<br/>Another occurrence at ShowBackend.java:[line 126]<br/>Another occurrence at ShowBackend.java:[line 131]<br/>Another occurrence at ShowBackend.java:[line 132]<br/>Another occurrence at ShowBackend.java:[line 133]<br/>Another occurrence at ShowBackend.java:[line 134]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75889');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.ShowCollation.getRow(String): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75889" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.ShowCollation<br/>In method org.opencloudb.response.ShowCollation.getRow(String)<br/>Called method String.getBytes()<br/>At ShowCollation.java:[line 97]<br/>Another occurrence at ShowCollation.java:[line 98]<br/>Another occurrence at ShowCollation.java:[line 100]<br/>Another occurrence at ShowCollation.java:[line 101]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75991');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.ShowCommand.getRow(NIOProcessor, String): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75991" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.ShowCommand<br/>In method org.opencloudb.response.ShowCommand.getRow(NIOProcessor, String)<br/>Called method String.getBytes()<br/>At ShowCommand.java:[line 116]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N76060');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.ShowConnection.getRow(FrontendConnection, String): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N76060" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.ShowConnection<br/>In method org.opencloudb.response.ShowConnection.getRow(FrontendConnection, String)<br/>Called method String.getBytes()<br/>At ShowConnection.java:[line 137]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76242');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.ShowHeartbeat.getRows(): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76242" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.ShowHeartbeat<br/>In method org.opencloudb.response.ShowHeartbeat.getRows()<br/>Called method String.getBytes()<br/>At ShowHeartbeat.java:[line 140]<br/>Another occurrence at ShowHeartbeat.java:[line 141]<br/>Another occurrence at ShowHeartbeat.java:[line 142]<br/>Another occurrence at ShowHeartbeat.java:[line 146]<br/>Another occurrence at ShowHeartbeat.java:[line 148]<br/>Another occurrence at ShowHeartbeat.java:[line 150]<br/>Another occurrence at ShowHeartbeat.java:[line 151]<br/>Another occurrence at ShowHeartbeat.java:[line 163]<br/>Another occurrence at ShowHeartbeat.java:[line 164]<br/>Another occurrence at ShowHeartbeat.java:[line 166]<br/>Another occurrence at ShowHeartbeat.java:[line 170]<br/>Another occurrence at ShowHeartbeat.java:[line 172]<br/>Another occurrence at ShowHeartbeat.java:[line 174]<br/>Another occurrence at ShowHeartbeat.java:[line 175]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N76454');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.ShowProcessor.getRow(NIOProcessor, String): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N76454" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.ShowProcessor<br/>In method org.opencloudb.response.ShowProcessor.getRow(NIOProcessor, String)<br/>Called method String.getBytes()<br/>At ShowProcessor.java:[line 115]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76523');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.ShowRouter.getRow(NIOProcessor, String): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76523" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.ShowRouter<br/>In method org.opencloudb.response.ShowRouter.getRow(NIOProcessor, String)<br/>Called method String.getBytes()<br/>At ShowRouter.java:[line 102]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N76592');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.response.ShowSQLDetail.getRow(long, String): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N76592" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.response.ShowSQLDetail<br/>In method org.opencloudb.response.ShowSQLDetail.getRow(long, String)<br/>Called method String.getBytes()<br/>At ShowSQLDetail.java:[line 103]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76894');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.route.function.AutoPartitionByLong.initialize(): new java.io.InputStreamReader(InputStream)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76894" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.route.function.AutoPartitionByLong<br/>In method org.opencloudb.route.function.AutoPartitionByLong.initialize()<br/>Called method new java.io.InputStreamReader(InputStream)<br/>At AutoPartitionByLong.java:[line 70]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N77040');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.route.function.PartitionByFileMap.initialize(): new java.io.InputStreamReader(InputStream)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N77040" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.route.function.PartitionByFileMap<br/>In method org.opencloudb.route.function.PartitionByFileMap.initialize()<br/>Called method new java.io.InputStreamReader(InputStream)<br/>At PartitionByFileMap.java:[line 68]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N77186');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.route.function.PartitionByPattern.initialize(): new java.io.InputStreamReader(InputStream)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N77186" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.route.function.PartitionByPattern<br/>In method org.opencloudb.route.function.PartitionByPattern.initialize()<br/>Called method new java.io.InputStreamReader(InputStream)<br/>At PartitionByPattern.java:[line 88]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N77404');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.route.function.PartitionByPrefixPattern.initialize(): new java.io.InputStreamReader(InputStream)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N77404" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.route.function.PartitionByPrefixPattern<br/>In method org.opencloudb.route.function.PartitionByPrefixPattern.initialize()<br/>Called method new java.io.InputStreamReader(InputStream)<br/>At PartitionByPrefixPattern.java:[line 85]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N79485');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.server.response.Heartbeat.response(ServerConnection, byte[]): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N79485" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.server.response.Heartbeat<br/>In method org.opencloudb.server.response.Heartbeat.response(ServerConnection, byte[])<br/>Called method String.getBytes()<br/>At Heartbeat.java:[line 50]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N80004');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.server.response.SelectVersionComment.&lt;static initializer for SelectVersionComment&gt;(): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N80004" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.server.response.SelectVersionComment<br/>In method org.opencloudb.server.response.SelectVersionComment.&lt;static initializer for SelectVersionComment&gt;()<br/>Called method String.getBytes()<br/>At SelectVersionComment.java:[line 33]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N80370');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.server.response.ShowCobarStatus.&lt;static initializer for ShowCobarStatus&gt;(): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N80370" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.server.response.ShowCobarStatus<br/>In method org.opencloudb.server.response.ShowCobarStatus.&lt;static initializer for ShowCobarStatus&gt;()<br/>Called method String.getBytes()<br/>At ShowCobarStatus.java:[line 55]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N80570');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.util.ByteUtil.getDate(byte[]): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N80570" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.util.ByteUtil<br/>In method org.opencloudb.util.ByteUtil.getDate(byte[])<br/>Called method new String(byte[])<br/>At ByteUtil.java:[line 150]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N80639');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.util.ByteUtil.getInt(byte[]): new String(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N80639" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.util.ByteUtil<br/>In method org.opencloudb.util.ByteUtil.getInt(byte[])<br/>Called method new String(byte[])<br/>At ByteUtil.java:[line 116]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N80708');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.util.ByteUtil.getLong(byte[]): new String(byte[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N80708" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.util.ByteUtil<br/>In method org.opencloudb.util.ByteUtil.getLong(byte[])<br/>Called method new String(byte[])<br/>At ByteUtil.java:[line 122]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N80777');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.util.ByteUtil.getTimestmap(byte[]): new String(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N80777" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.util.ByteUtil<br/>In method org.opencloudb.util.ByteUtil.getTimestmap(byte[])<br/>Called method new String(byte[])<br/>At ByteUtil.java:[line 154]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N80846');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.util.CompareUtil.getCharCode(String): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N80846" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.util.CompareUtil<br/>In method org.opencloudb.util.CompareUtil.getCharCode(String)<br/>Called method String.getBytes()<br/>At CompareUtil.java:[line 113]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N80915');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.util.HexFormatUtil.fromHex(String, String): new String(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N80915" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.util.HexFormatUtil<br/>In method org.opencloudb.util.HexFormatUtil.fromHex(String, String)<br/>Called method new String(byte[])<br/>At HexFormatUtil.java:[line 36]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N80984');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.util.IntegerUtil.&lt;static initializer for IntegerUtil&gt;(): String.getBytes()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N80984" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.util.IntegerUtil<br/>In method org.opencloudb.util.IntegerUtil.&lt;static initializer for IntegerUtil&gt;()<br/>Called method String.getBytes()<br/>At IntegerUtil.java:[line 23]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N81120');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.util.LongUtil.&lt;static initializer for LongUtil&gt;(): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N81120" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.util.LongUtil<br/>In method org.opencloudb.util.LongUtil.&lt;static initializer for LongUtil&gt;()<br/>Called method String.getBytes()<br/>At LongUtil.java:[line 23]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N81256');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.util.StringUtil.decode(byte[], int, int, String): new String(byte[], int, int)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N81256" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.util.StringUtil<br/>In method org.opencloudb.util.StringUtil.decode(byte[], int, int, String)<br/>Called method new String(byte[], int, int)<br/>At StringUtil.java:[line 79]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N81325');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.opencloudb.util.StringUtil.encode(String, String): String.getBytes()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N81325" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.opencloudb.util.StringUtil<br/>In method org.opencloudb.util.StringUtil.encode(String, String)<br/>Called method String.getBytes()<br/>At StringUtil.java:[line 67]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68795');">
+<td>
+<span class="priority-2">MS</span>
+</td>
+<td>org.opencloudb.config.Versions.SERVER_VERSION is a mutable array</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68795" style="display: none;">
+<a href="#MS_MUTABLE_ARRAY">Bug type MS_MUTABLE_ARRAY (click for details)</a>
+<br/>In class org.opencloudb.config.Versions<br/>Field org.opencloudb.config.Versions.SERVER_VERSION<br/>At Versions.java:[line 27]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74777');">
+<td>
+<span class="priority-2">MS</span>
+</td>
+<td>org.opencloudb.net.mysql.OkPacket.OK is a mutable array</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74777" style="display: none;">
+<a href="#MS_MUTABLE_ARRAY">Bug type MS_MUTABLE_ARRAY (click for details)</a>
+<br/>In class org.opencloudb.net.mysql.OkPacket<br/>Field org.opencloudb.net.mysql.OkPacket.OK<br/>At OkPacket.java:[line 44]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74828');">
+<td>
+<span class="priority-2">MS</span>
+</td>
+<td>org.opencloudb.net.mysql.QuitPacket.QUIT is a mutable array</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74828" style="display: none;">
+<a href="#MS_MUTABLE_ARRAY">Bug type MS_MUTABLE_ARRAY (click for details)</a>
+<br/>In class org.opencloudb.net.mysql.QuitPacket<br/>Field org.opencloudb.net.mysql.QuitPacket.QUIT<br/>At QuitPacket.java:[line 22]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N81053');">
+<td>
+<span class="priority-2">MS</span>
+</td>
+<td>public static org.opencloudb.util.IntegerUtil.toBytes(int) may expose internal representation by returning IntegerUtil.minValue</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N81053" style="display: none;">
+<a href="#MS_EXPOSE_REP">Bug type MS_EXPOSE_REP (click for details)</a>
+<br/>In class org.opencloudb.util.IntegerUtil<br/>In method org.opencloudb.util.IntegerUtil.toBytes(int)<br/>Field org.opencloudb.util.IntegerUtil.minValue<br/>At IntegerUtil.java:[line 40]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N81189');">
+<td>
+<span class="priority-2">MS</span>
+</td>
+<td>public static org.opencloudb.util.LongUtil.toBytes(long) may expose internal representation by returning LongUtil.minValue</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N81189" style="display: none;">
+<a href="#MS_EXPOSE_REP">Bug type MS_EXPOSE_REP (click for details)</a>
+<br/>In class org.opencloudb.util.LongUtil<br/>In method org.opencloudb.util.LongUtil.toBytes(long)<br/>Field org.opencloudb.util.LongUtil.minValue<br/>At LongUtil.java:[line 27]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73654');">
+<td>
+<span class="priority-2">UL</span>
+</td>
+<td>org.opencloudb.mysql.nio.handler.MultiNodeQueryHandler.fieldEofResponse(byte[], List, byte[], PhysicalConnection) does not release lock on all exception paths</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73654" style="display: none;">
+<a href="#UL_UNRELEASED_LOCK_EXCEPTION_PATH">Bug type UL_UNRELEASED_LOCK_EXCEPTION_PATH (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.handler.MultiNodeQueryHandler<br/>In method org.opencloudb.mysql.nio.handler.MultiNodeQueryHandler.fieldEofResponse(byte[], List, byte[], PhysicalConnection)<br/>At MultiNodeQueryHandler.java:[line 298]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N73707');">
+<td>
+<span class="priority-2">UL</span>
+</td>
+<td>org.opencloudb.mysql.nio.handler.MultiNodeQueryHandler.rowEofResponse(byte[], PhysicalConnection) does not release lock on all exception paths</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N73707" style="display: none;">
+<a href="#UL_UNRELEASED_LOCK_EXCEPTION_PATH">Bug type UL_UNRELEASED_LOCK_EXCEPTION_PATH (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.handler.MultiNodeQueryHandler<br/>In method org.opencloudb.mysql.nio.handler.MultiNodeQueryHandler.rowEofResponse(byte[], PhysicalConnection)<br/>At MultiNodeQueryHandler.java:[line 256]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68472');">
+<td>
+<span class="priority-1">VO</span>
+</td>
+<td>Increment of volatile field org.opencloudb.backend.PhysicalDBNode.executeCount in org.opencloudb.backend.PhysicalDBNode.getConnection(ConnectionMeta, RouteResultsetNode, ResponseHandler, Object)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68472" style="display: none;">
+<a href="#VO_VOLATILE_INCREMENT">Bug type VO_VOLATILE_INCREMENT (click for details)</a>
+<br/>In class org.opencloudb.backend.PhysicalDBNode<br/>In method org.opencloudb.backend.PhysicalDBNode.getConnection(ConnectionMeta, RouteResultsetNode, ResponseHandler, Object)<br/>Field org.opencloudb.backend.PhysicalDBNode.executeCount<br/>At PhysicalDBNode.java:[line 83]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68592');">
+<td>
+<span class="priority-2">VO</span>
+</td>
+<td>Increment of volatile field org.opencloudb.buffer.BufferPool.newCount in org.opencloudb.buffer.BufferPool.allocate()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68592" style="display: none;">
+<a href="#VO_VOLATILE_INCREMENT">Bug type VO_VOLATILE_INCREMENT (click for details)</a>
+<br/>In class org.opencloudb.buffer.BufferPool<br/>In method org.opencloudb.buffer.BufferPool.allocate()<br/>Field org.opencloudb.buffer.BufferPool.newCount<br/>At BufferPool.java:[line 67]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68659');">
+<td>
+<span class="priority-2">VO</span>
+</td>
+<td>Increment of volatile field org.opencloudb.cache.MysqlDataSetCache.curCount in org.opencloudb.cache.MysqlDataSetCache.appendRecord(byte[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68659" style="display: none;">
+<a href="#VO_VOLATILE_INCREMENT">Bug type VO_VOLATILE_INCREMENT (click for details)</a>
+<br/>In class org.opencloudb.cache.MysqlDataSetCache<br/>In method org.opencloudb.cache.MysqlDataSetCache.appendRecord(byte[])<br/>Field org.opencloudb.cache.MysqlDataSetCache.curCount<br/>At MysqlDataSetCache.java:[line 96]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_PERFORMANCE">Performance Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69029');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>new org.opencloudb.config.util.FieldDictionary$FieldKey(String, Class, int) invokes inefficient new Integer(int) constructor; use Integer.valueOf(int) instead</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69029" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.opencloudb.config.util.FieldDictionary$FieldKey<br/>In method new org.opencloudb.config.util.FieldDictionary$FieldKey(String, Class, int)<br/>Called method new Integer(int)<br/>Should call Integer.valueOf(int) instead<br/>At FieldDictionary.java:[line 126]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65983');">
+<td>
+<span class="priority-2">SBSC</span>
+</td>
+<td>com.akiban.sql.parser.CharConstantNode.init(Object, Object) concatenates strings using + in a loop</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65983" style="display: none;">
+<a href="#SBSC_USE_STRINGBUFFER_CONCATENATION">Bug type SBSC_USE_STRINGBUFFER_CONCATENATION (click for details)</a>
+<br/>In class com.akiban.sql.parser.CharConstantNode<br/>In method com.akiban.sql.parser.CharConstantNode.init(Object, Object)<br/>At CharConstantNode.java:[line 93]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66188');">
+<td>
+<span class="priority-2">SBSC</span>
+</td>
+<td>com.akiban.sql.parser.ParseException.initialise(Token, int[][], String[]) concatenates strings using + in a loop</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66188" style="display: none;">
+<a href="#SBSC_USE_STRINGBUFFER_CONCATENATION">Bug type SBSC_USE_STRINGBUFFER_CONCATENATION (click for details)</a>
+<br/>In class com.akiban.sql.parser.ParseException<br/>In method com.akiban.sql.parser.ParseException.initialise(Token, int[][], String[])<br/>At ParseException.java:[line 117]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69526');">
+<td>
+<span class="priority-2">SBSC</span>
+</td>
+<td>org.opencloudb.handler.ShowServerLog.showLogSum(ManagerConnection, ByteBuffer, byte) concatenates strings using + in a loop</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69526" style="display: none;">
+<a href="#SBSC_USE_STRINGBUFFER_CONCATENATION">Bug type SBSC_USE_STRINGBUFFER_CONCATENATION (click for details)</a>
+<br/>In class org.opencloudb.handler.ShowServerLog<br/>In method org.opencloudb.handler.ShowServerLog.showLogSum(ManagerConnection, ByteBuffer, byte)<br/>At ShowServerLog.java:[line 168]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N78926');">
+<td>
+<span class="priority-2">SS</span>
+</td>
+<td>Unread field: org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler.datacenterIdBits; should this field be static?</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N78926" style="display: none;">
+<a href="#SS_SHOULD_BE_STATIC">Bug type SS_SHOULD_BE_STATIC (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler<br/>Field org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler.datacenterIdBits<br/>At SnowflakeIdSequenceHandler.java:[line 24]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N78977');">
+<td>
+<span class="priority-2">SS</span>
+</td>
+<td>Unread field: org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler.datacenterIdShift; should this field be static?</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N78977" style="display: none;">
+<a href="#SS_SHOULD_BE_STATIC">Bug type SS_SHOULD_BE_STATIC (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler<br/>Field org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler.datacenterIdShift<br/>At SnowflakeIdSequenceHandler.java:[line 29]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N79028');">
+<td>
+<span class="priority-2">SS</span>
+</td>
+<td>Unread field: org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler.maxDatacenterId; should this field be static?</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N79028" style="display: none;">
+<a href="#SS_SHOULD_BE_STATIC">Bug type SS_SHOULD_BE_STATIC (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler<br/>Field org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler.maxDatacenterId<br/>At SnowflakeIdSequenceHandler.java:[line 26]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N79079');">
+<td>
+<span class="priority-2">SS</span>
+</td>
+<td>Unread field: org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler.sequenceBits; should this field be static?</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N79079" style="display: none;">
+<a href="#SS_SHOULD_BE_STATIC">Bug type SS_SHOULD_BE_STATIC (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler<br/>Field org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler.sequenceBits<br/>At SnowflakeIdSequenceHandler.java:[line 27]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N79130');">
+<td>
+<span class="priority-2">SS</span>
+</td>
+<td>Unread field: org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler.twepoch; should this field be static?</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N79130" style="display: none;">
+<a href="#SS_SHOULD_BE_STATIC">Bug type SS_SHOULD_BE_STATIC (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler<br/>Field org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler.twepoch<br/>At SnowflakeIdSequenceHandler.java:[line 21]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N79181');">
+<td>
+<span class="priority-2">SS</span>
+</td>
+<td>Unread field: org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler.workerIdBits; should this field be static?</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N79181" style="display: none;">
+<a href="#SS_SHOULD_BE_STATIC">Bug type SS_SHOULD_BE_STATIC (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler<br/>Field org.opencloudb.sequence.handler.SnowflakeIdSequenceHandler.workerIdBits<br/>At SnowflakeIdSequenceHandler.java:[line 23]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66241');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread field: com.akiban.sql.parser.ResultColumnList.initialListSize</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66241" style="display: none;">
+<a href="#URF_UNREAD_FIELD">Bug type URF_UNREAD_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.ResultColumnList<br/>Field com.akiban.sql.parser.ResultColumnList.initialListSize<br/>At ResultColumnList.java:[line 81]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66292');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread field: com.akiban.sql.parser.ResultColumnList.orderBySelect</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66292" style="display: none;">
+<a href="#URF_UNREAD_FIELD">Bug type URF_UNREAD_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.ResultColumnList<br/>Field com.akiban.sql.parser.ResultColumnList.orderBySelect<br/>At ResultColumnList.java:[line 51]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67200');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread field: com.akiban.sql.parser.SQLGrammarTokenManager.lengthOfMatch</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67200" style="display: none;">
+<a href="#URF_UNREAD_FIELD">Bug type URF_UNREAD_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammarTokenManager<br/>Field com.akiban.sql.parser.SQLGrammarTokenManager.lengthOfMatch<br/>At SQLGrammarTokenManager.java:[line 10218]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67369');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread field: com.akiban.sql.parser.SQLParser.returnParameterFlag</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67369" style="display: none;">
+<a href="#URF_UNREAD_FIELD">Bug type URF_UNREAD_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLParser<br/>Field com.akiban.sql.parser.SQLParser.returnParameterFlag<br/>At SQLParser.java:[line 204]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66425');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused field: com.akiban.sql.parser.SQLGrammar$JJCalls.arg</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66425" style="display: none;">
+<a href="#UUF_UNUSED_FIELD">Bug type UUF_UNUSED_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammar$JJCalls<br/>Field com.akiban.sql.parser.SQLGrammar$JJCalls.arg<br/>In SQLGrammar.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66472');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused field: com.akiban.sql.parser.SQLGrammar$JJCalls.first</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66472" style="display: none;">
+<a href="#UUF_UNUSED_FIELD">Bug type UUF_UNUSED_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammar$JJCalls<br/>Field com.akiban.sql.parser.SQLGrammar$JJCalls.first<br/>In SQLGrammar.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66519');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused field: com.akiban.sql.parser.SQLGrammar$JJCalls.gen</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66519" style="display: none;">
+<a href="#UUF_UNUSED_FIELD">Bug type UUF_UNUSED_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammar$JJCalls<br/>Field com.akiban.sql.parser.SQLGrammar$JJCalls.gen<br/>In SQLGrammar.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66566');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused field: com.akiban.sql.parser.SQLGrammar$JJCalls.next</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66566" style="display: none;">
+<a href="#UUF_UNUSED_FIELD">Bug type UUF_UNUSED_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammar$JJCalls<br/>Field com.akiban.sql.parser.SQLGrammar$JJCalls.next<br/>In SQLGrammar.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68159');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused field: com.akiban.sql.types.RoutineAliasInfo.specificName</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68159" style="display: none;">
+<a href="#UUF_UNUSED_FIELD">Bug type UUF_UNUSED_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.types.RoutineAliasInfo<br/>Field com.akiban.sql.types.RoutineAliasInfo.specificName<br/>In RoutineAliasInfo.java</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_STYLE">Dodgy code Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N80229');">
+<td>
+<span class="priority-2">DB</span>
+</td>
+<td>org.opencloudb.server.response.ShowCobarCluster.getRows(ServerConnection) uses the same code for two branches</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N80229" style="display: none;">
+<a href="#DB_DUPLICATE_BRANCHES">Bug type DB_DUPLICATE_BRANCHES (click for details)</a>
+<br/>In class org.opencloudb.server.response.ShowCobarCluster<br/>In method org.opencloudb.server.response.ShowCobarCluster.getRows(ServerConnection)<br/>At ShowCobarCluster.java:[lines 102-108]<br/>At ShowCobarCluster.java:[lines 110-111]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65739');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to rprec in com.akiban.sql.compiler.NumericTypeCompiler.getScale(String, DataTypeDescriptor, DataTypeDescriptor)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65739" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class com.akiban.sql.compiler.NumericTypeCompiler<br/>In method com.akiban.sql.compiler.NumericTypeCompiler.getScale(String, DataTypeDescriptor, DataTypeDescriptor)<br/>Local variable named rprec<br/>At NumericTypeCompiler.java:[line 385]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66613');">
+<td>
+<span class="priority-1">DLS</span>
+</td>
+<td>Dead store to active2 in com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa12_0(long, long, long, long, long, long, long, long, long, long, long, long, long, long)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66613" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammarTokenManager<br/>In method com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa12_0(long, long, long, long, long, long, long, long, long, long, long, long, long, long)<br/>Local variable named active2<br/>At SQLGrammarTokenManager.java:[line 7542]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66682');">
+<td>
+<span class="priority-1">DLS</span>
+</td>
+<td>Dead store to active3 in com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa15_0(long, long, long, long, long, long, long, long, long, long, long, long)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66682" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammarTokenManager<br/>In method com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa15_0(long, long, long, long, long, long, long, long, long, long, long, long)<br/>Local variable named active3<br/>At SQLGrammarTokenManager.java:[line 7891]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66751');">
+<td>
+<span class="priority-1">DLS</span>
+</td>
+<td>Dead store to active1 in com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa17_0(long, long, long, long, long, long, long, long, long, long)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66751" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammarTokenManager<br/>In method com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa17_0(long, long, long, long, long, long, long, long, long, long)<br/>Local variable named active1<br/>At SQLGrammarTokenManager.java:[line 7991]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66820');">
+<td>
+<span class="priority-1">DLS</span>
+</td>
+<td>Dead store to active4 in com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa18_0(long, long, long, long, long, long, long, long)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66820" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammarTokenManager<br/>In method com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa18_0(long, long, long, long, long, long, long, long)<br/>Local variable named active4<br/>At SQLGrammarTokenManager.java:[line 8052]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66889');">
+<td>
+<span class="priority-1">DLS</span>
+</td>
+<td>Dead store to active0 in com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa2_0(long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66889" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammarTokenManager<br/>In method com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa2_0(long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long)<br/>Local variable named active0<br/>At SQLGrammarTokenManager.java:[line 2627]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66958');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to active6 in com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa18_0(long, long, long, long, long, long, long, long)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66958" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammarTokenManager<br/>In method com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa18_0(long, long, long, long, long, long, long, long)<br/>Local variable named active6<br/>At SQLGrammarTokenManager.java:[line 8052]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67021');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to active7 in com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa18_0(long, long, long, long, long, long, long, long)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67021" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammarTokenManager<br/>In method com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa18_0(long, long, long, long, long, long, long, long)<br/>Local variable named active7<br/>At SQLGrammarTokenManager.java:[line 8052]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67084');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to active8 in com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa2_0(long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67084" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammarTokenManager<br/>In method com.akiban.sql.parser.SQLGrammarTokenManager.jjMoveStringLiteralDfa2_0(long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long)<br/>Local variable named active8<br/>At SQLGrammarTokenManager.java:[line 2627]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69110');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.handler.ConfFileHandler.&lt;static initializer for ConfFileHandler&gt;()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69110" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.handler.ConfFileHandler<br/>In method org.opencloudb.handler.ConfFileHandler.&lt;static initializer for ConfFileHandler&gt;()<br/>Local variable named i<br/>At ConfFileHandler.java:[line 68]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69257');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.handler.ShowServerLog.&lt;static initializer for ShowServerLog&gt;()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69257" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.handler.ShowServerLog<br/>In method org.opencloudb.handler.ShowServerLog.&lt;static initializer for ShowServerLog&gt;()<br/>Local variable named i<br/>At ShowServerLog.java:[line 39]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70159');">
+<td>
+<span class="priority-1">DLS</span>
+</td>
+<td>Dead store to packetId in org.opencloudb.heartbeat.MySQLDetectorAuthenticator.auth323(byte)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70159" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MySQLDetectorAuthenticator<br/>In method org.opencloudb.heartbeat.MySQLDetectorAuthenticator.auth323(byte)<br/>Local variable named packetId<br/>At MySQLDetectorAuthenticator.java:[line 97]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71783');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to month in org.opencloudb.mysql.MySQLMessage.readDate()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71783" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.mysql.MySQLMessage<br/>In method org.opencloudb.mysql.MySQLMessage.readDate()<br/>Local variable named month<br/>At MySQLMessage.java:[line 320]<br/>Another occurrence at MySQLMessage.java:[line 314]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72685');">
+<td>
+<span class="priority-1">DLS</span>
+</td>
+<td>Dead store to packetId in org.opencloudb.mysql.nio.MySQLConnectionAuthenticator.auth323(byte)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72685" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.MySQLConnectionAuthenticator<br/>In method org.opencloudb.mysql.nio.MySQLConnectionAuthenticator.auth323(byte)<br/>Local variable named packetId<br/>At MySQLConnectionAuthenticator.java:[line 117]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72216');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to seed2 in org.opencloudb.mysql.SecurityUtil.scramble323(String, String)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72216" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.mysql.SecurityUtil<br/>In method org.opencloudb.mysql.SecurityUtil.scramble323(String, String)<br/>Local variable named seed2<br/>At SecurityUtil.java:[line 62]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75496');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.response.SelectSessionAutoIncrement.&lt;static initializer for SelectSessionAutoIncrement&gt;()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75496" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.response.SelectSessionAutoIncrement<br/>In method org.opencloudb.response.SelectSessionAutoIncrement.&lt;static initializer for SelectSessionAutoIncrement&gt;()<br/>Local variable named i<br/>At SelectSessionAutoIncrement.java:[line 44]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75574');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.response.SelectVersionComment.&lt;static initializer for SelectVersionComment&gt;()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75574" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.response.SelectVersionComment<br/>In method org.opencloudb.response.SelectVersionComment.&lt;static initializer for SelectVersionComment&gt;()<br/>Local variable named i<br/>At SelectVersionComment.java:[line 44]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76164');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.response.ShowDatabase.&lt;static initializer for ShowDatabase&gt;()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76164" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.response.ShowDatabase<br/>In method org.opencloudb.response.ShowDatabase.&lt;static initializer for ShowDatabase&gt;()<br/>Local variable named i<br/>At ShowDatabase.java:[line 51]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N76661');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.response.ShowTime.&lt;static initializer for ShowTime&gt;()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N76661" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.response.ShowTime<br/>In method org.opencloudb.response.ShowTime.&lt;static initializer for ShowTime&gt;()<br/>Local variable named i<br/>At ShowTime.java:[line 46]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76739');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.response.ShowVersion.&lt;static initializer for ShowVersion&gt;()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76739" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.response.ShowVersion<br/>In method org.opencloudb.response.ShowVersion.&lt;static initializer for ShowVersion&gt;()<br/>Local variable named i<br/>At ShowVersion.java:[line 46]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N77332');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to pattern in org.opencloudb.route.function.PartitionByPrefixPattern.calculate(String)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N77332" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.route.function.PartitionByPrefixPattern<br/>In method org.opencloudb.route.function.PartitionByPrefixPattern.calculate(String)<br/>Local variable named pattern<br/>At PartitionByPrefixPattern.java:[line 57]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N79554');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.server.response.SelectDatabase.&lt;static initializer for SelectDatabase&gt;()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N79554" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.server.response.SelectDatabase<br/>In method org.opencloudb.server.response.SelectDatabase.&lt;static initializer for SelectDatabase&gt;()<br/>Local variable named i<br/>At SelectDatabase.java:[line 42]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N79632');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to packetId in org.opencloudb.server.response.SelectIdentity.&lt;static initializer for SelectIdentity&gt;()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N79632" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.server.response.SelectIdentity<br/>In method org.opencloudb.server.response.SelectIdentity.&lt;static initializer for SelectIdentity&gt;()<br/>Local variable named packetId<br/>At SelectIdentity.java:[line 42]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N79701');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to packetId in org.opencloudb.server.response.SelectLastInsertId.&lt;static initializer for SelectLastInsertId&gt;()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N79701" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.server.response.SelectLastInsertId<br/>In method org.opencloudb.server.response.SelectLastInsertId.&lt;static initializer for SelectLastInsertId&gt;()<br/>Local variable named packetId<br/>At SelectLastInsertId.java:[line 40]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N79770');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.server.response.SelectUser.&lt;static initializer for SelectUser&gt;()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N79770" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.server.response.SelectUser<br/>In method org.opencloudb.server.response.SelectUser.&lt;static initializer for SelectUser&gt;()<br/>Local variable named i<br/>At SelectUser.java:[line 46]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N79848');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.server.response.SelectVersion.&lt;static initializer for SelectVersion&gt;()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N79848" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.server.response.SelectVersion<br/>In method org.opencloudb.server.response.SelectVersion.&lt;static initializer for SelectVersion&gt;()<br/>Local variable named i<br/>At SelectVersion.java:[line 43]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N79926');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.server.response.SelectVersionComment.&lt;static initializer for SelectVersionComment&gt;()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N79926" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.server.response.SelectVersionComment<br/>In method org.opencloudb.server.response.SelectVersionComment.&lt;static initializer for SelectVersionComment&gt;()<br/>Local variable named i<br/>At SelectVersionComment.java:[line 43]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N80073');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.server.response.SessionIncrement.&lt;static initializer for SessionIncrement&gt;()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N80073" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.server.response.SessionIncrement<br/>In method org.opencloudb.server.response.SessionIncrement.&lt;static initializer for SessionIncrement&gt;()<br/>Local variable named i<br/>At SessionIncrement.java:[line 43]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N80151');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.server.response.SessionIsolation.&lt;static initializer for SessionIsolation&gt;()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N80151" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.server.response.SessionIsolation<br/>In method org.opencloudb.server.response.SessionIsolation.&lt;static initializer for SessionIsolation&gt;()<br/>Local variable named i<br/>At SessionIsolation.java:[line 43]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N80292');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.server.response.ShowCobarStatus.&lt;static initializer for ShowCobarStatus&gt;()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N80292" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.server.response.ShowCobarStatus<br/>In method org.opencloudb.server.response.ShowCobarStatus.&lt;static initializer for ShowCobarStatus&gt;()<br/>Local variable named i<br/>At ShowCobarStatus.java:[line 53]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N80439');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to i in org.opencloudb.server.response.ShowDatabases.&lt;static initializer for ShowDatabases&gt;()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N80439" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.opencloudb.server.response.ShowDatabases<br/>In method org.opencloudb.server.response.ShowDatabases.&lt;static initializer for ShowDatabases&gt;()<br/>Local variable named i<br/>At ShowDatabases.java:[line 49]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68259');">
+<td>
+<span class="priority-2">Eq</span>
+</td>
+<td>com.akiban.sql.types.TypeId$RowMultiSetTypeId doesn't override TypeId.equals(Object)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68259" style="display: none;">
+<a href="#EQ_DOESNT_OVERRIDE_EQUALS">Bug type EQ_DOESNT_OVERRIDE_EQUALS (click for details)</a>
+<br/>In class com.akiban.sql.types.TypeId$RowMultiSetTypeId<br/>Did you intend to override com.akiban.sql.types.TypeId.equals(Object)<br/>At TypeId.java:[lines 1247-1250]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65805');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Load of known null value in com.akiban.sql.compiler.NumericTypeCompiler.getPrecision(String, DataTypeDescriptor, DataTypeDescriptor)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65805" style="display: none;">
+<a href="#NP_LOAD_OF_KNOWN_NULL_VALUE">Bug type NP_LOAD_OF_KNOWN_NULL_VALUE (click for details)</a>
+<br/>In class com.akiban.sql.compiler.NumericTypeCompiler<br/>In method com.akiban.sql.compiler.NumericTypeCompiler.getPrecision(String, DataTypeDescriptor, DataTypeDescriptor)<br/>At NumericTypeCompiler.java:[line 320]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66110');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Read of unwritten public or protected field next in com.akiban.sql.parser.ParseException.initialise(Token, int[][], String[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66110" style="display: none;">
+<a href="#NP_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">Bug type NP_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.ParseException<br/>In method com.akiban.sql.parser.ParseException.initialise(Token, int[][], String[])<br/>Field com.akiban.sql.parser.Token.next<br/>At ParseException.java:[line 110]<br/>Another occurrence at ParseException.java:[line 120]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67302');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Read of unwritten public or protected field next in com.akiban.sql.parser.SQLParser.tokenErrorPosition(Token, String)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67302" style="display: none;">
+<a href="#NP_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">Bug type NP_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLParser<br/>In method com.akiban.sql.parser.SQLParser.tokenErrorPosition(Token, String)<br/>Field com.akiban.sql.parser.Token.next<br/>At SQLParser.java:[line 164]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67992');">
+<td>
+<span class="priority-1">RCN</span>
+</td>
+<td>Redundant nullcheck of arg1, which is known to be non-null in com.akiban.sql.parser.UserTypeConstantNode.init(Object)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67992" style="display: none;">
+<a href="#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">Bug type RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE (click for details)</a>
+<br/>In class com.akiban.sql.parser.UserTypeConstantNode<br/>In method com.akiban.sql.parser.UserTypeConstantNode.init(Object)<br/>Value loaded from arg1<br/>Redundant null check at UserTypeConstantNode.java:[line 120]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68952');">
+<td>
+<span class="priority-2">RCN</span>
+</td>
+<td>Redundant nullcheck of bc, which is known to be non-null in org.opencloudb.config.util.BeanConfig.clone()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68952" style="display: none;">
+<a href="#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">Bug type RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE (click for details)</a>
+<br/>In class org.opencloudb.config.util.BeanConfig<br/>In method org.opencloudb.config.util.BeanConfig.clone()<br/>Value loaded from bc<br/>Return value of Class.newInstance()<br/>Redundant null check at BeanConfig.java:[line 82]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75045');">
+<td>
+<span class="priority-1">RCN</span>
+</td>
+<td>Redundant nullcheck of l2, which is known to be non-null in org.opencloudb.parser.util.ListUtil.isEquals(List, List)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75045" style="display: none;">
+<a href="#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">Bug type RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE (click for details)</a>
+<br/>In class org.opencloudb.parser.util.ListUtil<br/>In method org.opencloudb.parser.util.ListUtil.isEquals(List, List)<br/>Value loaded from l2<br/>Redundant null check at ListUtil.java:[line 47]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75106');">
+<td>
+<span class="priority-1">RCN</span>
+</td>
+<td>Redundant nullcheck of o2, which is known to be non-null in org.opencloudb.parser.util.Pair.isEquals(Object, Object)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75106" style="display: none;">
+<a href="#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">Bug type RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE (click for details)</a>
+<br/>In class org.opencloudb.parser.util.Pair<br/>In method org.opencloudb.parser.util.Pair.isEquals(Object, Object)<br/>Value loaded from o2<br/>Redundant null check at Pair.java:[line 77]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N79232');">
+<td>
+<span class="priority-1">RCN</span>
+</td>
+<td>Redundant nullcheck of rrs, which is known to be non-null in org.opencloudb.server.handler.ExplainHandler.handle(String, ServerConnection, int)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N79232" style="display: none;">
+<a href="#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">Bug type RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE (click for details)</a>
+<br/>In class org.opencloudb.server.handler.ExplainHandler<br/>In method org.opencloudb.server.handler.ExplainHandler.handle(String, ServerConnection, int)<br/>Value loaded from rrs<br/>Return value of org.opencloudb.server.handler.ExplainHandler.getRouteResultset(ServerConnection, String)<br/>Redundant null check at ExplainHandler.java:[line 82]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69473');">
+<td>
+<span class="priority-2">REC</span>
+</td>
+<td>Exception is caught when Exception is not thrown in org.opencloudb.handler.ShowServerLog.showLogSum(ManagerConnection, ByteBuffer, byte)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69473" style="display: none;">
+<a href="#REC_CATCH_EXCEPTION">Bug type REC_CATCH_EXCEPTION (click for details)</a>
+<br/>In class org.opencloudb.handler.ShowServerLog<br/>In method org.opencloudb.handler.ShowServerLog.showLogSum(ManagerConnection, ByteBuffer, byte)<br/>At ShowServerLog.java:[line 210]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N78767');">
+<td>
+<span class="priority-2">REC</span>
+</td>
+<td>Exception is caught when Exception is not thrown in org.opencloudb.sequence.handler.IncrSequencePropHandler.fetchNextPeriod(String)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N78767" style="display: none;">
+<a href="#REC_CATCH_EXCEPTION">Bug type REC_CATCH_EXCEPTION (click for details)</a>
+<br/>In class org.opencloudb.sequence.handler.IncrSequencePropHandler<br/>In method org.opencloudb.sequence.handler.IncrSequencePropHandler.fetchNextPeriod(String)<br/>At IncrSequencePropHandler.java:[line 77]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65633');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.akiban.sql.compiler.BooleanNormalizer.changeToCNF(ValueNode, boolean) where default case is missing</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65633" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class com.akiban.sql.compiler.BooleanNormalizer<br/>In method com.akiban.sql.compiler.BooleanNormalizer.changeToCNF(ValueNode, boolean)<br/>At BooleanNormalizer.java:[lines 620-774]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65686');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.akiban.sql.compiler.BooleanNormalizer.visit(Visitable) where default case is missing</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65686" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class com.akiban.sql.compiler.BooleanNormalizer<br/>In method com.akiban.sql.compiler.BooleanNormalizer.visit(Visitable)<br/>At BooleanNormalizer.java:[lines 839-848]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65858');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.akiban.sql.compiler.TypeComputer.visit(Visitable) where default case is missing</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65858" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class com.akiban.sql.compiler.TypeComputer<br/>In method com.akiban.sql.compiler.TypeComputer.visit(Visitable)<br/>At TypeComputer.java:[lines 641-649]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67147');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.akiban.sql.parser.SQLGrammarTokenManager.getNextToken() where default case is missing</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67147" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammarTokenManager<br/>In method com.akiban.sql.parser.SQLGrammarTokenManager.getNextToken()<br/>At SQLGrammarTokenManager.java:[lines 10000-10149]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68206');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.akiban.sql.types.TypeId.toParsableString(DataTypeDescriptor) where default case is missing</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68206" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class com.akiban.sql.types.TypeId<br/>In method com.akiban.sql.types.TypeId.toParsableString(DataTypeDescriptor)<br/>At TypeId.java:[lines 1543-1587]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68313');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.akiban.sql.unparser.NodeToString.createAliasNode(CreateAliasNode) where default case is missing</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68313" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class com.akiban.sql.unparser.NodeToString<br/>In method com.akiban.sql.unparser.NodeToString.createAliasNode(CreateAliasNode)<br/>At NodeToString.java:[lines 457-478]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68366');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.akiban.sql.unparser.NodeToString.createIndexNode(CreateIndexNode) where default case is missing</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68366" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class com.akiban.sql.unparser.NodeToString<br/>In method com.akiban.sql.unparser.NodeToString.createIndexNode(CreateIndexNode)<br/>At NodeToString.java:[lines 391-396]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68419');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.akiban.sql.unparser.NodeToString.timestampFunctionNode(TernaryOperatorNode) where default case is missing</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68419" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class com.akiban.sql.unparser.NodeToString<br/>In method com.akiban.sql.unparser.NodeToString.timestampFunctionNode(TernaryOperatorNode)<br/>At NodeToString.java:[lines 1009-1035]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69968');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.opencloudb.heartbeat.MyCATHeartbeat.setResult(int, MyCATDetector, boolean, byte[]) where default case is missing</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69968" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MyCATHeartbeat<br/>In method org.opencloudb.heartbeat.MyCATHeartbeat.setResult(int, MyCATDetector, boolean, byte[])<br/>At MyCATHeartbeat.java:[lines 187-210]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70507');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.opencloudb.heartbeat.MySQLHeartbeat.setResult(int, MySQLDetector, boolean) where default case is missing</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70507" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.opencloudb.heartbeat.MySQLHeartbeat<br/>In method org.opencloudb.heartbeat.MySQLHeartbeat.setResult(int, MySQLDetector, boolean)<br/>At MySQLHeartbeat.java:[lines 147-158]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70560');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.opencloudb.manager.ManagerConnection.error(int, Throwable) where default case is missing</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70560" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.opencloudb.manager.ManagerConnection<br/>In method org.opencloudb.manager.ManagerConnection.error(int, Throwable)<br/>At ManagerConnection.java:[lines 79-82]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72494');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.opencloudb.mysql.nio.MySQLConnection.error(int, Throwable) where default case is missing</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72494" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.opencloudb.mysql.nio.MySQLConnection<br/>In method org.opencloudb.mysql.nio.MySQLConnection.error(int, Throwable)<br/>At MySQLConnection.java:[lines 549-564]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75167');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.opencloudb.parser.util.ParseUtil.comment(String, int) where default case is missing</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75167" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.opencloudb.parser.util.ParseUtil<br/>In method org.opencloudb.parser.util.ParseUtil.comment(String, int)<br/>At ParseUtil.java:[lines 178-190]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N79432');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.opencloudb.server.response.CharacterSet.multiSetResponse(String, ServerConnection, int) where default case is missing</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N79432" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.opencloudb.server.response.CharacterSet<br/>In method org.opencloudb.server.response.CharacterSet.multiSetResponse(String, ServerConnection, int)<br/>At CharacterSet.java:[lines 76-81]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67251');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: com.akiban.sql.parser.SQLGrammarTokenManager.debugStream</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67251" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.SQLGrammarTokenManager<br/>Field com.akiban.sql.parser.SQLGrammarTokenManager.debugStream<br/>At SQLGrammarTokenManager.java:[line 29]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70834');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mpp.SelectParseInf.aggregatColumns</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70834" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mpp.SelectParseInf<br/>Field org.opencloudb.mpp.SelectParseInf.aggregatColumns<br/>At SelectParseInf.java:[line 23]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70885');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mpp.SelectParseInf.groupByList</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70885" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mpp.SelectParseInf<br/>Field org.opencloudb.mpp.SelectParseInf.groupByList<br/>At SelectParseInf.java:[line 22]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70936');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mpp.SelectParseInf.orderByList</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70936" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mpp.SelectParseInf<br/>Field org.opencloudb.mpp.SelectParseInf.orderByList<br/>At SelectParseInf.java:[line 21]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71222');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mysql.BindValue.byteBinding</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71222" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mysql.BindValue<br/>Field org.opencloudb.mysql.BindValue.byteBinding<br/>At BindValue.java:[line 49]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71273');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mysql.BindValue.doubleBinding</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71273" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mysql.BindValue<br/>Field org.opencloudb.mysql.BindValue.doubleBinding<br/>At BindValue.java:[line 54]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71324');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mysql.BindValue.floatBinding</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71324" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mysql.BindValue<br/>Field org.opencloudb.mysql.BindValue.floatBinding<br/>At BindValue.java:[line 52]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71375');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mysql.BindValue.intBinding</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71375" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mysql.BindValue<br/>Field org.opencloudb.mysql.BindValue.intBinding<br/>At BindValue.java:[line 51]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71426');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mysql.BindValue.isLongData</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71426" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mysql.BindValue<br/>Field org.opencloudb.mysql.BindValue.isLongData<br/>At BindValue.java:[line 42]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71477');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mysql.BindValue.isNull</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71477" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mysql.BindValue<br/>Field org.opencloudb.mysql.BindValue.isNull<br/>At BindValue.java:[line 41]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71528');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mysql.BindValue.isSet</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71528" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mysql.BindValue<br/>Field org.opencloudb.mysql.BindValue.isSet<br/>At BindValue.java:[line 43]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71579');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mysql.BindValue.length</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71579" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mysql.BindValue<br/>Field org.opencloudb.mysql.BindValue.length<br/>At BindValue.java:[line 45]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71630');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mysql.BindValue.longBinding</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71630" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mysql.BindValue<br/>Field org.opencloudb.mysql.BindValue.longBinding<br/>At BindValue.java:[line 53]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71681');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mysql.BindValue.scale</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71681" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mysql.BindValue<br/>Field org.opencloudb.mysql.BindValue.scale<br/>At BindValue.java:[line 47]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71732');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.mysql.BindValue.shortBinding</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71732" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mysql.BindValue<br/>Field org.opencloudb.mysql.BindValue.shortBinding<br/>At BindValue.java:[line 50]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73760');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.net.BackendConnection.connector</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73760" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.net.BackendConnection<br/>Field org.opencloudb.net.BackendConnection.connector<br/>At BackendConnection.java:[line 97]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N73811');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.net.BackendConnection.isFinishConnect</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N73811" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.net.BackendConnection<br/>Field org.opencloudb.net.BackendConnection.isFinishConnect<br/>At BackendConnection.java:[line 109]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74504');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.net.mysql.ExecutePacket.code</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74504" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.net.mysql.ExecutePacket<br/>Field org.opencloudb.net.mysql.ExecutePacket.code<br/>At ExecutePacket.java:[line 96]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74555');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.net.mysql.ExecutePacket.flags</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74555" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.net.mysql.ExecutePacket<br/>Field org.opencloudb.net.mysql.ExecutePacket.flags<br/>At ExecutePacket.java:[line 98]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74606');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.net.mysql.ExecutePacket.iterationCount</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74606" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.net.mysql.ExecutePacket<br/>Field org.opencloudb.net.mysql.ExecutePacket.iterationCount<br/>At ExecutePacket.java:[line 99]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74657');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.opencloudb.net.mysql.ExecutePacket.statementId</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74657" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.net.mysql.ExecutePacket<br/>Field org.opencloudb.net.mysql.ExecutePacket.statementId<br/>At ExecutePacket.java:[line 97]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66343');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused public or protected field: com.akiban.sql.parser.ResultColumnList.forUpdate</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66343" style="display: none;">
+<a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">Bug type UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.ResultColumnList<br/>Field com.akiban.sql.parser.ResultColumnList.forUpdate<br/>In ResultColumnList.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70613');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused public or protected field: org.opencloudb.mpp.DataNodeResultInf.firstRecord</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70613" style="display: none;">
+<a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">Bug type UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mpp.DataNodeResultInf<br/>Field org.opencloudb.mpp.DataNodeResultInf.firstRecord<br/>In DataMergeService.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70660');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused public or protected field: org.opencloudb.mpp.DataNodeResultInf.lastRecord</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70660" style="display: none;">
+<a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">Bug type UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mpp.DataNodeResultInf<br/>Field org.opencloudb.mpp.DataNodeResultInf.lastRecord<br/>In DataMergeService.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70707');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused public or protected field: org.opencloudb.mpp.DataNodeResultInf.rowCount</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70707" style="display: none;">
+<a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">Bug type UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mpp.DataNodeResultInf<br/>Field org.opencloudb.mpp.DataNodeResultInf.rowCount<br/>In DataMergeService.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70987');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused public or protected field: org.opencloudb.mpp.SelectParseInf.offCountNode</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70987" style="display: none;">
+<a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">Bug type UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mpp.SelectParseInf<br/>Field org.opencloudb.mpp.SelectParseInf.offCountNode<br/>In SelectParseInf.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71034');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused public or protected field: org.opencloudb.mpp.SelectParseInf.offsetNode</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71034" style="display: none;">
+<a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">Bug type UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mpp.SelectParseInf<br/>Field org.opencloudb.mpp.SelectParseInf.offsetNode<br/>In SelectParseInf.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71081');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused public or protected field: org.opencloudb.mpp.TableRouteInfo.columnRoutemap</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71081" style="display: none;">
+<a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">Bug type UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mpp.TableRouteInfo<br/>Field org.opencloudb.mpp.TableRouteInfo.columnRoutemap<br/>In TableRouteInfo.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71128');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused public or protected field: org.opencloudb.mpp.TableRouteInfo.matchedTable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71128" style="display: none;">
+<a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">Bug type UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mpp.TableRouteInfo<br/>Field org.opencloudb.mpp.TableRouteInfo.matchedTable<br/>In TableRouteInfo.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71175');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused public or protected field: org.opencloudb.mpp.TableRouteInfo.ruleMatched</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71175" style="display: none;">
+<a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">Bug type UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.mpp.TableRouteInfo<br/>Field org.opencloudb.mpp.TableRouteInfo.ruleMatched<br/>In TableRouteInfo.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74879');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused public or protected field: org.opencloudb.net.postgres.PostgresPacket.length</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74879" style="display: none;">
+<a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">Bug type UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.net.postgres.PostgresPacket<br/>Field org.opencloudb.net.postgres.PostgresPacket.length<br/>In PostgresPacket.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74926');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused public or protected field: org.opencloudb.net.postgres.PostgresPacket.type</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74926" style="display: none;">
+<a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">Bug type UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.opencloudb.net.postgres.PostgresPacket<br/>Field org.opencloudb.net.postgres.PostgresPacket.type<br/>In PostgresPacket.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67803');">
+<td>
+<span class="priority-2">UwF</span>
+</td>
+<td>Unwritten public or protected field: com.akiban.sql.parser.Token.next</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67803" style="display: none;">
+<a href="#UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">Bug type UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class com.akiban.sql.parser.Token<br/>Field com.akiban.sql.parser.Token.next<br/>At ParseException.java:[line 107]</p>
+</td>
+</tr>
+</table>
+<h1>
+<a name="Details">Details</a>
+</h1>
+<h2>
+<a name="DM_NUMBER_CTOR">DM_NUMBER_CTOR: Method invokes inefficient Number constructor; use static valueOf instead</a>
+</h2>
+      
+      <p>
+      Using <code>new Integer(int)</code> is guaranteed to always result in a new object whereas
+      <code>Integer.valueOf(int)</code> allows caching of values to be done by the compiler, class library, or JVM.
+      Using of cached values avoids object allocation and the code will be faster.
+      </p>
+      <p>
+      Values between -128 and 127 are guaranteed to have corresponding cached instances
+      and using <code>valueOf</code> is approximately 3.5 times faster than using constructor.
+      For values outside the constant range the performance of both styles is the same.
+      </p>
+      <p>
+      Unless the class must be compatible with JVMs predating Java 1.5,
+      use either autoboxing or the <code>valueOf()</code> method when creating instances of
+      <code>Long</code>, <code>Integer</code>, <code>Short</code>, <code>Character</code>, and <code>Byte</code>.
+      </p>
+      
+    
+<h2>
+<a name="CN_IDIOM_NO_SUPER_CALL">CN_IDIOM_NO_SUPER_CALL: clone method does not call super.clone()</a>
+</h2>
+
+<p> This non-final class defines a clone() method that does not call super.clone().
+If this class ("<i>A</i>") is extended by a subclass ("<i>B</i>"),
+and the subclass <i>B</i> calls super.clone(), then it is likely that
+<i>B</i>'s clone() method will return an object of type <i>A</i>,
+which violates the standard contract for clone().</p>
+
+<p> If all clone() methods call super.clone(), then they are guaranteed
+to use Object.clone(), which always returns an object of the correct type.</p>
+
+    
+<h2>
+<a name="DB_DUPLICATE_BRANCHES">DB_DUPLICATE_BRANCHES: Method uses the same code for two branches</a>
+</h2>
+      
+      <p>
+      This method uses the same code to implement two branches of a conditional branch.
+    Check to ensure that this isn't a coding mistake.
+      </p>
+      
+   
+<h2>
+<a name="DE_MIGHT_IGNORE">DE_MIGHT_IGNORE: Method might ignore exception</a>
+</h2>
+
+  <p> This method might ignore an exception.&nbsp; In general, exceptions
+  should be handled or reported in some way, or they should be thrown
+  out of the method.</p>
+
+    
+<h2>
+<a name="DLS_DEAD_LOCAL_STORE">DLS_DEAD_LOCAL_STORE: Dead store to local variable</a>
+</h2>
+
+<p>
+This instruction assigns a value to a local variable,
+but the value is not read or used in any subsequent instruction.
+Often, this indicates an error, because the value computed is never
+used.
+</p>
+<p>
+Note that Sun's javac compiler often generates dead stores for
+final local variables.  Because FindBugs is a bytecode-based tool,
+there is no easy way to eliminate these false positives.
+</p>
+
+    
+<h2>
+<a name="DM_DEFAULT_ENCODING">DM_DEFAULT_ENCODING: Reliance on default encoding</a>
+</h2>
+
+<p> Found a call to a method which will perform a byte to String (or String to byte) conversion, and will assume that the default platform encoding is suitable. This will cause the application behaviour to vary between platforms. Use an alternative API and specify a charset name or Charset object explicitly.  </p>
+
+      
+<h2>
+<a name="EQ_COMPARETO_USE_OBJECT_EQUALS">EQ_COMPARETO_USE_OBJECT_EQUALS: Class defines compareTo(...) and uses Object.equals()</a>
+</h2>
+
+  <p> This class defines a <code>compareTo(...)</code> method but inherits its
+  <code>equals()</code> method from <code>java.lang.Object</code>.
+    Generally, the value of compareTo should return zero if and only if
+    equals returns true. If this is violated, weird and unpredictable
+    failures will occur in classes such as PriorityQueue.
+    In Java 5 the PriorityQueue.remove method uses the compareTo method,
+    while in Java 6 it uses the equals method.
+
+<p>From the JavaDoc for the compareTo method in the Comparable interface:
+<blockquote>
+It is strongly recommended, but not strictly required that <code>(x.compareTo(y)==0) == (x.equals(y))</code>.
+Generally speaking, any class that implements the Comparable interface and violates this condition
+should clearly indicate this fact. The recommended language
+is "Note: this class has a natural ordering that is inconsistent with equals."
+</blockquote>
+
+    
+<h2>
+<a name="EQ_DOESNT_OVERRIDE_EQUALS">EQ_DOESNT_OVERRIDE_EQUALS: Class doesn't override equals in superclass</a>
+</h2>
+
+  <p> This class extends a class that defines an equals method and adds fields, but doesn't
+define an equals method itself. Thus, equality on instances of this class will
+ignore the identity of the subclass and the added fields. Be sure this is what is intended,
+and that you don't need to override the equals method. Even if you don't need to override
+the equals method, consider overriding it anyway to document the fact
+that the equals method for the subclass just return the result of
+invoking super.equals(o).
+  </p>
+
+    
+<h2>
+<a name="VA_FORMAT_STRING_USES_NEWLINE">VA_FORMAT_STRING_USES_NEWLINE: Format string should use %n rather than \n</a>
+</h2>
+
+<p>
+This format string include a newline character (\n). In format strings, it is generally
+ preferable better to use %n, which will produce the platform-specific line separator.
+</p>
+
+     
+<h2>
+<a name="GC_UNRELATED_TYPES">GC_UNRELATED_TYPES: No relationship between generic parameter and method argument</a>
+</h2>
+     
+     <p> This call to a generic collection method contains an argument
+     with an incompatible class from that of the collection's parameter
+    (i.e., the type of the argument is neither a supertype nor a subtype
+        of the corresponding generic type argument).
+     Therefore, it is unlikely that the collection contains any objects
+    that are equal to the method argument used here.
+    Most likely, the wrong value is being passed to the method.</p>
+    <p>In general, instances of two unrelated classes are not equal.
+    For example, if the <code>Foo</code> and <code>Bar</code> classes
+    are not related by subtyping, then an instance of <code>Foo</code>
+        should not be equal to an instance of <code>Bar</code>.
+    Among other issues, doing so will likely result in an equals method
+    that is not symmetrical. For example, if you define the <code>Foo</code> class
+    so that a <code>Foo</code> can be equal to a <code>String</code>,
+    your equals method isn't symmetrical since a <code>String</code> can only be equal
+    to a <code>String</code>.
+    </p>
+    <p>In rare cases, people do define nonsymmetrical equals methods and still manage to make
+    their code work. Although none of the APIs document or guarantee it, it is typically
+    the case that if you check if a <code>Collection&lt;String&gt;</code> contains
+    a <code>Foo</code>, the equals method of argument (e.g., the equals method of the
+    <code>Foo</code> class) used to perform the equality checks.
+    </p>
+     
+    
+<h2>
+<a name="HE_EQUALS_USE_HASHCODE">HE_EQUALS_USE_HASHCODE: Class defines equals() and uses Object.hashCode()</a>
+</h2>
+
+  <p> This class overrides <code>equals(Object)</code>, but does not
+  override <code>hashCode()</code>, and inherits the implementation of
+  <code>hashCode()</code> from <code>java.lang.Object</code> (which returns
+  the identity hash code, an arbitrary value assigned to the object
+  by the VM).&nbsp; Therefore, the class is very likely to violate the
+  invariant that equal objects must have equal hashcodes.</p>
+
+<p>If you don't think instances of this class will ever be inserted into a HashMap/HashTable,
+the recommended <code>hashCode</code> implementation to use is:</p>
+<pre>public int hashCode() {
+  assert false : "hashCode not designed";
+  return 42; // any arbitrary constant will do
+  }</pre>
+
+    
+<h2>
+<a name="MS_MUTABLE_ARRAY">MS_MUTABLE_ARRAY: Field is a mutable array</a>
+</h2>
+
+<p> A final static field references an array
+   and can be accessed by malicious code or
+        by accident from another package.
+   This code can freely modify the contents of the array.</p>
+
+    
+<h2>
+<a name="MS_EXPOSE_REP">MS_EXPOSE_REP: Public static method may expose internal representation by returning array</a>
+</h2>
+
+  <p> A public static method returns a reference to
+   an array that is part of the static state of the class.
+   Any code that calls this method can freely modify
+   the underlying array.
+   One fix is to return a copy of the array.</p>
+
+    
+<h2>
+<a name="NM_METHOD_NAMING_CONVENTION">NM_METHOD_NAMING_CONVENTION: Method names should start with a lower case letter</a>
+</h2>
+
+  <p>
+Methods should be verbs, in mixed case with the first letter lowercase, with the first letter of each internal word capitalized.
+</p>
+
+    
+<h2>
+<a name="NP_LOAD_OF_KNOWN_NULL_VALUE">NP_LOAD_OF_KNOWN_NULL_VALUE: Load of known null value</a>
+</h2>
+
+  <p> The variable referenced at this point is known to be null due to an earlier
+   check against null. Although this is valid, it might be a mistake (perhaps you
+intended to refer to a different variable, or perhaps the earlier check to see if the
+variable is null should have been a check to see if it was nonnull).
+</p>
+
+    
+<h2>
+<a name="NP_BOOLEAN_RETURN_NULL">NP_BOOLEAN_RETURN_NULL: Method with Boolean return type returns explicit null</a>
+</h2>
+       
+       <p>
+    A method that returns either Boolean.TRUE, Boolean.FALSE or null is an accident waiting to happen.
+    This method can be invoked as though it returned a value of type boolean, and
+    the compiler will insert automatic unboxing of the Boolean value. If a null value is returned,
+    this will result in a NullPointerException.
+       </p>
+       
+       
+<h2>
+<a name="NP_NULL_ON_SOME_PATH">NP_NULL_ON_SOME_PATH: Possible null pointer dereference</a>
+</h2>
+
+<p> There is a branch of statement that, <em>if executed,</em>  guarantees that
+a null value will be dereferenced, which
+would generate a <code>NullPointerException</code> when the code is executed.
+Of course, the problem might be that the branch or statement is infeasible and that
+the null pointer exception can't ever be executed; deciding that is beyond the ability of FindBugs.
+</p>
+
+    
+<h2>
+<a name="NP_UNWRITTEN_FIELD">NP_UNWRITTEN_FIELD: Read of unwritten field</a>
+</h2>
+
+  <p> The program is dereferencing a field that does not seem to ever have a non-null value written to it.
+Unless the field is initialized via some mechanism not seen by the analysis,
+dereferencing this value will generate a null pointer exception.
+</p>
+
+    
+<h2>
+<a name="NP_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">NP_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD: Read of unwritten public or protected field</a>
+</h2>
+
+  <p> The program is dereferencing a public or protected
+field that does not seem to ever have a non-null value written to it.
+Unless the field is initialized via some mechanism not seen by the analysis,
+dereferencing this value will generate a null pointer exception.
+</p>
+
+    
+<h2>
+<a name="OBL_UNSATISFIED_OBLIGATION">OBL_UNSATISFIED_OBLIGATION: Method may fail to clean up stream or resource</a>
+</h2>
+          
+          <p>
+          This method may fail to clean up (close, dispose of) a stream,
+          database object, or other
+          resource requiring an explicit cleanup operation.
+          </p>
+
+          <p>
+          In general, if a method opens a stream or other resource,
+          the method should use a try/finally block to ensure that
+          the stream or resource is cleaned up before the method
+          returns.
+          </p>
+
+          <p>
+          This bug pattern is essentially the same as the
+          OS_OPEN_STREAM and ODR_OPEN_DATABASE_RESOURCE
+          bug patterns, but is based on a different
+          (and hopefully better) static analysis technique.
+          We are interested is getting feedback about the
+          usefulness of this bug pattern.
+          To send feedback, either:
+          </p>
+          <ul>
+            <li>send email to findbugs@cs.umd.edu</li>
+            <li>file a bug report: <a href="http://findbugs.sourceforge.net/reportingBugs.html">http://findbugs.sourceforge.net/reportingBugs.html</a></li>
+          </ul>
+
+          <p>
+          In particular,
+          the false-positive suppression heuristics for this
+          bug pattern have not been extensively tuned, so
+          reports about false positives are helpful to us.
+          </p>
+
+          <p>
+          See Weimer and Necula, <i>Finding and Preventing Run-Time Error Handling Mistakes</i>, for
+          a description of the analysis technique.
+          </p>
+          
+      
+<h2>
+<a name="OS_OPEN_STREAM">OS_OPEN_STREAM: Method may fail to close stream</a>
+</h2>
+
+<p> The method creates an IO stream object, does not assign it to any
+fields, pass it to other methods that might close it,
+or return it, and does not appear to close
+the stream on all paths out of the method.&nbsp; This may result in
+a file descriptor leak.&nbsp; It is generally a good
+idea to use a <code>finally</code> block to ensure that streams are
+closed.</p>
+
+    
+<h2>
+<a name="RC_REF_COMPARISON_BAD_PRACTICE_BOOLEAN">RC_REF_COMPARISON_BAD_PRACTICE_BOOLEAN: Suspicious reference comparison of Boolean values</a>
+</h2>
+
+<p> This method compares two Boolean values using the == or != operator.
+Normally, there are only two Boolean values (Boolean.TRUE and Boolean.FALSE),
+but it is possible to create other Boolean objects using the <code>new Boolean(b)</code>
+constructor. It is best to avoid such objects, but if they do exist,
+then checking Boolean objects for equality using == or != will give results
+than are different than you would get using <code>.equals(...)</code>
+</p>
+
+    
+<h2>
+<a name="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE: Redundant nullcheck of value known to be non-null</a>
+</h2>
+
+<p> This method contains a redundant check of a known non-null value against
+the constant null.</p>
+
+    
+<h2>
+<a name="REC_CATCH_EXCEPTION">REC_CATCH_EXCEPTION: Exception is caught when Exception is not thrown</a>
+</h2>
+  
+  <p>
+  This method uses a try-catch block that catches Exception objects, but Exception is not
+  thrown within the try block, and RuntimeException is not explicitly caught.  It is a common bug pattern to
+  say try { ... } catch (Exception e) { something } as a shorthand for catching a number of types of exception
+  each of whose catch blocks is identical, but this construct also accidentally catches RuntimeException as well,
+  masking potential bugs.
+  </p>
+  <p>A better approach is to either explicitly catch the specific exceptions that are thrown,
+  or to explicitly catch RuntimeException exception, rethrow it, and then catch all non-Runtime Exceptions, as shown below:</p>
+  <pre>
+  try {
+    ...
+  } catch (RuntimeException e) {
+    throw e;
+  } catch (Exception e) {
+    ... deal with all non-runtime exceptions ...
+  }</pre>
+  
+     
+<h2>
+<a name="RV_ABSOLUTE_VALUE_OF_RANDOM_INT">RV_ABSOLUTE_VALUE_OF_RANDOM_INT: Bad attempt to compute absolute value of signed random integer</a>
+</h2>
+
+<p> This code generates a random signed integer and then computes
+the absolute value of that random integer.  If the number returned by the random number
+generator is <code>Integer.MIN_VALUE</code>, then the result will be negative as well (since
+<code>Math.abs(Integer.MIN_VALUE) == Integer.MIN_VALUE</code>). (Same problem arised for long values as well).
+</p>
+
+    
+<h2>
+<a name="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE">RV_RETURN_VALUE_IGNORED_BAD_PRACTICE: Method ignores exceptional return value</a>
+</h2>
+
+   <p> This method returns a value that is not checked. The return value should be checked
+since it can indicate an unusual or unexpected function execution. For
+example, the <code>File.delete()</code> method returns false
+if the file could not be successfully deleted (rather than
+throwing an Exception).
+If you don't check the result, you won't notice if the method invocation
+signals unexpected behavior by returning an atypical return value.
+</p>
+
+    
+<h2>
+<a name="SBSC_USE_STRINGBUFFER_CONCATENATION">SBSC_USE_STRINGBUFFER_CONCATENATION: Method concatenates strings using + in a loop</a>
+</h2>
+
+<p> The method seems to be building a String using concatenation in a loop.
+In each iteration, the String is converted to a StringBuffer/StringBuilder,
+   appended to, and converted back to a String.
+   This can lead to a cost quadratic in the number of iterations,
+   as the growing string is recopied in each iteration. </p>
+
+<p>Better performance can be obtained by using
+a StringBuffer (or StringBuilder in Java 1.5) explicitly.</p>
+
+<p> For example:</p>
+<pre>
+  // This is bad
+  String s = "";
+  for (int i = 0; i &lt; field.length; ++i) {
+    s = s + field[i];
+  }
+
+  // This is better
+  StringBuffer buf = new StringBuffer();
+  for (int i = 0; i &lt; field.length; ++i) {
+    buf.append(field[i]);
+  }
+  String s = buf.toString();
+</pre>
+
+    
+<h2>
+<a name="SE_COMPARATOR_SHOULD_BE_SERIALIZABLE">SE_COMPARATOR_SHOULD_BE_SERIALIZABLE: Comparator doesn't implement Serializable</a>
+</h2>
+
+  <p> This class implements the <code>Comparator</code> interface. You
+should consider whether or not it should also implement the <code>Serializable</code>
+interface. If a comparator is used to construct an ordered collection
+such as a <code>TreeMap</code>, then the <code>TreeMap</code>
+will be serializable only if the comparator is also serializable.
+As most comparators have little or no state, making them serializable
+is generally easy and good defensive programming.
+</p>
+
+    
+<h2>
+<a name="SF_SWITCH_NO_DEFAULT">SF_SWITCH_NO_DEFAULT: Switch statement found where default case is missing</a>
+</h2>
+
+  <p> This method contains a switch statement where default case is missing.
+  Usually you need to provide a default case.</p>
+  <p>Because the analysis only looks at the generated bytecode, this warning can be incorrect triggered if
+the default case is at the end of the switch statement and doesn't end with a break statement.
+
+    
+<h2>
+<a name="SKIPPED_CLASS_TOO_BIG">SKIPPED_CLASS_TOO_BIG: Class too big for analysis</a>
+</h2>
+      
+    <p>This class is bigger than can be effectively handled, and was not fully analyzed for errors.
+</p>
+
+
+    
+<h2>
+<a name="SS_SHOULD_BE_STATIC">SS_SHOULD_BE_STATIC: Unread field: should this field be static?</a>
+</h2>
+
+  <p> This class contains an instance final field that
+   is initialized to a compile-time static value.
+   Consider making the field static.</p>
+
+    
+<h2>
+<a name="UL_UNRELEASED_LOCK_EXCEPTION_PATH">UL_UNRELEASED_LOCK_EXCEPTION_PATH: Method does not release lock on all exception paths</a>
+</h2>
+
+<p> This method acquires a JSR-166 (<code>java.util.concurrent</code>) lock,
+but does not release it on all exception paths out of the method.  In general, the correct idiom
+for using a JSR-166 lock is:
+</p>
+<pre>
+    Lock l = ...;
+    l.lock();
+    try {
+        // do something
+    } finally {
+        l.unlock();
+    }
+</pre>
+
+    
+<h2>
+<a name="URF_UNREAD_FIELD">URF_UNREAD_FIELD: Unread field</a>
+</h2>
+
+  <p> This field is never read.&nbsp; Consider removing it from the class.</p>
+
+    
+<h2>
+<a name="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD: Unread public/protected field</a>
+</h2>
+
+  <p> This field is never read.&nbsp;
+The field is public or protected, so perhaps
+    it is intended to be used with classes not seen as part of the analysis. If not,
+consider removing it from the class.</p>
+
+    
+<h2>
+<a name="UUF_UNUSED_FIELD">UUF_UNUSED_FIELD: Unused field</a>
+</h2>
+
+  <p> This field is never used.&nbsp; Consider removing it from the class.</p>
+
+    
+<h2>
+<a name="UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD: Unused public or protected field</a>
+</h2>
+
+  <p> This field is never used.&nbsp;
+The field is public or protected, so perhaps
+    it is intended to be used with classes not seen as part of the analysis. If not,
+consider removing it from the class.</p>
+
+    
+<h2>
+<a name="UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD: Unwritten field</a>
+</h2>
+
+  <p> This field is never written.&nbsp; All reads of it will return the default
+value. Check for errors (should it have been initialized?), or remove it if it is useless.</p>
+
+    
+<h2>
+<a name="UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD: Unwritten public or protected field</a>
+</h2>
+
+  <p> No writes were seen to this public/protected field.&nbsp; All reads of it will return the default
+value. Check for errors (should it have been initialized?), or remove it if it is useless.</p>
+
+    
+<h2>
+<a name="VO_VOLATILE_INCREMENT">VO_VOLATILE_INCREMENT: An increment to a volatile field isn't atomic</a>
+</h2>
+
+<p>This code increments a volatile field. Increments of volatile fields aren't
+atomic. If more than one thread is incrementing the field at the same time,
+increments could be lost.
+</p>
+
+    </body>
+</html>

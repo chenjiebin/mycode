@@ -61,8 +61,14 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        UserHelp userHelp = new UserHelp();
+
+        User user = new User();
+        user.setUserName("hehe");
+        userHelp.addUser(user);
+
         try (PrintWriter out = response.getWriter()) {
-            UserHelp userHelp = new UserHelp();
+
             List<User> users = userHelp.getUser();
 
             /* TODO output your page here. You may use following sample code. */
@@ -73,8 +79,8 @@ public class UserServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             for (int i = 0; i < users.size(); i++) {
-                User user = users.get(i);
-                out.println(user.getUserName()); 
+                User u = users.get(i);
+                out.println(u.getUserName());
             }
             out.println("<h1>" + users.size() + "</h1>");
             out.println("</body>");

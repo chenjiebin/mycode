@@ -13,4 +13,10 @@ func main() {
 
 	fmt.Println("Or access the network:")
 	fmt.Println(net.Dial("tcp", "pba.cn"))
+
+	var names []int
+	names = append(names, 1)
+	for _, name := range names {
+		fmt.Println(name)
+	}
 }
