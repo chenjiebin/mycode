@@ -1,22 +1,24 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"net"
-	"time"
 )
 
+type message struct {
+	Mtype    string
+	FromId   string
+	FromName string
+	ToId     string
+	ToName   string
+	Content  string
+}
+
 func main() {
-	fmt.Println(8386725 % 20)
-	fmt.Println("hello world")
-	fmt.Println("The time is ", time.Now())
+	message := message{"1", "1", "cjb", "2", "iceup", "hello hehe"}
+	fmt.Println(message)
 
-	fmt.Println("Or access the network:")
-	fmt.Println(net.Dial("tcp", "pba.cn"))
+	fmt.Println(json.Marshal(message))
 
-	var names []int
-	names = append(names, 1)
-	for _, name := range names {
-		fmt.Println(name)
-	}
+	//student := Student{Person{2, "iceup"}, 31}
 }

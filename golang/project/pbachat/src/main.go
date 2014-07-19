@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./csserver"
+	//"./csserver"
 	"./server"
 	"time"
 )
@@ -11,7 +11,7 @@ var running bool
 func main() {
 	running = true
 
-	go csserver.StartCSClientServer()
+	//go csserver.StartCSClientServer()
 	go server.StartServer()
 
 	for running {
