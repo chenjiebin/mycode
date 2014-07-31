@@ -28,14 +28,11 @@ func getSystemTime() int64 {
 
 func main() {
 	startTime := time.Now().UnixNano()
-	fmt.Println(startTime)
-
 	systemTime := getSystemTime()
-
 	endTime := time.Now().UnixNano()
 
 	//systemTime = systemTime + endTime - startTime
-
+	fmt.Println(startTime)
 	fmt.Println(systemTime)
 	fmt.Println(endTime)
 }
