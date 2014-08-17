@@ -6,24 +6,40 @@ import (
 )
 
 //goyaf instance
-type goyaf struct {
+type Goyaf struct {
 	version string
+}
+
+type Controller struct {
+	ResponseWriter http.ResponseWriter
+	Request        *http.Request
 }
 
 type MyMux struct{}
 
 func (p *MyMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path == "/" {
-		sayhelloName(w, r)
+	action, ok := Routes[r.URL.Path]
+	if ok {
+
+		action()
 		return
 	}
+
 	http.NotFound(w, r)
 	return
 }
 
-type Controller struct {
-	Response http.ResponseWriter
-	Request  *http.Request
+var Routes map[string]func()
+
+func AddRoute(path string, action func()) {
+	if len(Routes) == 0 {
+		Routes = make(map[string]func())
+	}
+	Routes[path] = action
+}
+
+func init() {
+
 }
 
 func Run() {

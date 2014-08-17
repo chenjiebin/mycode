@@ -12,10 +12,12 @@ type Index struct {
 }
 
 func (this *Index) IndexAction(w http.ResponseWriter, r *http.Request) {
+
 	t, _ := template.ParseFiles("/Users/chenjiebin/Sites/mycode/golang/project/webframework/views/index/index.html")
 	t.Execute(w, nil)
 }
 
-func (this *Index) TestAction(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, r.RequestURI)
+func (this *Index) TestAction() {
+	fmt.Println("hehe")
+	//fmt.Fprintln(this.Controller.ResponseWriter, "hehe")
 }
