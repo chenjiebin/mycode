@@ -10,17 +10,16 @@ type Goyaf struct {
 	version string
 }
 
-type Controller struct {
+type GoyafController struct {
 	ResponseWriter http.ResponseWriter
 	Request        *http.Request
 }
 
-type MyMux struct{}
+type GoyafMux struct{}
 
-func (p *MyMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	action, ok := Routes[r.URL.Path]
 	if ok {
-
 		action()
 		return
 	}
@@ -43,7 +42,7 @@ func init() {
 }
 
 func Run() {
-	mux := &MyMux{}
+	mux := &GoyafMux{}
 
 	err := http.ListenAndServe(":9090", mux)
 	if err != nil {

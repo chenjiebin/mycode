@@ -8,11 +8,11 @@ import (
 )
 
 type Index struct {
-	goyaf.Controller
+	goyaf.GoyafController
+	Path string
 }
 
 func (this *Index) IndexAction(w http.ResponseWriter, r *http.Request) {
-
 	t, _ := template.ParseFiles("/Users/chenjiebin/Sites/mycode/golang/project/webframework/views/index/index.html")
 	t.Execute(w, nil)
 }

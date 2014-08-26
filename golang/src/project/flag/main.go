@@ -6,15 +6,16 @@ import (
 )
 
 func main() {
-	var pwd string
-
+	ok := flag.Bool("ok", false, "is ok")
+	id := flag.Int("id", 0, "id")
 	port := flag.String("port", ":8080", "http listen port")
-	user := flag.String("user", "root", "mysql connect user")
-	flag.StringVar(&pwd, "password", "123", "mysql connect password")
+	var name string
+	flag.StringVar(&name, "name", "123", "name")
 
 	flag.Parse()
 
-	fmt.Println(*port)
-	fmt.Println(*user)
-	fmt.Println(pwd)
+	fmt.Println("ok:", *ok)
+	fmt.Println("id:", *id)
+	fmt.Println("port:", *port)
+	fmt.Println("name:", name)
 }
