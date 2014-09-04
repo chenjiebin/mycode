@@ -16,14 +16,14 @@ type Book struct {
 func main() {
 	authors := []string{"XuShiwei", "HughLv", "Pandaman", "GuaguaSong", "HanTuo", "BertYuan", "XuDaoli"}
 	gobook := Book{
-		"Go语言编程",
+		Title: "Go语言编程",
 		authors,
 		"ituring.com.cn",
 		true,
 		9.99,
 	}
 
-	gobookJson, _ := json.Encoder(gobook)
+	gobookJson, _ := json.Marshal(gobook)
 
 	fmt.Println(gobookJson)
 

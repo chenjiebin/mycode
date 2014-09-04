@@ -1,0 +1,27 @@
+There are some equivalents of constructors.
+
+Supposing you have a struct like this :
+
+type Thing struct {
+    Name  string
+    Num   int
+}
+then, if the zero values aren't fitting, you would typically construct an instance with a NewThing function returning a pointer :
+
+func NewThing(someParameter string) *Thing {
+    p := new(Thing)
+    p.Name = someParameter
+    p.Num = 33 // <- a very sensible default value
+    return p
+}
+When your struct is simple enough, it's preferable (as mentioned first in jnml's answer) to make it less verbose using this condensed construct :
+
+func NewThing(someParameter string) *Thing {
+    return &Thing{someParameter, 33}
+}
+If you don't want to return a pointer, then the practice is to call the function makeThing instead of NewThing :
+
+func makeThing(name string) Thing {
+    return Thing{name, 33}
+}
+Reference : Allocation with new in Effective Go.
