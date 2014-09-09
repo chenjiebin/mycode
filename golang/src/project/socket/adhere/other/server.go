@@ -1,5 +1,3 @@
-//数据粘包问题
-
 package main
 
 import (
@@ -8,28 +6,37 @@ import (
 	"fmt"
 	"io"
 	"net"
-	"os"
 )
 
 func main() {
-	netListen, err := net.Listen("tcp", ":9988")
-	CheckError(err)
+	// 监听端口
+	ln, err := net.Listen("tcp", ":6000")
+	if err != nil {
+		fmt.Printf("Listen Error: %s\n", err)
+		return
+	}
 
-	defer netListen.Close()
-
-	Log("Waiting for clients")
+	// 监听循环
 	for {
-		conn, err := netListen.Accept()
+		// 接受客户端链接
+		conn, err := ln.Accept()
 		if err != nil {
+			fmt.Printf("Accept Error: %s\n", err)
 			continue
 		}
 
-		Log(conn.RemoteAddr().String(), " tcp connect success")
+		// 处理客户端链接
 		go handleConnection(conn)
 	}
 }
 
 func handleConnection(conn net.Conn) {
+	// 关闭链接
+	defer conn.Close()
+
+	// 客户端
+	fmt.Printf("Client: %s\n", conn.RemoteAddr())
+
 	// 消息缓冲
 	msgbuf := bytes.NewBuffer(make([]byte, 0, 10240))
 	// 数据缓冲
@@ -38,7 +45,6 @@ func handleConnection(conn net.Conn) {
 	length := 0
 	// 消息长度uint32
 	ulength := uint32(0)
-	fmt.Print("ulength:", ulength)
 
 	// 数据循环
 	for {
@@ -81,16 +87,5 @@ func handleConnection(conn net.Conn) {
 				break
 			}
 		}
-	}
-}
-
-func Log(v ...interface{}) {
-	fmt.Println(v...)
-}
-
-func CheckError(err error) {
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Fatal error: %s", err.Error())
-		os.Exit(1)
 	}
 }

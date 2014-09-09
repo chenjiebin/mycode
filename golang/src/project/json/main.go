@@ -13,23 +13,32 @@ type Book struct {
 	Price       float64
 }
 
+type User struct {
+	Id      int
+	Name    string
+	Message string
+}
+
 func main() {
-	authors := []string{"XuShiwei", "HughLv", "Pandaman", "GuaguaSong", "HanTuo", "BertYuan", "XuDaoli"}
-	gobook := Book{
-		Title: "Go语言编程",
-		authors,
-		"ituring.com.cn",
-		true,
-		9.99,
-	}
+	userJsonStr, _ := json.Marshal(User{Id: 1, Name: "golang", Message: "message"})
+	fmt.Println(string(userJsonStr))
 
-	gobookJson, _ := json.Marshal(gobook)
+	//authors := []string{"XuShiwei", "HughLv", "Pandaman", "GuaguaSong", "HanTuo", "BertYuan", "XuDaoli"}
+	//gobook := Book{
+	//	Title: "Go语言编程",
+	//	authors,
+	//	"ituring.com.cn",
+	//	true,
+	//	9.99,
+	//}
 
-	fmt.Println(gobookJson)
+	//gobookJson, _ := json.Marshal(gobook)
 
-	var decodeGoBook Book
+	//fmt.Println(gobookJson)
 
-	json.Unmarshal(gobookJson, &decodeGoBook)
+	//var decodeGoBook Book
 
-	fmt.Println(decodeGoBook)
+	//json.Unmarshal(gobookJson, &decodeGoBook)
+
+	//fmt.Println(decodeGoBook)
 }

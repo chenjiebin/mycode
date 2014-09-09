@@ -5,11 +5,20 @@ import (
 	"encoding/binary"
 	"fmt"
 	"net"
-	"os"
 	"time"
 )
 
-func sender(conn net.Conn) {
+func main() {
+	// 链接服务器
+	conn, err := net.Dial("tcp", "127.0.0.1:6000")
+	if err != nil {
+		fmt.Printf("Dial error: %s\n", err)
+		return
+	}
+
+	// 客户端信息
+	fmt.Printf("Client: %s\n", conn.LocalAddr())
+
 	// 消息缓冲
 	msgbuf := bytes.NewBuffer(make([]byte, 0, 1024))
 
@@ -57,29 +66,7 @@ func sender(conn net.Conn) {
 	time.Sleep(time.Second)
 	conn.Write(msgbuf.Next(-1 + mlen + mlen))
 	time.Sleep(time.Second)
-}
 
-func main() {
-	server := "127.0.0.1:9988"
-	tcpAddr, err := net.ResolveTCPAddr("tcp4", server)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Fatal error: %s", err.Error())
-		os.Exit(1)
-	}
-
-	conn, err := net.DialTCP("tcp", nil, tcpAddr)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Fatal error: %s", err.Error())
-		os.Exit(1)
-	}
-
-	defer conn.Close()
-
-	fmt.Println("connect success")
-
-	go sender(conn)
-
-	for {
-		time.Sleep(1 * 1e9)
-	}
+	// 关闭链接
+	conn.Close()
 }
