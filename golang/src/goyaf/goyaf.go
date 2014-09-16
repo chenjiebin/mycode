@@ -29,16 +29,19 @@ func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 var Routes map[string]func()
+var Controllers map[string]interface{}
+
+func AddController(path string, controller interface{}) {
+	Controllers[path] = controller
+}
 
 func AddRoute(path string, action func()) {
-	if len(Routes) == 0 {
-		Routes = make(map[string]func())
-	}
 	Routes[path] = action
 }
 
 func init() {
-
+	Routes = make(map[string]func())
+	Controllers = make(map[string]interface{})
 }
 
 func Run() {
