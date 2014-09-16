@@ -1,12 +1,16 @@
-//客户端发送封包
 package main
 
 import (
 	"fmt"
+	//"strconv"
 	//"time"
 )
 
 func main() {
-	i := 10
-	fmt.Println(1 < i && i < 11)
+	//fmt.Println("游客" + strconv.FormatInt(time.Now().UnixNano(), 10))
+
+	arrs := make([]int, 10)
+	arrs[] = 1
+	fmt.Println(arrs)
+
 }
