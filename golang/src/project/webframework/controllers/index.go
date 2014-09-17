@@ -3,7 +3,7 @@ package controllers
 import (
 	"fmt"
 	"goyaf"
-	"html/template"
+	//"html/template"
 	"net/http"
 )
 

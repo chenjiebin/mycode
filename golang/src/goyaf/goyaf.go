@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"reflect"
 	"strings"
 	"time"
 )
@@ -24,8 +25,13 @@ type GoyafMux struct{}
 func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	log.Println(r.RequestURI)
 
-	is404 := true
+	uriSplits := strings.Split(r.RequestURI, "/")
+	if len(uriSplits) < 4 {
+		http.NotFound(w, r)
+		return
+	}
 
+	is404 := true
 	var finalController interface{}
 	for path, controller := range Controllers {
 		log.Println(path, controller)
@@ -41,14 +47,18 @@ func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	action, ok := Routes[r.URL.Path]
-	if ok {
-		action()
-		return
-	}
+	action = strings.Split(r.RequestURI, "/")
 
-	http.NotFound(w, r)
-	return
+	reflect.ValueOf(finalController).MethodByName("TestAction").Call(nil)
+
+	//action, ok := Routes[r.URL.Path]
+	//if ok {
+	//	action()
+	//	return
+	//}
+
+	//http.NotFound(w, r)
+	//return
 }
 
 var Routes map[string]func()
