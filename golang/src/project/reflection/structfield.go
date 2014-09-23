@@ -6,7 +6,16 @@ import (
 	"reflect"
 )
 
+type Base struct {
+	Id int
+}
+
+func (this *Base) hello() {
+	fmt.Println("hello")
+}
+
 type Foo struct {
+	Base
 	FirstName string `tag_name:"tag 1"`
 	LastName  string `tag_name:"tag 2"`
 	Age       int    `tag_name:"tag 3"`

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"goyaf"
 	//"html/template"
-	"net/http"
 )
 
 type Index struct {
@@ -12,8 +11,11 @@ type Index struct {
 	Path string
 }
 
-func (this *Index) IndexAction(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("index")
+func (this *Index) IndexAction() {
+	id := this.GetRequest().GetQuery("id")
+	name := this.GetRequest().GetPost("name")
+
+	fmt.Println(id, name)
 
 	//t, _ := template.ParseFiles("/Users/chenjiebin/Sites/mycode/golang/project/webframework/views/index/index.html")
 	//t.Execute(w, nil)

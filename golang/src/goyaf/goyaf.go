@@ -17,14 +17,39 @@ type Goyaf struct {
 
 type GoyafController struct {
 	ResponseWriter http.ResponseWriter
-	Request        *http.Request
+	Request        *Request
+}
+
+func (this *GoyafController) SetRequest(request *Request) {
+	this.Request = request
+}
+
+func (this *GoyafController) GetRequest() *Request {
+	return this.Request
+}
+
+type Request struct {
+	Module     string
+	Controller string
+	Action     string
+	r          *http.Request
+}
+
+func (this *Request) GetQuery(key string) string {
+	return this.r.FormValue(key)
+}
+
+func (this *Request) GetPost(key string) string {
+	this.r.ParseMultipartForm(32 << 20)
+	if len(this.r.MultipartForm.Value[key]) > 0 {
+		return this.r.MultipartForm.Value[key][0]
+	}
+	return ""
 }
 
 type GoyafMux struct{}
 
 func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	log.Println(r.RequestURI)
-
 	uriSplits := strings.Split(r.RequestURI, "/")
 	if len(uriSplits) < 4 {
 		http.NotFound(w, r)
@@ -34,7 +59,6 @@ func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	is404 := true
 	var finalController interface{}
 	for path, controller := range Controllers {
-		log.Println(path, controller)
 		if strings.Index(r.RequestURI, path) == 0 {
 			finalController = controller
 			is404 = false
@@ -47,9 +71,20 @@ func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	action = strings.Split(r.RequestURI, "/")
+	request := &Request{
+		Module:     uriSplits[1],
+		Controller: uriSplits[2],
+		Action:     uriSplits[3],
+		r:          r,
+	}
 
-	reflect.ValueOf(finalController).MethodByName("TestAction").Call(nil)
+	Log(request)
+
+	params := make([]reflect.Value, 1)
+	params[0] = reflect.ValueOf(request)
+	reflect.ValueOf(finalController).MethodByName("SetRequest").Call(params)
+
+	reflect.ValueOf(finalController).MethodByName(strings.Title(uriSplits[3]) + "Action").Call(nil)
 
 	//action, ok := Routes[r.URL.Path]
 	//if ok {
