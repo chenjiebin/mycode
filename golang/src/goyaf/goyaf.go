@@ -43,14 +43,19 @@ func (this *Request) GetQuery(key string, defaultValue ...string) string {
 	return value
 }
 
-func (this *Request) GetPost(key string) string {
+func (this *Request) GetPost(key string, defaultValue ...string) string {
 	if this.r.Method != "POST" {
 		return ""
 	}
 
 	this.r.ParseMultipartForm(32 << 20)
-	if len(this.r.MultipartForm.Value[key]) > 0 {
-		return this.r.MultipartForm.Value[key][0]
+	values := this.r.MultipartForm.Value[key]
+	if len(values) > 0 && len(values[0]) > 0 {
+		return values[0]
+	}
+
+	if len(defaultValue) > 0 {
+		return defaultValue[0]
 	}
 	return ""
 }
