@@ -10,14 +10,14 @@ import (
 	"time"
 )
 
-//goyaf instance
 type Goyaf struct {
 	version string
 }
 
+//控制器对象
 type GoyafController struct {
-	ResponseWriter http.ResponseWriter
-	Request        *Request
+	Response *Response
+	Request  *Request
 }
 
 func (this *GoyafController) SetRequest(request *Request) {
@@ -28,6 +28,15 @@ func (this *GoyafController) GetRequest() *Request {
 	return this.Request
 }
 
+func (this *GoyafController) SetResponse(response *Response) {
+	this.Response = response
+}
+
+func (this *GoyafController) GetResponse() *Response {
+	return this.Response
+}
+
+//请求对象
 type Request struct {
 	Module     string
 	Controller string
@@ -36,6 +45,7 @@ type Request struct {
 }
 
 func (this *Request) GetQuery(key string, defaultValue ...string) string {
+	this.r.ParseForm()
 	value := this.r.Form.Get(key)
 	if len(value) == 0 && len(defaultValue) > 0 {
 		return defaultValue[0]
@@ -60,6 +70,25 @@ func (this *Request) GetPost(key string, defaultValue ...string) string {
 	return ""
 }
 
+//返回对象
+type Response struct {
+	w    http.ResponseWriter
+	body string
+}
+
+func (this *Response) SetBody(body string) {
+	this.body = body
+}
+
+func (this *Response) GetBody() string {
+	return this.body
+}
+
+func (this *Response) Response() {
+	fmt.Fprintln(this.w, this.body)
+}
+
+//默认路由
 type GoyafMux struct{}
 
 func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -90,23 +119,26 @@ func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		Action:     uriSplits[3],
 		r:          r,
 	}
-
-	Log(request)
-
 	params := make([]reflect.Value, 1)
 	params[0] = reflect.ValueOf(request)
 	reflect.ValueOf(finalController).MethodByName("SetRequest").Call(params)
 
-	reflect.ValueOf(finalController).MethodByName(strings.Title(uriSplits[3]) + "Action").Call(nil)
+	response := &Response{
+		w: w,
+	}
+	responseParams := make([]reflect.Value, 1)
+	responseParams[0] = reflect.ValueOf(response)
+	reflect.ValueOf(finalController).MethodByName("SetResponse").Call(responseParams)
 
-	//action, ok := Routes[r.URL.Path]
-	//if ok {
-	//	action()
-	//	return
-	//}
+	action := reflect.ValueOf(finalController).MethodByName(strings.Title(uriSplits[3]) + "Action")
+	if action.IsValid() {
+		action.Call(nil)
+		response.Response()
+		return
+	}
 
-	//http.NotFound(w, r)
-	//return
+	http.NotFound(w, r)
+	return
 }
 
 var Routes map[string]func()

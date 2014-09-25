@@ -6,9 +6,8 @@ import (
 )
 
 func main() {
-
-	controller := &controllers.Index{}
-	goyaf.AddController("/index/index/", controller)
+	goyaf.AddController("/index/index/", &controllers.Index{})
+	goyaf.AddController("/index/user/", &controllers.User{})
 
 	goyaf.Run()
 }
