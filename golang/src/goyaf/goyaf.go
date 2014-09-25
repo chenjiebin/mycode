@@ -35,11 +35,19 @@ type Request struct {
 	r          *http.Request
 }
 
-func (this *Request) GetQuery(key string) string {
-	return this.r.FormValue(key)
+func (this *Request) GetQuery(key string, defaultValue ...string) string {
+	value := this.r.Form.Get(key)
+	if len(value) == 0 && len(defaultValue) > 0 {
+		return defaultValue[0]
+	}
+	return value
 }
 
 func (this *Request) GetPost(key string) string {
+	if this.r.Method != "POST" {
+		return ""
+	}
+
 	this.r.ParseMultipartForm(32 << 20)
 	if len(this.r.MultipartForm.Value[key]) > 0 {
 		return this.r.MultipartForm.Value[key][0]

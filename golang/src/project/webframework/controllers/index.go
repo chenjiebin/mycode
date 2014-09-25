@@ -12,7 +12,7 @@ type Index struct {
 }
 
 func (this *Index) IndexAction() {
-	id := this.GetRequest().GetQuery("id")
+	id := this.GetRequest().GetQuery("id", "0")
 	name := this.GetRequest().GetPost("name")
 
 	fmt.Println(id, name)
