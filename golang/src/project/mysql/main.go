@@ -26,31 +26,36 @@ func query() {
 	db, err := sql.Open("mysql", "root:@/test?charset=utf8")
 	checkErr(err)
 	//查询数据
+
 	rows, err := db.Query("SELECT * FROM user")
 	checkErr(err)
-	fmt.Println(rows)
 
-	//columns, _ := rows.Columns()
-	//for _, column := range columns {
-	//	user[column] = ""
-	//}
+	columns, _ := rows.Columns()
+	scanArgs := make([]interface{}, len(columns))
+	values := make([]interface{}, len(columns))
+	for i := range values {
+		scanArgs[i] = &values[i]
+	}
 
 	//fmt.Println(user)
 
 	//users = make(map[string]map[string]string)
 
 	for rows.Next() {
-		//user := make(map[string]string)
+		err = rows.Scan(scanArgs...)
 
-		var id string
-		var name string
+		fmt.Println(values)
 
-		err = rows.Scan(&id, &name)
+		record := make(map[string]string)
 
-		fmt.Println(id, name)
+		for i, col := range values {
+			if col != nil {
+				record[columns[i]] = string(col.([]byte))
+			}
+		}
+
+		fmt.Println(record)
 	}
-
-	//fmt.Println(rows.Columns())
 
 	//for rows.Next() {
 	//	var uid int
