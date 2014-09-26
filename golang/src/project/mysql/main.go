@@ -38,11 +38,16 @@ func query() {
 	//fmt.Println(user)
 
 	//users = make(map[string]map[string]string)
-	for rows.Next() {
-		user := make(map[string]string)
-		err = rows.Scan(user["id"], user["name"])
 
-		fmt.Println(user)
+	for rows.Next() {
+		//user := make(map[string]string)
+
+		var id string
+		var name string
+
+		err = rows.Scan(&id, &name)
+
+		fmt.Println(id, name)
 	}
 
 	//fmt.Println(rows.Columns())
