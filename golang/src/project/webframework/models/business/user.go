@@ -8,6 +8,6 @@ type User struct {
 }
 
 func (this *User) GetUserInfo(id string) {
-	userMysql := &mysql.User{}
+	userMysql := mysql.GetInstance()
 	userMysql.Find(id)
 }
