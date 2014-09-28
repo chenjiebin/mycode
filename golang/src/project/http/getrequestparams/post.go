@@ -3,21 +3,25 @@ package main
 import (
 	"fmt"
 	"log"
+	"mime"
 	"net/http"
 )
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != "POST" {
-			return
-		}
+]		ct, _, _ := mime.ParseMediaType(r.Header.Get("Content-Type"))
+		switch ct {
+		case "application/x-www-form-urlencoded":
+			fmt.Fprintln(w, r.PostFormValue("id"))
+		case "multipart/form-data":
 
-		r.ParseMultipartForm(32 << 20)
-		values := r.MultipartForm.Value["id"]
-		if len(values) > 0 {
-			fmt.Fprintln(w, values[0])
+			r.ParseMultipartForm(32 << 20)
+			fmt.Fprintln(w, r.MultipartForm)
+			values := r.MultipartForm.Value["id"]
+			if len(values) > 0 {
+				fmt.Fprintln(w, values[0])
+			}
 		}
-
 	})
 
 	err := http.ListenAndServe(":9090", nil)
