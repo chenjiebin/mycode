@@ -13,8 +13,6 @@ func main() {
 		if err == nil && len(queryForm["id"]) > 0 {
 			fmt.Fprintln(w, queryForm["id"][0])
 		}
-
-		fmt.Fprintln(w, r.Header.Get("Content-Type"))
 	})
 
 	err := http.ListenAndServe(":9090", nil)
