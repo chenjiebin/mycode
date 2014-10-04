@@ -1,7 +1,7 @@
 package controllers
 
 type Index struct {
-	Abstract
+	Base
 }
 
 func (this *Index) IndexAction() {

@@ -6,12 +6,12 @@ import (
 	"goyaf"
 )
 
-type Abstract struct {
+type Base struct {
 	goyaf.GoyafController
 }
 
 //输出成功信息
-func (this *Abstract) printSuccessMessage(message, data interface{}) {
+func (this *Base) printSuccessMessage(message, data interface{}) {
 	result := make(map[string]interface{})
 	result["errno"] = "0"
 	result["errmsg"] = ""

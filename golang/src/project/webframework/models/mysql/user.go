@@ -5,12 +5,12 @@ import (
 )
 
 type User struct {
-	Abstract
+	Base
 	table string
 }
 
 func (this *User) Find(id string) {
-	fmt.Println(this.Abstract.Find(this.table, id))
+	fmt.Println(this.Base.Find(this.table, id))
 }
 
 var userMysql *User

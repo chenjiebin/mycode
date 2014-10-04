@@ -5,7 +5,7 @@ import (
 )
 
 type User struct {
-	Abstract
+	Base
 }
 
 func (this *User) UserinfoAction() {
