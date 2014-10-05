@@ -6,13 +6,18 @@ import (
 )
 
 type GoyafDB struct {
-	db *sql.DB
+	db    *sql.DB
+	Table string
 }
 
-var GoyafDBObject *GoyafDB
+func (this *GoyafDB) Find(id string) map[string]string {
+	if this.db == nil {
+		this.connect()
+	}
 
-func (this *GoyafDB) Find(table string, id string) map[string]string {
-	rows, err := this.db.Query("SELECT * FROM " + table + " where id=" + id)
+	//return make(map[string]string)
+
+	rows, err := this.db.Query("SELECT * FROM " + this.Table + " where user_id=" + id)
 	CheckError(err)
 
 	columns, _ := rows.Columns()
@@ -35,9 +40,12 @@ func (this *GoyafDB) Find(table string, id string) map[string]string {
 	return row
 }
 
-func init() {
-	db, err := sql.Open("mysql", "root:@/test?charset=utf8")
+func (this *GoyafDB) connect() {
+	var err error
+	this.db, err = sql.Open("mysql", "root:@/test?charset=utf8")
 	CheckError(err)
+}
 
-	GoyafDBObject = &GoyafDB{db: db}
+func init() {
+
 }

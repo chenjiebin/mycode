@@ -8,15 +8,21 @@ import (
 )
 
 func main() {
-	var i int64
-	i = 0x100
-	fmt.Println(int64ToString(i))
-
-	//fmt.Println(dlIntToByte(125))
+	i, _ := strconv.Atoi("100")
+	fmt.Println(i)
 }
 
 func int64ToString(i int64) string {
 	return strconv.FormatInt(i, 10)
+}
+
+func intToString() {
+	fmt.Println(strconv.Itoa(100))
+}
+
+func stringToInt() {
+	i, _ := strconv.Atoi("100")
+	fmt.Println(i)
 }
 
 func dlIntToByte(i int) []byte {
@@ -43,4 +49,12 @@ func int32ToBytes() {
 	bytesBuffer := bytes.NewBuffer([]byte{})
 	binary.Write(bytesBuffer, binary.BigEndian, x)
 	fmt.Println(bytesBuffer.Bytes())
+}
+
+func byteToString() {
+	fmt.Println(string([]byte{97, 98, 99, 100}))
+}
+
+func strintToBytes() {
+	fmt.Println([]byte("abcd"))
 }

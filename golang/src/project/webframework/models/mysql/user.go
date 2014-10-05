@@ -6,19 +6,20 @@ import (
 
 type User struct {
 	Base
-	table string
 }
 
 func (this *User) Find(id string) {
-	fmt.Println(this.Base.Find(this.table, id))
+	fmt.Println(this.Base.Find(id))
+	//fmt.Println(this.Base.Find(this.table, id))
 }
 
 var userMysql *User
 
-func GetInstance() *User {
+func GetUserInstance() *User {
 	return userMysql
 }
 
 func init() {
-	userMysql = &User{table: "user"}
+	userMysql = &User{}
+	userMysql.Table = "user"
 }
