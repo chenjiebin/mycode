@@ -11,39 +11,39 @@ type GoyafDB struct {
 }
 
 func (this *GoyafDB) Find(id string) map[string]string {
-	if this.db == nil {
-		this.connect()
-	}
+	//if this.db == nil {
+	//	this.connect()
+	//}
 
-	//return make(map[string]string)
+	return make(map[string]string)
 
-	rows, err := this.db.Query("SELECT * FROM " + this.Table + " where user_id=" + id)
-	CheckError(err)
+	//rows, err := this.db.Query("SELECT * FROM " + this.Table + " where user_id=" + id)
+	//CheckError(err)
 
-	columns, _ := rows.Columns()
-	scanArgs := make([]interface{}, len(columns))
-	values := make([]interface{}, len(columns))
-	for i := range values {
-		scanArgs[i] = &values[i]
-	}
+	//columns, _ := rows.Columns()
+	//scanArgs := make([]interface{}, len(columns))
+	//values := make([]interface{}, len(columns))
+	//for i := range values {
+	//	scanArgs[i] = &values[i]
+	//}
 
-	row := make(map[string]string)
-	for rows.Next() {
-		err = rows.Scan(scanArgs...)
-		for i, col := range values {
-			if col != nil {
-				row[columns[i]] = string(col.([]byte))
-			}
-		}
-		break
-	}
-	return row
+	//row := make(map[string]string)
+	//for rows.Next() {
+	//	err = rows.Scan(scanArgs...)
+	//	for i, col := range values {
+	//		if col != nil {
+	//			row[columns[i]] = string(col.([]byte))
+	//		}
+	//	}
+	//	break
+	//}
+	//return row
 }
 
-func (this *GoyafDB) connect() {
-	var err error
-	this.db, err = sql.Open("mysql", "root:@/test?charset=utf8")
-	CheckError(err)
+func getConnect() *sql.DB {
+	db, _ := sql.Open("mysql", "root:@/test?charset=utf8")
+	return db
+
 }
 
 func init() {

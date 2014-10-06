@@ -1,9 +1,6 @@
 package mysql
 
-import (
-	"goyaf"
-)
+import ()
 
 type Base struct {
-	goyaf.GoyafDB
 }

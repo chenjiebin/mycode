@@ -8,6 +8,15 @@ type User struct {
 	Base
 }
 
+func (this *User) AddAction() {
+	params := make(map[string]string)
+	params["user_name"] = "cjb"
+	params["user_age"] = "20"
+
+	userBn := &business.User{}
+	userBn.Add(params)
+}
+
 func (this *User) UserinfoAction() {
 	id := this.GetRequest().GetQuery("id", "0")
 

@@ -130,7 +130,9 @@ func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	responseParams[0] = reflect.ValueOf(response)
 	reflect.ValueOf(finalController).MethodByName("SetResponse").Call(responseParams)
 
+	Debug(strings.Title(uriSplits[3]) + "Action")
 	action := reflect.ValueOf(finalController).MethodByName(strings.Title(uriSplits[3]) + "Action")
+	Debug(action)
 	if action.IsValid() {
 		action.Call(nil)
 		response.Response()
