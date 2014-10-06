@@ -107,3 +107,40 @@ func (this *Table) Insert(data map[string]string) (LastInsertId int64, err error
 
 	return LastInsertId, err
 }
+
+func (this *Table) Update(data map[string]string, where map[string]string) (affect int64, err error) {
+	if len(data) == 0 {
+		return 0, errors.New("data is empty")
+	}
+
+	if this.adapter == nil {
+		this.adapter = getConnect()
+	}
+
+	sql := "UPDATE " + this.Table + " SET "
+	for k, _ := range data {
+		sql += k + "=?,"
+	}
+	sql = strings.TrimRight(sql, ",")
+
+	this.Where(where)
+
+	sql += this.whereToString()
+	Debug(sql)
+
+	stmt, err := this.adapter.Prepare(sql)
+
+	values := make([]interface{}, len(data))
+	i := 0
+	for _, v := range data {
+		values[i] = v
+		i += 1
+	}
+	Debug(values)
+
+	res, err := stmt.Exec(values...)
+
+	affect, err = res.RowsAffected()
+
+	return affect, err
+}

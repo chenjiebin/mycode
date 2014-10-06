@@ -25,9 +25,14 @@ func (this *User) Find(id string) {
 	//fmt.Println(this.Base.Find(this.table, id))
 }
 
-func (this *User) Add(params map[string]string) {
+func (this *User) Add(data map[string]string) {
 	tableGateway := &goyaf.Table{Table: "user"}
-	tableGateway.Insert(params)
+	tableGateway.Insert(data)
+}
+
+func (this *User) Update(data map[string]string, where map[string]string) {
+	tableGateway := &goyaf.Table{Table: "user"}
+	tableGateway.Update(data, where)
 }
 
 var userMysql *User
