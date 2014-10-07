@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"reflect"
 	"strings"
@@ -53,6 +54,16 @@ func (this *Request) GetQuery(key string, defaultValue ...string) string {
 	return value
 }
 
+//获取所有的参数
+//func (this *Request) GetQuerys() string {
+//	this.r.ParseForm()
+//	value := this.r.Form.Get(key)
+//	if len(value) == 0 && len(defaultValue) > 0 {
+//		return defaultValue[0]
+//	}
+//	return value
+//}
+
 func (this *Request) GetPost(key string, defaultValue ...string) string {
 	if this.r.Method != "POST" {
 		return ""
@@ -68,6 +79,12 @@ func (this *Request) GetPost(key string, defaultValue ...string) string {
 		return defaultValue[0]
 	}
 	return ""
+}
+
+func (this *Request) GetPosts() url.Values {
+	//todo 关于Content-Type: multipart/form-data;还需处理
+	this.r.ParseForm()
+	return this.r.PostForm
 }
 
 //返回对象

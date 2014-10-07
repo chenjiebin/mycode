@@ -85,27 +85,38 @@ func (this *Table) Insert(data map[string]string) (LastInsertId int64, err error
 	}
 
 	sql := "INSERT " + this.Table + " SET "
-	for k, _ := range data {
-		sql += k + "=?,"
+	for k, v := range data {
+		sql += k + "='" + v + "',"
 	}
 	sql = strings.TrimRight(sql, ",")
 	Debug(sql)
 
-	stmt, err := this.adapter.Prepare(sql)
+	res, err := this.adapter.Exec(sql)
 
-	values := make([]interface{}, len(data))
-	i := 0
-	for _, v := range data {
-		values[i] = v
-		i += 1
-	}
-	Debug(values)
+	//values := make([]interface{}, len(data))
+	//i := 0
+	//for _, v := range data {
+	//	values[i] = v
+	//	i += 1
+	//}
+	//Debug(values)
 
-	res, err := stmt.Exec(values...)
+	//this.GetInsertSql(data)
+
+	//res, err := stmt.Exec(values...)
 
 	LastInsertId, err = res.LastInsertId()
 
 	return LastInsertId, err
+}
+
+func (this *Table) GetInsertSql(data map[string]string) {
+	sql := "INSERT " + this.Table + " SET "
+	for k, v := range data {
+		sql += k + "='" + v + "',"
+	}
+	sql = strings.TrimRight(sql, ",")
+	Debug(sql)
 }
 
 func (this *Table) Update(data map[string]string, where map[string]string) (affect int64, err error) {
