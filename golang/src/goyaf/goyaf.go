@@ -87,6 +87,19 @@ func (this *Request) GetPosts() url.Values {
 	return this.r.PostForm
 }
 
+func (this *Request) GetCookie(key string, defaultValue ...string) string {
+	//todo 这里还要测试cookie的有效性
+	cookie, err := this.r.Cookie(key)
+	if err != nil {
+		if len(defaultValue) > 0 {
+			return defaultValue[0]
+		}
+		return ""
+	}
+
+	return cookie.Value
+}
+
 //返回对象
 type Response struct {
 	w    http.ResponseWriter
@@ -103,6 +116,10 @@ func (this *Response) GetBody() interface{} {
 
 func (this *Response) Response() {
 	fmt.Fprintln(this.w, this.body)
+}
+
+func (this *Response) SetCookie(cookie *http.Cookie) {
+	http.SetCookie(this.w, cookie)
 }
 
 //默认路由
