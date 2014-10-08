@@ -8,8 +8,7 @@ import (
 )
 
 func main() {
-	i, _ := strconv.Atoi("100")
-	fmt.Println(i)
+	stringToFloat()
 }
 
 func int64ToString(i int64) string {
@@ -57,4 +56,9 @@ func byteToString() {
 
 func strintToBytes() {
 	fmt.Println([]byte("abcd"))
+}
+
+func stringToFloat() {
+	s := "19.2"
+	fmt.Println(strconv.ParseFloat(s, 1))
 }
