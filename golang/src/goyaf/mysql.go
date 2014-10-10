@@ -6,12 +6,12 @@ import (
 )
 
 func getConnect() *sql.DB {
-	host := getConfigByKey("mysql-host")
-	port := getConfigByKey("mysql-port")
-	username := getConfigByKey("mysql-username")
-	password := getConfigByKey("mysql-password")
-	database := getConfigByKey("mysql-database")
-	charset := getConfigByKey("mysql-charset")
+	host := GetConfigByKey("mysql-host")
+	port := GetConfigByKey("mysql-port")
+	username := GetConfigByKey("mysql-username")
+	password := GetConfigByKey("mysql-password")
+	database := GetConfigByKey("mysql-database")
+	charset := GetConfigByKey("mysql-charset")
 
 	connectString := username + ":" + password +
 		"@tcp(" + host + ":" + port + ")/" + database + "?charset=" + charset

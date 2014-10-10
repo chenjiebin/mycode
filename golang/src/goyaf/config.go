@@ -8,6 +8,6 @@ func SetConfig(config map[string]map[string]string) {
 	//Debug(Config)
 }
 
-func getConfigByKey(key string) string {
+func GetConfigByKey(key string) string {
 	return Config["devel"][key]
 }

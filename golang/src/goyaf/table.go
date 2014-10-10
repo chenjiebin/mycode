@@ -62,9 +62,9 @@ func (this *Table) whereToString() string {
 
 	whereString := " where "
 	for k, v := range this.where {
-		whereString += k + "=" + v
+		whereString += k + "=" + v + " and "
 	}
-	return whereString
+	return strings.TrimRight(whereString, " and ")
 }
 
 func (this *Table) Order() {
