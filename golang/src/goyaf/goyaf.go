@@ -55,14 +55,13 @@ func (this *Request) GetQuery(key string, defaultValue ...string) string {
 }
 
 //获取所有的参数
-//func (this *Request) GetQuerys() string {
-//	this.r.ParseForm()
-//	value := this.r.Form.Get(key)
-//	if len(value) == 0 && len(defaultValue) > 0 {
-//		return defaultValue[0]
-//	}
-//	return value
-//}
+func (this *Request) GetQuerys() url.Values {
+	queryForm, err := url.ParseQuery(this.r.URL.RawQuery)
+	if err == nil {
+		return queryForm
+	}
+	return make(url.Values)
+}
 
 func (this *Request) GetPost(key string, defaultValue ...string) string {
 	if this.r.Method != "POST" {

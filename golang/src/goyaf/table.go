@@ -12,7 +12,7 @@ type Table struct {
 	where   map[string]string
 }
 
-func (this *Table) Select(where map[string]string) map[int]map[string]string {
+func (this *Table) Select(where map[string]string) []map[string]string {
 	if this.adapter == nil {
 		this.adapter = getConnect()
 	}
@@ -34,8 +34,7 @@ func (this *Table) Select(where map[string]string) map[int]map[string]string {
 		scanArgs[i] = &values[i]
 	}
 
-	i := 0
-	result := make(map[int]map[string]string)
+	var result []map[string]string
 	for rows.Next() {
 		row := make(map[string]string)
 
@@ -45,8 +44,8 @@ func (this *Table) Select(where map[string]string) map[int]map[string]string {
 				row[columns[i]] = string(col.([]byte))
 			}
 		}
-		result[i] = row
-		i += 1
+
+		result = append(result, row)
 	}
 	return result
 }
@@ -62,7 +61,11 @@ func (this *Table) whereToString() string {
 
 	whereString := " where "
 	for k, v := range this.where {
-		whereString += k + "=" + v + " and "
+		if strings.IndexAny(k, "=><") == -1 {
+			whereString += k + "=" + v + " and "
+			continue
+		}
+		whereString += strings.Replace(k, "?", v, -1) + " and "
 	}
 	return strings.TrimRight(whereString, " and ")
 }
