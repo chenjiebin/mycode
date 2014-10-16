@@ -5,6 +5,9 @@
 # c temp files
 *.out
 
+# netbeans 
+/c/project/Test/nbproject/
+
 /nbproject/
 
 *.DS_Store
@@ -23,3 +26,5 @@
 /java/hibernate/nbproject/private/
 /java/Hibernate/nbproject/private/
 /java/Hibernate/build/
+/c/project/Test/build/
+/c/project/Test/dist/
