@@ -12,6 +12,17 @@
  * 
  */
 int main(int argc, char** argv) {
+    int count[4];
+    
+    count[0] = 7;
+    count[1] = count[0] *2;
+    ++count[2];
+    
+    int i;
+    
+    for (i = 0;i < 4;i++) {
+        printf("count[%d]=%d\n", i, count[i]);
+    }
     
     printf("Hello, world.\n");
 

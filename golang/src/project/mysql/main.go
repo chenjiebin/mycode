@@ -7,29 +7,50 @@ import (
 )
 
 func main() {
-	query()
+	insert()
 }
+
+//插入demo
 func insert() {
 	db, err := sql.Open("mysql", "root:@/test?charset=utf8")
 	checkErr(err)
-	//插入数据
-	stmt, err := db.Prepare("INSERT user SET name=?")
+
+	stmt, err := db.Prepare(`INSERT user (user_name,user_age,user_sex) values (?,?,?)`)
 	checkErr(err)
-	res, err := stmt.Exec("cjb")
+	res, err := stmt.Exec("tony", 20, 1)
 	checkErr(err)
 	id, err := res.LastInsertId()
 	checkErr(err)
 	fmt.Println(id)
 }
 
+//查询demo
 func query() {
 	db, err := sql.Open("mysql", "root:@/test?charset=utf8")
 	checkErr(err)
-	//查询数据
 
 	rows, err := db.Query("SELECT * FROM user")
 	checkErr(err)
 
+	//普通demo
+	//for rows.Next() {
+	//	var userId int
+	//	var userName string
+	//	var userAge int
+	//	var userSex int
+
+	//	rows.Columns()
+	//	err = rows.Scan(&userId, &userName, &userAge, &userSex)
+	//	checkErr(err)
+
+	//	fmt.Println(userId)
+	//	fmt.Println(userName)
+	//	fmt.Println(userAge)
+	//	fmt.Println(userSex)
+	//}
+
+	//字典类型
+	//构造scanArgs、values两个数组，scanArgs的每个值指向values相应值的地址
 	columns, _ := rows.Columns()
 	scanArgs := make([]interface{}, len(columns))
 	values := make([]interface{}, len(columns))
@@ -37,40 +58,45 @@ func query() {
 		scanArgs[i] = &values[i]
 	}
 
-	//fmt.Println(user)
-
-	//users = make(map[string]map[string]string)
-
 	for rows.Next() {
+		//将行数据保存到record字典
 		err = rows.Scan(scanArgs...)
-
-		fmt.Println(values)
-
 		record := make(map[string]string)
-
 		for i, col := range values {
 			if col != nil {
 				record[columns[i]] = string(col.([]byte))
 			}
 		}
-
 		fmt.Println(record)
 	}
+}
 
-	//for rows.Next() {
-	//	var uid int
-	//	var username string
-	//	var department string
-	//	var created string
+//更新数据
+func update() {
+	db, err := sql.Open("mysql", "root:@/test?charset=utf8")
+	checkErr(err)
 
-	//	rows.Columns()
-	//	err = rows.Scan(&uid, &username, &department, &created)
-	//	checkErr(err)
-	//	fmt.Println(uid)
-	//	fmt.Println(username)
-	//	fmt.Println(department)
-	//	fmt.Println(created)
-	//}
+	stmt, err := db.Prepare(`UPDATE user SET user_age=?,user_sex=? WHERE user_id=?`)
+	checkErr(err)
+	res, err := stmt.Exec(21, 2, 1)
+	checkErr(err)
+	num, err := res.RowsAffected()
+	checkErr(err)
+	fmt.Println(num)
+}
+
+//删除数据
+func remove() {
+	db, err := sql.Open("mysql", "root:@/test?charset=utf8")
+	checkErr(err)
+
+	stmt, err := db.Prepare(`DELETE FROM user WHERE user_id=?`)
+	checkErr(err)
+	res, err := stmt.Exec(1)
+	checkErr(err)
+	num, err := res.RowsAffected()
+	checkErr(err)
+	fmt.Println(num)
 }
 
 func checkErr(err error) {

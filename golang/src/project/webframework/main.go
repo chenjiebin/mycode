@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./controllers"
+	"../application/controllers"
 	"goyaf"
 )
 
