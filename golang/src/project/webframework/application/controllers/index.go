@@ -5,5 +5,14 @@ type Index struct {
 }
 
 func (this *Index) IndexAction() {
-	this.GetResponse().SetBody("index index index")
+	var body string
+	body = "index index index"
+
+	id := this.GetRequest().GetParam("id", "0")
+	body = body + "<br />params id:" + id
+
+	params := this.GetRequest().GetParams()
+
+	this.GetResponse().AppendBody(body)
+	this.GetResponse().AppendBody(params)
 }
