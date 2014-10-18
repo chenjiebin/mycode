@@ -6,18 +6,30 @@ import (
 	"strings"
 )
 
+//表
 type Table struct {
 	Table   string
 	adapter *sql.DB
 	where   map[string]string
 }
 
-func (this *Table) Select(where map[string]string) []map[string]string {
+//查询参数
+type SelectParams struct {
+	Columns []string
+	Where   map[string]string
+	Order   map[string]string
+	Count   int
+	Offset  int
+	Group   []string
+}
+
+//查询数据
+func (this *Table) Select(selectParams SelectParams) []map[string]string {
 	if this.adapter == nil {
 		this.adapter = getConnect()
 	}
 
-	this.Where(where)
+	this.Where(selectParams.Where)
 
 	//return make(map[string]string)
 
@@ -87,6 +99,7 @@ func (this *Table) Insert(data map[string]string) (LastInsertId int64, err error
 		this.adapter = getConnect()
 	}
 
+	//todo:这里要采用结构化的方式
 	sql := "INSERT " + this.Table + " SET "
 	for k, v := range data {
 		sql += k + "='" + v + "',"
@@ -113,15 +126,16 @@ func (this *Table) Insert(data map[string]string) (LastInsertId int64, err error
 	return LastInsertId, err
 }
 
-func (this *Table) GetInsertSql(data map[string]string) {
-	sql := "INSERT " + this.Table + " SET "
-	for k, v := range data {
-		sql += k + "='" + v + "',"
-	}
-	sql = strings.TrimRight(sql, ",")
-	Debug(sql)
-}
+//func (this *Table) GetInsertSql(data map[string]string) {
+//	sql := "INSERT " + this.Table + " SET "
+//	for k, v := range data {
+//		sql += k + "='" + v + "',"
+//	}
+//	sql = strings.TrimRight(sql, ",")
+//	Debug(sql)
+//}
 
+//更新数据
 func (this *Table) Update(data map[string]string, where map[string]string) (affect int64, err error) {
 	if len(data) == 0 {
 		return 0, errors.New("data is empty")
