@@ -11,8 +11,8 @@ func (this *Index) IndexAction() {
 	id := this.GetRequest().GetParam("id", "0")
 	body = body + "<br />params id:" + id
 
-	params := this.GetRequest().GetParams()
+	//params := this.GetRequest().GetParams()
 
 	this.GetResponse().AppendBody(body)
-	this.GetResponse().AppendBody(params)
+	//this.GetResponse().AppendBody(params)
 }

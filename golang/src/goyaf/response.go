@@ -13,7 +13,7 @@ type Response struct {
 }
 
 func (this *Response) SetBody(body interface{}) {
-	this.body = body
+	this.AppendBody(body)
 }
 
 func (this *Response) GetBody() interface{} {
@@ -25,7 +25,9 @@ func (this *Response) AppendBody(body interface{}) {
 }
 
 func (this *Response) Response() {
-	fmt.Fprintln(this.w, this.bodys)
+	for _, body := range this.bodys {
+		fmt.Fprintln(this.w, body)
+	}
 }
 
 func (this *Response) SetCookie(cookie *http.Cookie) {
