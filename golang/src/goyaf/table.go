@@ -14,7 +14,7 @@ type Table struct {
 }
 
 //查询参数
-type SelectParams struct {
+type Select struct {
 	Columns []string
 	Where   map[string]string
 	Order   map[string]string
@@ -24,12 +24,12 @@ type SelectParams struct {
 }
 
 //查询数据
-func (this *Table) Select(selectParams SelectParams) []map[string]string {
+func (this *Table) Select(slt Select) []map[string]string {
 	if this.adapter == nil {
 		this.adapter = getConnect()
 	}
 
-	this.Where(selectParams.Where)
+	this.Where(slt.Where)
 
 	//return make(map[string]string)
 
