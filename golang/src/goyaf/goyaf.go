@@ -12,7 +12,7 @@ type Goyaf struct {
 func Run() {
 	mux := &GoyafMux{}
 
-	err := http.ListenAndServe(":9090", mux)
+	err := http.ListenAndServe(":8002", mux)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}

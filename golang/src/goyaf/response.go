@@ -18,9 +18,15 @@ func (this *Response) AppendBody(body interface{}) {
 
 //返回数据
 func (this *Response) Response() {
+
 	for _, body := range this.bodys {
 		fmt.Fprintln(this.w, body)
 	}
+}
+
+//设置输出头
+func (this *Response) SetHeader(key string, value string) {
+	this.w.Header().Set(key, value)
 }
 
 //设置cookie
