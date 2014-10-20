@@ -16,6 +16,9 @@ func init() {
 type GoyafMux struct{}
 
 func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	//记录请求
+	Log("access: " + r.RemoteAddr + " " + r.Method + " " + r.RequestURI)
+
 	uriSplits := strings.Split(r.RequestURI, "/")
 	if len(uriSplits) < 4 {
 		http.NotFound(w, r)

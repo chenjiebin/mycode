@@ -6,8 +6,7 @@ import (
 )
 
 func main() {
-	formatTime()
-	fmt.Println(getTodayStartTimeUnix())
+	getYear()
 }
 
 func formatTime() {
@@ -16,6 +15,14 @@ func formatTime() {
 	t := time.Now().Unix()
 	fmt.Println(t)
 	fmt.Println(time.Unix(t, 0).String())
+}
+
+func getYear() {
+	//t := time.Now()
+	//fmt.Println(t.Year())
+
+	t := time.Unix(469296000, 0)
+	fmt.Println(t.Year())
 }
 
 //获取今天开始时间戳
