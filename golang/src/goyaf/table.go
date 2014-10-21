@@ -58,7 +58,7 @@ func (this *Select) whereTostring() string {
 
 	whereString := " where "
 	for k, v := range this.Where {
-		if strings.IndexAny(k, "=><") == -1 {
+		if strings.IndexAny(k, "=><?") == -1 {
 			whereString += k + "=" + v + " and "
 			continue
 		}
