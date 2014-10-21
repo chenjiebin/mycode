@@ -44,6 +44,13 @@ func (this *Select) groupToString() string {
 	return "group by " + this.Group
 }
 
+func (this *Select) countToString() string {
+	if this.Count == 0 {
+		return ""
+	}
+	return fmt.Sprintf("limit %d,%d", this.Offset, this.Count)
+}
+
 func (this *Select) whereTostring() string {
 	if len(this.Where) == 0 {
 		return ""
@@ -94,14 +101,13 @@ func (this *Table) Select(slt Select) []map[string]string {
 }
 
 func (this *Table) SelectToSql(slt Select) string {
-	sql := fmt.Sprintf("SELECT %s FROM %s %s %s %s LIMIT %d,%d",
+	sql := fmt.Sprintf("SELECT %s FROM %s %s %s %s %s",
 		slt.columnsToString(),
 		this.Table,
 		slt.whereTostring(),
 		slt.groupToString(),
 		slt.orderToString(),
-		slt.Offset,
-		slt.Count)
+		slt.countToString())
 	Debug(sql)
 	return sql
 }
