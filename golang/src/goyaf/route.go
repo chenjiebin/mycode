@@ -61,6 +61,10 @@ func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	action := reflect.ValueOf(finalController).MethodByName(strings.Title(uriSplits[3]) + "Action")
 	Debug(action)
 	if action.IsValid() {
+		if panicHandle != nil {
+			defer panicHandle()
+		}
+
 		action.Call(nil)
 		response.Response()
 		return

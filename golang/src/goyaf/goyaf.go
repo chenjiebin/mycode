@@ -19,3 +19,10 @@ func Run() {
 
 	Log("start server success.")
 }
+
+//panic处理函数
+var panicHandle func()
+
+func SetPanicHandle(f func()) {
+	panicHandle = f
+}
