@@ -7,21 +7,57 @@ import (
 	"strings"
 )
 
-//表
+//表结构
 type Table struct {
-	Table   string
+	Table   string //表名
 	adapter *sql.DB
-	where   map[string]string
 }
 
 //查询参数
 type Select struct {
-	Columns []string
+	Columns string
 	Where   map[string]string
-	Order   map[string]string
+	Order   string
 	Count   int
 	Offset  int
-	Group   []string
+	Group   string
+}
+
+func (this *Select) columnsToString() string {
+	if len(this.Columns) == 0 {
+		return "*"
+	}
+	return this.Columns
+}
+
+func (this *Select) orderToString() string {
+	if len(this.Order) == 0 {
+		return ""
+	}
+	return "order by " + this.Order
+}
+
+func (this *Select) groupToString() string {
+	if len(this.Group) == 0 {
+		return ""
+	}
+	return "group by " + this.Group
+}
+
+func (this *Select) whereTostring() string {
+	if len(this.Where) == 0 {
+		return ""
+	}
+
+	whereString := " where "
+	for k, v := range this.Where {
+		if strings.IndexAny(k, "=><") == -1 {
+			whereString += k + "=" + v + " and "
+			continue
+		}
+		whereString += strings.Replace(k, "?", v, -1) + " and "
+	}
+	return strings.TrimRight(whereString, " and ")
 }
 
 //查询数据
@@ -29,16 +65,7 @@ func (this *Table) Select(slt Select) []map[string]string {
 	if this.adapter == nil {
 		this.adapter = getConnect()
 	}
-
-	this.Where(slt.Where)
-
-	//return make(map[string]string)
-	sql := fmt.Sprintf("SELECT * FROM %s %s LIMIT %d,%d",
-		this.Table,
-		this.whereToString(),
-		slt.Offset,
-		slt.Count)
-	Debug(sql)
+	sql := this.SelectToSql(slt)
 
 	rows, err := this.adapter.Query(sql)
 	CheckError(err)
@@ -66,17 +93,27 @@ func (this *Table) Select(slt Select) []map[string]string {
 	return result
 }
 
-func (this *Table) Where(where map[string]string) {
-	this.where = where
+func (this *Table) SelectToSql(slt Select) string {
+	sql := fmt.Sprintf("SELECT %s FROM %s %s %s %s LIMIT %d,%d",
+		slt.columnsToString(),
+		this.Table,
+		slt.whereTostring(),
+		slt.groupToString(),
+		slt.orderToString(),
+		slt.Offset,
+		slt.Count)
+	Debug(sql)
+	return sql
 }
 
-func (this *Table) whereToString() string {
-	if len(this.where) == 0 {
+//将where转换为sql的where语句
+func (this *Table) whereToString(where map[string]string) string {
+	if len(where) == 0 {
 		return ""
 	}
 
 	whereString := " where "
-	for k, v := range this.where {
+	for k, v := range where {
 		if strings.IndexAny(k, "=><") == -1 {
 			whereString += k + "=" + v + " and "
 			continue
@@ -86,14 +123,7 @@ func (this *Table) whereToString() string {
 	return strings.TrimRight(whereString, " and ")
 }
 
-func (this *Table) Order() {
-
-}
-
-func (this *Table) Group() {
-
-}
-
+//插入数据
 func (this *Table) Insert(data map[string]string) (LastInsertId int64, err error) {
 	if len(data) == 0 {
 		return 0, errors.New("data is empty")
@@ -130,15 +160,6 @@ func (this *Table) Insert(data map[string]string) (LastInsertId int64, err error
 	return LastInsertId, err
 }
 
-//func (this *Table) GetInsertSql(data map[string]string) {
-//	sql := "INSERT " + this.Table + " SET "
-//	for k, v := range data {
-//		sql += k + "='" + v + "',"
-//	}
-//	sql = strings.TrimRight(sql, ",")
-//	Debug(sql)
-//}
-
 //更新数据
 func (this *Table) Update(data map[string]string, where map[string]string) (affect int64, err error) {
 	if len(data) == 0 {
@@ -155,9 +176,7 @@ func (this *Table) Update(data map[string]string, where map[string]string) (affe
 	}
 	sql = strings.TrimRight(sql, ",")
 
-	this.Where(where)
-
-	sql += this.whereToString()
+	sql += this.whereToString(where)
 	Debug(sql)
 
 	stmt, err := this.adapter.Prepare(sql)

@@ -18,7 +18,6 @@ func (this *Response) AppendBody(body interface{}) {
 
 //返回数据
 func (this *Response) Response() {
-
 	for _, body := range this.bodys {
 		fmt.Fprintln(this.w, body)
 	}
