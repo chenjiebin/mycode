@@ -3,6 +3,7 @@ package goyaf
 import (
 	"database/sql"
 	"errors"
+	"fmt"
 	"strings"
 )
 
@@ -32,8 +33,11 @@ func (this *Table) Select(slt Select) []map[string]string {
 	this.Where(slt.Where)
 
 	//return make(map[string]string)
-
-	sql := "SELECT * FROM " + this.Table + this.whereToString()
+	sql := fmt.Sprintf("SELECT * FROM %s %s LIMIT %d,%d",
+		this.Table,
+		this.whereToString(),
+		slt.Offset,
+		slt.Count)
 	Debug(sql)
 
 	rows, err := this.adapter.Query(sql)
