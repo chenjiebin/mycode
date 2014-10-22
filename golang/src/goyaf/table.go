@@ -177,8 +177,8 @@ func (this *Table) Update(data map[string]string, where map[string]string) (affe
 	}
 
 	sql := "UPDATE " + this.Table + " SET "
-	for k, _ := range data {
-		sql += k + "=?,"
+	for k, v := range data {
+		sql += k + "=" + v + ","
 	}
 	sql = strings.TrimRight(sql, ",")
 
@@ -186,16 +186,7 @@ func (this *Table) Update(data map[string]string, where map[string]string) (affe
 	Debug(sql)
 
 	stmt, err := this.adapter.Prepare(sql)
-
-	values := make([]interface{}, len(data))
-	i := 0
-	for _, v := range data {
-		values[i] = v
-		i += 1
-	}
-	Debug(values)
-
-	res, err := stmt.Exec(values...)
+	res, err := stmt.Exec()
 
 	affect, err = res.RowsAffected()
 
