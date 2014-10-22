@@ -61,8 +61,19 @@ func (p *GoyafMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	action := reflect.ValueOf(finalController).MethodByName(strings.Title(uriSplits[3]) + "Action")
 	Debug(action)
 	if action.IsValid() {
+		//检测是否有设置panic处理控制器
 		if panicHandle != nil {
-			defer panicHandle()
+			defer func() {
+				if r := recover(); r != nil {
+					reflect.ValueOf(panicHandle).MethodByName("SetRequest").Call(params)
+					reflect.ValueOf(panicHandle).MethodByName("SetResponse").Call(responseParams)
+
+					recoverParams := make([]reflect.Value, 1)
+					recoverParams[0] = reflect.ValueOf(r)
+					reflect.ValueOf(panicHandle).MethodByName("ErrorAction").Call(recoverParams)
+					response.Response()
+				}
+			}()
 		}
 
 		action.Call(nil)

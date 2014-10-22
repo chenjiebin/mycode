@@ -20,9 +20,8 @@ func Run() {
 	Log("start server success.")
 }
 
-//panic处理函数
-var panicHandle func()
+var panicHandle interface{}
 
-func SetPanicHandle(f func()) {
-	panicHandle = f
+func SetPanicHandle(c interface{}) {
+	panicHandle = c
 }

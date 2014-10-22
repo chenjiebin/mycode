@@ -9,12 +9,25 @@ type Error struct {
 	Errmsg string
 }
 
+type Panic struct {
+}
+
+func (this *Panic) panicHandle() {
+	if r := recover(); r != nil {
+		log.Printf("Runtime error caught: %v", r)
+	}
+}
+
+//func panicHandle() {
+//	if r := recover(); r != nil {
+//		log.Printf("Runtime error caught: %v", r)
+//	}
+//}
+
 func main() {
-	defer func() {
-		if r := recover(); r != nil {
-			log.Printf("Runtime error caught: %v", r)
-		}
-	}()
+	p := Panic{}
+
+	defer p.panicHandle()
 	hello()
 }
 
