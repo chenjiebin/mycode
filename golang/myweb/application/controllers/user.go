@@ -13,8 +13,7 @@ func (this *User) AddAction() {
 	params["user_name"] = "cjb"
 	params["user_age"] = "20"
 
-	userBn := &business.User{}
-	userBn.Add(params)
+	business.UserBN.Add(params)
 }
 
 func (this *User) UpdateAction() {
@@ -27,7 +26,8 @@ func (this *User) UpdateAction() {
 	userBn.Update(params)
 }
 
-func (this *User) UserinfoAction() {
+//用户信息查询
+func (this *User) InfoAction() {
 	id := this.GetRequest().GetQuery("id", "0")
 
 	userBn := &business.User{}

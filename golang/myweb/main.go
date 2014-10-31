@@ -4,7 +4,6 @@ import (
 	"./application/controllers"
 	"./conf"
 	"flag"
-	"fmt"
 	"git.oschina.net/iceup/goyaf"
 )
 
@@ -14,10 +13,7 @@ func main() {
 	goyaf.SetConfig(conf.GetConfigByEnv(*env))
 
 	goyaf.AddController("/index/index/", controllers.Index{})
+	goyaf.AddController("/index/user/", controllers.User{})
 
 	goyaf.Run()
-}
-
-func init() {
-	fmt.Println("init main")
 }

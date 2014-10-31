@@ -1,20 +1,19 @@
 package business
 
 import (
-	"../mysql"
+	"../dao"
+	"fmt"
 )
 
 type User struct {
 }
 
 func (this *User) GetUserInfo(id string) {
-	userMysql := mysql.GetUserInstance()
-	userMysql.Find(id)
+	dao.UserDAO.Find(id)
 }
 
 func (this *User) Add(params map[string]string) {
-	userMysql := mysql.GetUserInstance()
-	userMysql.Add(params)
+	dao.UserDAO.Insert(params)
 }
 
 func (this *User) Update(params map[string]string) {
@@ -25,6 +24,12 @@ func (this *User) Update(params map[string]string) {
 	where := make(map[string]string)
 	where["user_id"] = params["user_id"]
 
-	userMysql := mysql.GetUserInstance()
-	userMysql.Update(data, where)
+	dao.UserDAO.Update(data, where)
+}
+
+var UserBN *User
+
+func init() {
+	fmt.Println("init business user")
+	UserBN = &User{}
 }
