@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -8,21 +9,32 @@ import (
 	"strings"
 )
 
-/*获取当前文件执行的路径*/
-func GetCurrPath() string {
-	file, _ := exec.LookPath(os.Args[0])
-	fmt.Println(file)
+func a() (err error) {
+	err = b()
+	if err != nil {
+		return
+	}
+	err = c()
+	if err != nil {
+		return
+	}
+	err = errors.New("a内错误")
+	return
+}
 
-	path, _ := filepath.Abs(file)
-	fmt.Println(path)
-	splitstring := strings.Split(path, "\\")
-	size := len(splitstring)
-	splitstring = strings.Split(path, splitstring[size-1])
-	ret := strings.Replace(splitstring[0], "\\", "/", size-1)
-	return ret
+func b() (err error) {
+	err = errors.New("b内错误")
+	return
+}
+
+func c() (err error) {
+	err = errors.New("c内错误")
+	return
 }
 
 func main() {
-	fmt.Println(GetCurrPath())
-
+	err := a()
+	if err != nil {
+		fmt.Println(err)
+	}
 }

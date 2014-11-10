@@ -2,43 +2,31 @@ package main
 
 import (
 	"fmt"
-	"reflect"
 )
 
-type base struct {
-	age int
+type User struct {
+	Id   int
+	Name string
 }
 
-//type controller interface {
-//	Hello()
-//}
-
-func (this *base) Hello() {
-	fmt.Println("hello")
-	this.age = 10
-
-}
-
-type user struct {
-	base
-	Id   int64
-	name string
-}
-
-func (this user) To() {
-	this.name = "hehe"
+func (this *User) SetName() {
+	this.Name = "hehe"
 }
 
 func main() {
-	var u interface{}
-	u = user{Id: 1, name: "cjb"}
-	fmt.Println(reflect.ValueOf(&u).Elem())
-	fmt.Println(u)
+	users := map[string]User{
+		"1": User{Id: 1, Name: "cjb"},
+	}
 
-	//u2 := u
-	//u3 := &u2
+	user := users["1"]
 
-	//fmt.Println(c)
-	//fmt.Println(u2)
+	user2 := &user
 
+	fmt.Println(user2)
+	user2.Id = 2
+	fmt.Println(user2)
+	user2.SetName()
+	fmt.Println(user2)
+
+	fmt.Println(users)
 }
