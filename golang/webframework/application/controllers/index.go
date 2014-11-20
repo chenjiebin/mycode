@@ -32,6 +32,14 @@ func (this *Index) DbdemoAction() {
 		"charset":  "utf8",
 	}
 
+	test["mysql-host"] = "192.168.3.233"
+	test["mysql-port"] = "3306"
+	test["mysql-database"] = "pba-user"
+	test["mysql-username"] = "root"
+	test["mysql-password"] = "123456"
+	test["mysql-charset"] = "utf8"
+	test["mysql-driver_options-1002"] = "SET NAMES utf8mb4"
+
 	adapter := db.NewAdapter(config)
 	userTable := db.NewTable("user", adapter)
 
