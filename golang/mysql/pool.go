@@ -5,66 +5,110 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"log"
+	"net/http"
 	"time"
 )
 
+var db *sql.DB
+
+func init() {
+	db, _ = sql.Open("mysql", "root:@/test?charset=utf8")
+	db.SetMaxOpenConns(200)
+	db.SetMaxIdleConns(100)
+	db.Ping()
+}
+
 func main() {
-	pconnect()
+	startHttpServer()
+}
+
+func startHttpServer() {
+	http.HandleFunc("/", find)
+	err := http.ListenAndServe(":9090", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
+}
+
+func find(w http.ResponseWriter, r *http.Request) {
+	read()
+	fmt.Fprintln(w, "finish")
 }
 
 func pconnect() {
 	db, _ := sql.Open("mysql", "root:@/test?charset=utf8")
 	//db.Ping()
-	db.SetMaxIdleConns(100)
+	db.SetMaxIdleConns(10)
 	db.Ping()
-	//db.SetMaxOpenConns(1)
+	db.SetMaxOpenConns(30)
 	//defer db.Close()
 
 	startTime := time.Now().UnixNano()
 
-	var rows *sql.Rows
-	var err error
-	for i := 0; i < 100; i++ {
-		rows, err = db.Query("SELECT * FROM user limit 1")
-		checkErr(err)
-		db.Close()
-	}
+	//ch := make(chan)
+
+	go func() {
+		var rows *sql.Rows
+		var err error
+		for i := 0; i < 100; i++ {
+			rows, err = db.Query("SELECT * FROM user limit 1")
+			checkErr(err)
+
+			columns, _ := rows.Columns()
+			scanArgs := make([]interface{}, len(columns))
+			values := make([]interface{}, len(columns))
+			for j := range values {
+				scanArgs[j] = &values[j]
+			}
+
+			for rows.Next() {
+				err = rows.Scan(scanArgs...)
+				record := make(map[string]string)
+				for i, col := range values {
+					if col != nil {
+						record[columns[i]] = string(col.([]byte))
+					}
+				}
+				fmt.Println(record)
+			}
+
+		}
+	}()
 
 	endTime := time.Now().UnixNano()
 
 	fmt.Println(endTime - startTime)
 
-	fmt.Println(rows)
-
-	time.Sleep(30 * 1e9)
+	time.Sleep(20 * 1e9)
 
 }
 
-func connect() {
-	db, err := sql.Open("mysql", "89test:89test@tcp(192.168.3.89:3306)/business?charset=utf8")
-	checkErr(err)
+func read() {
+	for i := 0; i < 100; i++ {
+		rows, err := db.Query("SELECT * FROM user limit 1")
+		checkErr(err)
 
-	rows, err := db.Query("SELECT * FROM tb_users limit 1")
-	checkErr(err)
+		columns, _ := rows.Columns()
+		scanArgs := make([]interface{}, len(columns))
+		values := make([]interface{}, len(columns))
+		for j := range values {
+			scanArgs[j] = &values[j]
+		}
 
-	columns, _ := rows.Columns()
-	scanArgs := make([]interface{}, len(columns))
-	values := make([]interface{}, len(columns))
-	for i := range values {
-		scanArgs[i] = &values[i]
-	}
-
-	for rows.Next() {
-		//将行数据保存到record字典
-		err = rows.Scan(scanArgs...)
 		record := make(map[string]string)
-		for i, col := range values {
-			if col != nil {
-				record[columns[i]] = string(col.([]byte))
+		for rows.Next() {
+			//将行数据保存到record字典
+			err = rows.Scan(scanArgs...)
+			for i, col := range values {
+				if col != nil {
+					record[columns[i]] = string(col.([]byte))
+				}
 			}
 		}
 		fmt.Println(record)
 	}
+	//time.Sleep(20 * 1e9)
 }
 
 func checkErr(err error) {
