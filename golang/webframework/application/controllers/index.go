@@ -3,6 +3,7 @@ package controllers
 import (
 	"fmt"
 	"git.oschina.net/iceup/goyaf/db"
+	"strconv"
 )
 
 type Index struct {
@@ -23,22 +24,16 @@ func (this *Index) IndexAction() {
 //数据库操作demo
 func (this *Index) DbdemoAction() {
 	config := map[string]string{
-		"driver":   "mysql",
-		"host":     "127.0.0.1",
-		"port":     "3306",
-		"database": "test",
-		"username": "root",
-		"password": "",
-		"charset":  "utf8",
+		"driver":      "mysql",
+		"host":        "127.0.0.1",
+		"port":        "3306",
+		"database":    "test",
+		"username":    "root",
+		"password":    "",
+		"charset":     "utf8",
+		"maxconn":     "300",
+		"maxidleconn": "100",
 	}
-
-	test["mysql-host"] = "192.168.3.233"
-	test["mysql-port"] = "3306"
-	test["mysql-database"] = "pba-user"
-	test["mysql-username"] = "root"
-	test["mysql-password"] = "123456"
-	test["mysql-charset"] = "utf8"
-	test["mysql-driver_options-1002"] = "SET NAMES utf8mb4"
 
 	adapter := db.NewAdapter(config)
 	userTable := db.NewTable("user", adapter)
@@ -58,14 +53,15 @@ func (this *Index) DbdemoAction() {
 	fmt.Println(lastInsertId)
 
 	//更新数据
-	affect, err := userTable.Update(map[string]string{"user_name": "cjb", "user_age": "21"}, map[string]string{"user_id": "1"})
+	affect, err := userTable.Update(map[string]string{"user_name": "cjb", "user_age": "21"},
+		map[string]string{"user_id": strconv.FormatInt(lastInsertId, 10)})
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(affect)
 
 	//删除数据
-	delaffect, err := userTable.Delete(map[string]string{"user_id": "1"})
+	delaffect, err := userTable.Delete(map[string]string{"user_id": strconv.FormatInt(lastInsertId, 10)})
 	if err != nil {
 		fmt.Println(err)
 	}
