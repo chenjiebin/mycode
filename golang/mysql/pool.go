@@ -7,15 +7,14 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"net/http"
-	"time"
 )
 
 var db *sql.DB
 
 func init() {
-	db, _ = sql.Open("mysql", "root:@/test?charset=utf8")
-	db.SetMaxOpenConns(200)
-	db.SetMaxIdleConns(100)
+	db, _ = sql.Open("mysql", "root:123456@tcp(192.168.3.233:3306)/test?charset=utf8")
+	db.SetMaxOpenConns(2000)
+	db.SetMaxIdleConns(1000)
 	db.Ping()
 }
 
@@ -24,69 +23,18 @@ func main() {
 }
 
 func startHttpServer() {
-	http.HandleFunc("/", find)
+	http.HandleFunc("/pool", pool)
+	http.HandleFunc("/nopool", nopool)
 	err := http.ListenAndServe(":9090", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
 }
 
-func find(w http.ResponseWriter, r *http.Request) {
-	read()
-	fmt.Fprintln(w, "finish")
-}
-
-func pconnect() {
-	db, _ := sql.Open("mysql", "root:@/test?charset=utf8")
-	//db.Ping()
-	db.SetMaxIdleConns(10)
-	db.Ping()
-	db.SetMaxOpenConns(30)
-	//defer db.Close()
-
-	startTime := time.Now().UnixNano()
-
-	//ch := make(chan)
-
-	go func() {
-		var rows *sql.Rows
-		var err error
-		for i := 0; i < 100; i++ {
-			rows, err = db.Query("SELECT * FROM user limit 1")
-			checkErr(err)
-
-			columns, _ := rows.Columns()
-			scanArgs := make([]interface{}, len(columns))
-			values := make([]interface{}, len(columns))
-			for j := range values {
-				scanArgs[j] = &values[j]
-			}
-
-			for rows.Next() {
-				err = rows.Scan(scanArgs...)
-				record := make(map[string]string)
-				for i, col := range values {
-					if col != nil {
-						record[columns[i]] = string(col.([]byte))
-					}
-				}
-				fmt.Println(record)
-			}
-
-		}
-	}()
-
-	endTime := time.Now().UnixNano()
-
-	fmt.Println(endTime - startTime)
-
-	time.Sleep(20 * 1e9)
-
-}
-
-func read() {
-	for i := 0; i < 100; i++ {
-		rows, err := db.Query("SELECT * FROM user limit 1")
+func pool(w http.ResponseWriter, r *http.Request) {
+	for i := 0; i < 1; i++ {
+		rows, err := db.Query("SELECT * FROM user where user_id=100 limit 1")
+		defer rows.Close()
 		checkErr(err)
 
 		columns, _ := rows.Columns()
@@ -106,9 +54,43 @@ func read() {
 				}
 			}
 		}
+
 		fmt.Println(record)
 	}
-	//time.Sleep(20 * 1e9)
+	fmt.Fprintln(w, "finish")
+}
+
+func nopool(w http.ResponseWriter, r *http.Request) {
+	db2, _ := sql.Open("mysql", "root:123456@tcp(192.168.3.233:3306)/test?charset=utf8")
+	defer db2.Close()
+
+	for i := 0; i < 1; i++ {
+		rows, err := db2.Query("SELECT * FROM user limit 1")
+		defer rows.Close()
+		checkErr(err)
+
+		columns, _ := rows.Columns()
+		scanArgs := make([]interface{}, len(columns))
+		values := make([]interface{}, len(columns))
+		for j := range values {
+			scanArgs[j] = &values[j]
+		}
+
+		record := make(map[string]string)
+		for rows.Next() {
+			//将行数据保存到record字典
+			err = rows.Scan(scanArgs...)
+			for i, col := range values {
+				if col != nil {
+					record[columns[i]] = string(col.([]byte))
+				}
+			}
+		}
+
+		fmt.Println(record)
+	}
+
+	fmt.Fprintln(w, "finish")
 }
 
 func checkErr(err error) {
