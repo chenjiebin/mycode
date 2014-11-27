@@ -6,7 +6,9 @@ import (
 )
 
 func main() {
-	getTodayStartTimeUnix()
+	t, _ := time.Parse("2006-01-02 15:04:05", "2010-4-15 00:00:00")
+	fmt.Println(t.Unix())
+	//getTodayStartTimeUnix()
 }
 
 func formatTime() {
