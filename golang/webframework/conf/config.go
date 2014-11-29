@@ -17,6 +17,8 @@ func init() {
 
 	common["http-listen-port"] = "10000"
 
+	common["debugmode"] = "0"
+
 	Config["common"] = common
 
 }
