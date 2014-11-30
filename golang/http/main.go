@@ -19,7 +19,7 @@ func sayhelloName(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("val:", strings.Join(v, ""))
 	}
 
-	fmt.Fprintf(w, "Hello astaxie!")
+	fmt.Fprintf(w, "Hello world!")
 }
 
 func main() {
