@@ -4,20 +4,25 @@ import (
 	"./application/controllers"
 	"./conf"
 	"flag"
-	"fmt"
 	"git.oschina.net/iceup/goyaf"
 )
 
 func main() {
+	t := flag.String("type", "master", "start type")
+	workerPort := flag.String("workerport", "10001", "worker port")
 	env := flag.String("env", "test", "environment")
 	flag.Parse()
 	goyaf.SetConfig(conf.GetConfigByEnv(*env))
 
 	goyaf.AddController("/index/index/", controllers.Index{})
 
-	goyaf.Run()
+	if *t == "master" {
+		goyaf.StartMaster()
+	} else {
+		goyaf.StartWorkerListen(*workerPort)
+	}
 }
 
 func init() {
-	fmt.Println("init main")
+	goyaf.Log("init main")
 }

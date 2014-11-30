@@ -24,10 +24,15 @@ func normal() {
 
 func startByServer() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println(r.Cookies())
 		fmt.Fprintf(w, "Hello world")
 	})
+	http.HandleFunc("/app/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println(r)
+		fmt.Fprintf(w, "Hello app")
+	})
 
-	l, err := net.Listen("tcp", ":9090")
+	l, err := net.Listen("tcp", ":15000")
 	if nil != err {
 		log.Fatalln(err)
 	}

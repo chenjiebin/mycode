@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"log"
+	//"log"
 	"net/http"
-	"net/rpc"
+	"net/http/httputil"
+	"net/url"
 	"os/exec"
 	"time"
 )
@@ -20,18 +21,36 @@ type Args struct {
 type Mux struct{}
 
 func (p *Mux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	remote, err := url.Parse("http://127.0.0.1:9090")
+	if err != nil {
+		panic(err)
+	}
+	proxy := httputil.NewSingleHostReverseProxy(remote)
+	proxy.ServeHTTP(w, r)
+
 	fmt.Fprintln(w, "Hello world 2")
 
-	client, err := rpc.DialHTTP("tcp", "127.0.0.1:1234")
-
-	if err != nil {
-		log.Fatal("dialing:", err)
-	}
-	args := Args{w, r}
-	var reply int
-	err = client.Call("Arith.ServeHTTP", args, &reply)
-	fmt.Println(err)
-	fmt.Println(reply)
+	//fmt.Println(r)
+	//http.
+	//resp, err := http.DefaultClient.Do(r)
+	//defer resp.Body.Close()
+	//if err != nil {
+	//	panic(err)
+	//}
+	//for k, v := range resp.Header {
+	//	for _, vv := range v {
+	//		w.Header().Add(k, vv)
+	//	}
+	//}
+	//for _, c := range resp.SetCookie {
+	//	w.Header().Add("Set-Cookie", c.Raw)
+	//}
+	//w.WriteHeader(resp.StatusCode)
+	//result, err := ioutil.ReadAll(resp.Body)
+	//if err != nil && err != os.EOF {
+	//	panic(err)
+	//}
+	//w.Write(result)
 
 }
 

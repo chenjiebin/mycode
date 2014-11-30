@@ -25,7 +25,7 @@ func (this *Index) IndexAction() {
 func (this *Index) DbdemoAction() {
 	config := map[string]string{
 		"driver":      "mysql",
-		"host":        "127.0.0.1",
+		"host":        "192.168.1.102",
 		"port":        "3306",
 		"database":    "test",
 		"username":    "root",
