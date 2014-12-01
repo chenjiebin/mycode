@@ -1,15 +1,17 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 )
 
 func main() {
 	file, _ := exec.LookPath(os.Args[0])
 	path, _ := filepath.Abs(file)
-	println(path)
+	fmt.Println(path)
 }
 
 /*获取当前文件执行的路径*/
