@@ -17,7 +17,7 @@ func init() {
 
 	common["http-listen-port"] = "10000"
 
-	common["debugmode"] = "0"
+	common["debugmode"] = "1"
 
 	Config["common"] = common
 
@@ -28,5 +28,14 @@ func GetConfigByEnv(env string) map[string]string {
 	if !ok {
 		return Config["common"]
 	}
+
+	commonConfig := Config["common"]
+	for k, v := range commonConfig {
+		_, ok := envs[k]
+		if !ok {
+			envs[k] = v
+		}
+	}
+
 	return envs
 }

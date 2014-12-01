@@ -25,7 +25,7 @@ func (this *Index) IndexAction() {
 func (this *Index) DbdemoAction() {
 	config := map[string]string{
 		"driver":      "mysql",
-		"host":        "192.168.1.102",
+		"host":        "127.0.0.1",
 		"port":        "3306",
 		"database":    "test",
 		"username":    "root",
@@ -66,6 +66,35 @@ func (this *Index) DbdemoAction() {
 		fmt.Println(err)
 	}
 	fmt.Println(delaffect)
+}
+
+//db事务
+func (this *Index) DbtxAction() {
+	config := map[string]string{
+		"driver":      "mysql",
+		"host":        "127.0.0.1",
+		"port":        "3306",
+		"database":    "test",
+		"username":    "root",
+		"password":    "",
+		"charset":     "utf8",
+		"maxconn":     "300",
+		"maxidleconn": "100",
+	}
+
+	adapter := db.NewAdapter(config)
+	userTable := db.NewTable("user", adapter)
+	adapter.Begin()
+
+	//插入数据
+	lastInsertId, err := userTable.Insert(map[string]string{"user_name": "iceup", "user_age": "20"})
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(lastInsertId)
+
+	adapter.Rollback()
+	//adapter.Commit()
 }
 
 func init() {
