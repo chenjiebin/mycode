@@ -22,20 +22,3 @@ func init() {
 	Config["common"] = common
 
 }
-
-func GetConfigByEnv(env string) map[string]string {
-	envs, ok := Config[env]
-	if !ok {
-		return Config["common"]
-	}
-
-	commonConfig := Config["common"]
-	for k, v := range commonConfig {
-		_, ok := envs[k]
-		if !ok {
-			envs[k] = v
-		}
-	}
-
-	return envs
-}
