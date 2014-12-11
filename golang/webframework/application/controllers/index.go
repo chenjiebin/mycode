@@ -53,7 +53,7 @@ func (this *Index) DbdemoAction() {
 	fmt.Println(lastInsertId)
 
 	//更新数据
-	affect, err := userTable.Update(map[string]string{"user_name2": "cjb", "user_age": "21"},
+	affect, err := userTable.Update(map[string]string{"user_name": "cjb", "user_age": "21"},
 		map[string]string{"user_id": strconv.FormatInt(lastInsertId, 10)})
 	if err != nil {
 		fmt.Println(err)
@@ -95,6 +95,31 @@ func (this *Index) DbtxAction() {
 
 	//fmt.Println(adapter.Rollback())
 	//adapter.Commit()
+}
+
+//数据库连接池
+func (this *Index) DbpoolAction() {
+	config := map[string]string{
+		"driver":      "mysql",
+		"host":        "192.168.3.233",
+		"port":        "3306",
+		"database":    "test",
+		"username":    "root",
+		"password":    "123456",
+		"charset":     "utf8",
+		"maxconn":     "300",
+		"maxidleconn": "100",
+	}
+
+	adapter := db.NewAdapter(config)
+	userTable := db.NewTable("user", adapter)
+
+	//查询数据
+	result, err := userTable.Select(db.Select{})
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(result)
 }
 
 func init() {

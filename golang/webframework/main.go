@@ -10,7 +10,7 @@ func main() {
 	goyaf.SetConfig(conf.Config)
 	goyaf.AddController("/index/index/", controllers.Index{})
 
-	goyaf.RunServer()
+	goyaf.Run()
 }
 
 func init() {
