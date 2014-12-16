@@ -1,13 +1,7 @@
-package main
-
-import (
-	"fmt"
-)
-
-func main() {
-	i := 0
-	for i != 100 {
-		fmt.Println(i)
-		i++
+func startHttpServer() {
+	http.HandleFunc("/pool", pool)
+	err := http.ListenAndServe(":9090", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
 	}
 }

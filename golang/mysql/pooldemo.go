@@ -1,4 +1,4 @@
-//数据库持久连接和短连接、连接池性能测试
+//数据库连接池测试
 package main
 
 import (
@@ -24,7 +24,6 @@ func main() {
 
 func startHttpServer() {
 	http.HandleFunc("/pool", pool)
-	http.HandleFunc("/nopool", nopool)
 	err := http.ListenAndServe(":9090", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
@@ -32,20 +31,6 @@ func startHttpServer() {
 }
 
 func pool(w http.ResponseWriter, r *http.Request) {
-	queryFromUser(db)
-	fmt.Fprintln(w, "finish")
-}
-
-func nopool(w http.ResponseWriter, r *http.Request) {
-	db2, _ := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/test?charset=utf8")
-	defer db2.Close()
-
-	queryFromUser(db2)
-
-	fmt.Fprintln(w, "finish")
-}
-
-func queryFromUser(db *sql.DB) {
 	rows, err := db.Query("SELECT * FROM user limit 1")
 	defer rows.Close()
 	checkErr(err)
@@ -69,10 +54,12 @@ func queryFromUser(db *sql.DB) {
 	}
 
 	fmt.Println(record)
+	fmt.Fprintln(w, "finish")
 }
 
 func checkErr(err error) {
 	if err != nil {
 		fmt.Println(err)
+		panic(err)
 	}
 }
