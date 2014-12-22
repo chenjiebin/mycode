@@ -1,5 +1,3 @@
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -7,11 +5,12 @@ int main(void)
 {
 	//打开一个文件
 	int f;
-	f = open("test.log", O_RDWR|O_APPEND|O_CREAT, "0666");
+	f = open("test.log", O_RDWR | O_APPEND | O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
 	printf("%d\n", f);
 
-	char buf[12] = "Hello world!";
-	write(f, buf, 12);
+	int flags;
+	flags = fcntl(f, F_GETFL);
+	printf("%d\n", flags);
 	
 	return 0;
 }
