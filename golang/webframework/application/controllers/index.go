@@ -25,11 +25,11 @@ func (this *Index) IndexAction() {
 func (this *Index) DbdemoAction() {
 	config := map[string]string{
 		"driver":      "mysql",
-		"host":        "192.168.1.102",
+		"host":        "192.168.3.233",
 		"port":        "3306",
 		"database":    "test",
 		"username":    "root",
-		"password":    "",
+		"password":    "123456",
 		"charset":     "utf8",
 		"maxconn":     "300",
 		"maxidleconn": "100",
@@ -66,6 +66,60 @@ func (this *Index) DbdemoAction() {
 		fmt.Println(err)
 	}
 	fmt.Println(delaffect)
+}
+
+//db事务
+func (this *Index) DbtxAction() {
+	//config := map[string]string{
+	//	"driver":   "mysql",
+	//	"host":     "127.0.0.1",
+	//	"port":     "3306",
+	//	"database": "test",
+	//	"username": "root",
+	//	"password": "",
+	//	"charset":  "utf8",
+	//	//"maxconn":     "300",
+	//	//"maxidleconn": "100",
+	//}
+
+	//adapter := db.NewAdapter(config)
+	//userTable := db.NewTable("user", adapter)
+	//fmt.Println(adapter.Begin())
+
+	////插入数据
+	//lastInsertId, err := userTable.Insert(map[string]string{"user_name": "iceup", "user_age": "20"})
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//fmt.Println(lastInsertId)
+
+	//fmt.Println(adapter.Rollback())
+	//adapter.Commit()
+}
+
+//数据库连接池
+func (this *Index) DbpoolAction() {
+	config := map[string]string{
+		"driver":      "mysql",
+		"host":        "192.168.3.233",
+		"port":        "3306",
+		"database":    "test",
+		"username":    "root",
+		"password":    "123456",
+		"charset":     "utf8",
+		"maxconn":     "300",
+		"maxidleconn": "100",
+	}
+
+	adapter := db.NewAdapter(config)
+	userTable := db.NewTable("user", adapter)
+
+	//查询数据
+	result, err := userTable.Select(db.Select{})
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(result)
 }
 
 func init() {
