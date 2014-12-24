@@ -11,13 +11,18 @@ func main() {
 }
 
 func write() {
-
-	file, err := os.St("test.txt", os.O_APPEND|os.O_WRONLY, 0600)
-	fmt.Println(os.IsExist(err))
+	file, err := os.OpenFile("file2.txt", os.O_APPEND|os.O_WRONLY, 0600)
+	if err != nil {
+		if os.IsNotExist(err) {
+			os.Create("file2.txt")
+			file, _ = os.OpenFile("file2.txt", os.O_APPEND|os.O_WRONLY, 0600)
+		}
+	}
+	fmt.Println(os.IsNotExist(err))
 	fmt.Println(file, err)
 
-	//file.Write([]byte("你好啊"))
-	//file.WriteString(",世界")
+	file.Write([]byte("你好啊"))
+	file.WriteString(",世界")
 	//fmt.Println(file.WriteString(",世界"))
 
 	////file.WriteAt([]byte("世界"), len([]byte("你好啊")))

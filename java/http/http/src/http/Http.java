@@ -6,6 +6,7 @@
 package http;
 
 import models.http.user.*;
+import models.http.scale.*;
 
 /**
  *
@@ -20,6 +21,9 @@ public class Http {
         System.out.println("hehe");
         User user = new User();
         user.getUserInfo();
+        
+        Record record = new Record();
+        record.list();
     }
 
 }
