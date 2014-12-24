@@ -18,7 +18,8 @@ public class Demo {
      */
     public static void main(String[] args) {
         Json json = new Json();
-        json.demo();
+        json.encode();
+        json.decode();
     }
     
 }
