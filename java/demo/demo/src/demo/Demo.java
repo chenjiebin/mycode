@@ -3,28 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package http;
+package demo;
 
-import models.http.user.*;
-import models.http.scale.*;
-import gson.*;
+import json.Json;
 
 /**
  *
  * @author chenjiebin
  */
-public class Http {
+public class Demo {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("hehe");
-        User user = new User();
-        user.getUserInfo();
-        
-        Record record = new Record();
-        record.list();
+        Json json = new Json();
+        json.demo();
     }
-
+    
 }
