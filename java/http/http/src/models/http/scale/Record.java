@@ -15,7 +15,7 @@ public class Record extends AbstractScale {
     }
 
     public void list() {
-        String uri = "/api/record/list/?people_id=1&start_time=1&sso/93d9Wnr6y2CpjNdKgFlUNMQry56U5zxYtn8tObz6wFPB03ev/";
+        String uri = "/api/record/list/?people_id=1&start_time=1&sso=93d9Wnr6y2CpjNdKgFlUNMQry56U5zxYtn8tObz6wFPB03ev/";
         Long start = System.currentTimeMillis();
         this.request(uri);
         Long end = System.currentTimeMillis();

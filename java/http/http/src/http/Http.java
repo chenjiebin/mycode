@@ -5,9 +5,9 @@
  */
 package http;
 
+import models.http.scale.Record;
 import models.http.user.*;
 import models.http.scale.*;
-import gson.*;
 
 /**
  *
