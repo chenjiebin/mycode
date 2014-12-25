@@ -5,7 +5,8 @@
  */
 package demo;
 
-import json.Json;
+//import json.Json;
+import volley.VolleyDemo;
 
 /**
  *
@@ -17,9 +18,13 @@ public class Demo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Json json = new Json();
-        json.encode();
-        json.decode();
+//        Json json = new Json();
+//        json.encode();
+//        json.decode();
+
+        VolleyDemo volley = new VolleyDemo();
+        volley.httpGet();
+
     }
-    
+
 }
