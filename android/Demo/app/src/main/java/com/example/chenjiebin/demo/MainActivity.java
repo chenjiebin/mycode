@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+//import android.os.StrictMode;
 
 
 public class MainActivity extends Activity {
@@ -14,6 +15,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //允许在主线程内执行阻塞操作，一般只在调试的时候使用
+//        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads()
+//                .detectDiskWrites().detectNetwork().penaltyLog().build());
+//        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects()
+//                .detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
 
         findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
             @Override
