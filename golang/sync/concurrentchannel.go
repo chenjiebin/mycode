@@ -22,7 +22,9 @@ func calc(w http.ResponseWriter, r *http.Request) {
 
 	select {
 	case r := <-c:
+		//如果处理成功
 		if r == 1 {
+			//处理后续的功能，这里默认用休眠3毫秒来实现
 			time.Sleep(3000000)
 		}
 		w.Write([]byte(strconv.Itoa(r)))

@@ -10,29 +10,29 @@ import (
 	"time"
 )
 
-//测试命令：siege -c 1000 -b -r 10 'http://192.168.3.233:9090/calc'
-
-//var i int32 = 5
-
 var i int = 5000
 
 func calc(w http.ResponseWriter, r *http.Request) {
-	//
 	if i <= 0 {
+		w.Write([]byte("0"))
 		return
 	}
+	//校验用户是否可以抢购资格
 	time.Sleep(3000000)
 
+	//if i <= 0 {
+	//	w.Write([]byte("0"))
+	//	return
+	//}
 	i = i - 1
 
-	//4200, 4600, 4500,4694.84,4761.90,4694.84,4672.90
-	//atomic.AddInt32(&i, 1)
+	//这里可以处理一些后续的功能
+	time.Sleep(3000000)
+	w.Write([]byte("1"))
 }
 
 func geti(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(strconv.Itoa(i)))
-
-	//w.Write([]byte(strconv.Itoa(int(i))))
 }
 
 func main() {
