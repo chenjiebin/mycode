@@ -19,7 +19,7 @@ func calc(w http.ResponseWriter, r *http.Request) {
 	if i <= 0 {
 		return
 	}
-	//校验用户是否可以抢购资格
+	//中间的一些校验操作
 	time.Sleep(3000000)
 
 	mutex.Lock()

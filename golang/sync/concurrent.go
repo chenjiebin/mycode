@@ -17,7 +17,7 @@ func calc(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("0"))
 		return
 	}
-	//校验用户是否可以抢购资格
+	//中间的一些校验操作
 	time.Sleep(3000000)
 
 	//if i <= 0 {

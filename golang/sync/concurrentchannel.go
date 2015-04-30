@@ -16,6 +16,9 @@ func calc(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("0"))
 		return
 	}
+	//中间的一些校验操作
+	time.Sleep(3000000)
+
 	var c chan int
 	c = make(chan int, 1)
 	chs <- c
