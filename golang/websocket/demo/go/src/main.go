@@ -14,14 +14,13 @@ type User struct {
 
 var users []User
 
-func Echo(ws *websocket.Conn) {
+func handle(ws *websocket.Conn) {
 	var err error
 
-	client := User{
+	user := User{
 		Conn: ws,
 	}
-
-	clientList = append(clientList, client)
+	users = append(users, user)
 
 	for {
 		var reply string
@@ -36,7 +35,7 @@ func Echo(ws *websocket.Conn) {
 		msg := "Received: " + reply
 		fmt.Println("Sending to client: " + msg)
 
-		for _, c := range clientList {
+		for _, c := range users {
 			if err = websocket.Message.Send(c.Conn, msg); err != nil {
 				fmt.Println("Can't send")
 				break
@@ -46,7 +45,7 @@ func Echo(ws *websocket.Conn) {
 }
 
 func main() {
-	http.Handle("/", websocket.Handler(Echo))
+	http.Handle("/", websocket.Handler(handle))
 	if err := http.ListenAndServe(":1234", nil); err != nil {
 		log.Fatal("ListenAndServe:", err)
 	}
