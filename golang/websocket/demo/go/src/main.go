@@ -11,11 +11,11 @@ import (
 )
 
 type User struct {
-	Name string
-	Conn *websocket.Conn
-	In   chan string
-	Out  chan string
-	Quit bool
+	Name      string
+	Conn      *websocket.Conn
+	ReadingCh chan string
+	SendingCh chan string
+	Quit      bool
 }
 
 //关闭与用户的连接
@@ -30,19 +30,30 @@ func (this *User) Read() {
 
 //给用户发送消息
 func (this *User) Send() {
-	for {
-		select {
-		case buffer := <-this.Incoming:
-			this.Conn.Write([]byte(buffer))
-		case <-this.Quit:
-			client.Conn.Close()
-			break
-		}
-	}
+	//for {
+	//	select {
+	//	case buffer := <-this.Incoming:
+	//		this.Conn.Write([]byte(buffer))
+	//	case <-this.Quit:
+	//		client.Conn.Close()
+	//		break
+	//	}
+	//}
 }
 
-//用户组
-var users *list.List
+//用户集合存储
+var Users *list.List
+
+//检测用户是否存在
+func IsExist(Name string) bool {
+	for e := Users.Front(); e != nil; e = e.Next() {
+		user := e.Value.(User)
+		if user.Name == Name {
+			return true
+		}
+	}
+	return false
+}
 
 //消息结构
 type Message struct {
@@ -77,15 +88,9 @@ func JsonDecodeByString(strmsg string) (message Message, err error) {
 	return
 }
 
+//tcp连接句柄，主要用来接受新用户的连接
 func handle(ws *websocket.Conn) {
 	var err error
-	user := User{
-		Conn: ws,
-	}
-	users.PushBack(user)
-
-	go user.Read()
-	go user.Send()
 
 	for {
 		var reciveMsg string
@@ -93,22 +98,38 @@ func handle(ws *websocket.Conn) {
 			fmt.Println("Can't receive")
 			break
 		}
-		user.Out <- 
-		
+
 		message, err := JsonDecodeByString(reciveMsg)
 		if err != nil {
 			websocket.Message.Send(ws, "message error")
 		}
 
-		switch message {
-		case 1:
-			user.Name = message.Content
+		switch message.MessageType {
+		case 1: //设置用户名
+			if IsExist(message.Content) {
+				websocket.Message.Send(ws, "user is exist")
+				continue
+			}
+			user := &User{
+				Name: message.Content,
+				Conn: ws,
+			}
+			//go user.Read()
+			go user.Send()
 
-		case 2:
+			Users.PushBack(*user)
+
+		case 2: //退出
+		case 11: //点对点发送消息
+
 		}
 
+		for e := Users.Front(); e != nil; e = e.Next() {
+			user := e.Value.(User)
+			fmt.Println(user)
+		}
 		//		for _, c := range users {
-		//			if err = websocket.Message.Send(c.Conn, msg); err != nil {
+		//			if err = c err != nil {
 		//				fmt.Println("Can't send")
 		//				break
 		//			}
@@ -117,6 +138,8 @@ func handle(ws *websocket.Conn) {
 }
 
 func main() {
+	Users = list.New()
+
 	http.Handle("/", websocket.Handler(handle))
 	if err := http.ListenAndServe(":1234", nil); err != nil {
 		log.Fatal("ListenAndServe:", err)

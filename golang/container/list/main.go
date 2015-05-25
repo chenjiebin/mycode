@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func base() {
 	//初始化一个list
 	l := list.New()
 	l.PushBack(1)
@@ -26,6 +26,26 @@ func main() {
 	for e := l.Front(); e != nil; e = e.Next() {
 		fmt.Println(e.Value)
 	}
+}
+
+type User struct {
+	Name string
+}
+
+func pointEntry() {
+	user := &User{}
+	l := list.New()
+	l.PushBack(*user)
+
+	user.Name = "陈杰斌"
+
+	for e := l.Front(); e != nil; e = e.Next() {
+		fmt.Println(e.Value)
+	}
+}
+
+func main() {
+	pointEntry()
 }
 
 //package main
