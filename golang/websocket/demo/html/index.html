@@ -3,9 +3,34 @@
     <head>
         <meta charset="UTF-8" />
         <title>WebSocket客户端</title>
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     </head>
     <body>
+        <p>
+            请输入昵称：<input id="message" type="text" value="陈杰斌"> <button onclick="send();">提交</button> 
+        </p> 
         <script type="text/javascript">
+            //消息类
+            var Message = {
+                createNew: function(params) {
+                    var message = {};
+                    if (!params.messageType) {
+                        alert("消息类型必须设置！");
+                        return false;
+                    }
+                    if (!params.content) {
+                        alert("消息内容必须填写！");
+                        return false;
+                    }
+                    message.messageType = params.messageType;
+                    message.fromUser = params.FromUser ? params.FromUser : "";
+                    message.toUser = params.toUser;
+                    message.content = params.content;
+                    message.time = params.time ? params.time : "";
+                    return message;
+                }
+            };
+
             var sock = null;
             var wsuri = "ws://127.0.0.1:1234";
             window.onload = function() {
@@ -22,12 +47,14 @@
                 }
             };
             function send() {
-                var msg = document.getElementById('message').value;
-                sock.send(msg);
+                message = Message.createNew({
+                    messageType: 1,
+                    toUser: "",
+                    content: $("#message").val(),
+                });
+                alert(JSON.stringify(message));
+                sock.send(JSON.stringify(message));
             }
         </script>
-        <p>
-            请输入昵称：<input id="message" type="text" value=""> <button onclick="send();">提交</button> 
-        </p> 
     </body>
 </html>
