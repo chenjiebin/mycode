@@ -11,11 +11,11 @@ import (
 )
 
 type User struct {
-	Name      string
-	Conn      *websocket.Conn
-	ReadingCh chan string
-	SendingCh chan string
-	Quit      bool
+	Name   string
+	Conn   *websocket.Conn
+	ReadCh chan string
+	SendCh chan Message
+	Quit   bool
 }
 
 //关闭与用户的连接
@@ -30,15 +30,15 @@ func (this *User) Read() {
 
 //给用户发送消息
 func (this *User) Send() {
-	//for {
-	//	select {
-	//	case buffer := <-this.Incoming:
-	//		this.Conn.Write([]byte(buffer))
-	//	case <-this.Quit:
-	//		client.Conn.Close()
-	//		break
-	//	}
-	//}
+	for {
+		select {
+		case message := <-this.SendCh:
+			this.Conn.Write(JsonEncode(message))
+			//case <-this.Quit:
+
+			//	break
+		}
+	}
 }
 
 //用户集合存储
@@ -111,23 +111,31 @@ func handle(ws *websocket.Conn) {
 				continue
 			}
 			user := &User{
-				Name: message.Content,
-				Conn: ws,
+				Name:   message.Content,
+				Conn:   ws,
+				SendCh: make(chan Message),
 			}
 			//go user.Read()
 			go user.Send()
 
 			Users.PushBack(*user)
 
+			user.SendCh <- Message{
+				MessageType: 10001,
+				FromUser:    "系统",
+				ToUser:      user.Name,
+				Content:     "用户登录成功",
+				Time:        "",
+			}
 		case 2: //退出
 		case 11: //点对点发送消息
 
 		}
 
-		for e := Users.Front(); e != nil; e = e.Next() {
-			user := e.Value.(User)
-			fmt.Println(user)
-		}
+		//for e := Users.Front(); e != nil; e = e.Next() {
+		//	user := e.Value.(User)
+		//	fmt.Println(user)
+		//}
 		//		for _, c := range users {
 		//			if err = c err != nil {
 		//				fmt.Println("Can't send")
