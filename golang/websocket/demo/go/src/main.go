@@ -10,11 +10,19 @@ import (
 	"net/http"
 )
 
+const (
+	ErrMsgFormatError = 10001
+)
+
+var Errors = map[int]string{
+	10001: "消息格式错误",
+}
+
 type User struct {
 	Name   string
 	Conn   *websocket.Conn
-	ReadCh chan string
-	SendCh chan string
+	ReadCh chan Message
+	SendCh chan Message
 	Quit   chan bool
 }
 
@@ -27,8 +35,8 @@ func (this *User) Close() {
 func (this *User) Read() {
 	for {
 		select {
-		case str := <-this.ReadCh:
-
+		case message := <-this.ReadCh:
+			fmt.Println(message)
 		}
 	}
 }
@@ -38,7 +46,7 @@ func (this *User) Send() {
 	for {
 		select {
 		case message := <-this.SendCh:
-			this.Conn.Write([]byte(message))
+			this.Conn.Write(JsonEncode(message))
 			//case <-this.Quit:
 
 			//	break
@@ -115,8 +123,8 @@ func handle(ws *websocket.Conn) {
 		user = &User{
 			Name:   message.Content,
 			Conn:   ws,
-			ReadCh: make(chan string),
-			SendCh: make(chan string),
+			ReadCh: make(chan Message),
+			SendCh: make(chan Message),
 			Quit:   make(chan bool),
 		}
 		Users.PushBack(*user)
@@ -137,7 +145,19 @@ func handle(ws *websocket.Conn) {
 			fmt.Println("Can't receive")
 			break
 		}
-		user.ReadCh <- reciveMsg
+		message, err := JsonDecodeByString(reciveMsg)
+		if err != nil {
+			var returnMsg = Message{
+				MessageType: ErrMsgFormatError,
+				FromUser:    "0",
+				ToUser:      user.Name,
+				Content:     Errors[ErrMsgFormatError],
+				Time:        "",
+			}
+			user.SendCh <- returnMsg
+			continue
+		}
+		user.ReadCh <- message
 	}
 }
 
