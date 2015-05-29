@@ -1,4 +1,3 @@
-//websocket服务器
 package main
 
 import (
@@ -12,10 +11,14 @@ import (
 
 const (
 	ErrMsgFormatError = 10001
+	UserLoginSuccess  = 10010
+	ErrUserIsExist    = 10011
 )
 
-var Errors = map[int]string{
+var Tips = map[int]string{
 	10001: "消息格式错误",
+	10010: "用户登录成功",
+	10011: "该用户已经存在了",
 }
 
 type User struct {
@@ -115,9 +118,17 @@ func handle(ws *websocket.Conn) {
 		message, err := JsonDecodeByString(reciveMsg)
 		if err != nil {
 			websocket.Message.Send(ws, "message error")
+			continue
 		}
 		if IsExist(message.Content) {
-			websocket.Message.Send(ws, "user is exist")
+			var returnMsg = Message{
+				MessageType: ErrUserIsExist,
+				FromUser:    "0",
+				ToUser:      "",
+				Content:     Tips[ErrUserIsExist],
+				Time:        "",
+			}
+			ws.Write(JsonEncode(returnMsg))
 			continue
 		}
 		user = &User{
@@ -134,10 +145,14 @@ func handle(ws *websocket.Conn) {
 	go user.Read()
 	go user.Send()
 
-	for e := Users.Front(); e != nil; e = e.Next() {
-		user := e.Value.(User)
-		fmt.Println(user)
+	var returnMsg = Message{
+		MessageType: UserLoginSuccess,
+		FromUser:    "0",
+		ToUser:      user.Name,
+		Content:     Tips[UserLoginSuccess],
+		Time:        "",
 	}
+	user.SendCh <- returnMsg
 
 	for {
 		var reciveMsg string
@@ -151,7 +166,7 @@ func handle(ws *websocket.Conn) {
 				MessageType: ErrMsgFormatError,
 				FromUser:    "0",
 				ToUser:      user.Name,
-				Content:     Errors[ErrMsgFormatError],
+				Content:     Tips[ErrMsgFormatError],
 				Time:        "",
 			}
 			user.SendCh <- returnMsg
