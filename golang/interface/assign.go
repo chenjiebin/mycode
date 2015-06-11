@@ -9,6 +9,7 @@ type Integer int
 func (a Integer) Less(b Integer) bool {
 	return a < b
 }
+
 func (a *Integer) Add(b Integer) {
 	*a += b
 }
