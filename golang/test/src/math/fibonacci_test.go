@@ -1,4 +1,4 @@
-package lib
+package math
 
 import (
 	"testing"
@@ -6,7 +6,7 @@ import (
 
 func TestFibonacciNumber1(t *testing.T) {
 	r := FibonacciNumber(10)
-	if r != 55 {
-		t.Errorf("FibonacciNumber(10) failed. Got %d, expected 3.", r)
+	if r != 54 {
+		t.Errorf("Fibonacci(10) failed. Got %d, expected 55.", r)
 	}
 }
