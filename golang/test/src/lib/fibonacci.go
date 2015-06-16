@@ -1,4 +1,4 @@
-package math
+package lib
 
 //斐波那契数列
 //求出第n个数的值
