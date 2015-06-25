@@ -3,9 +3,9 @@ package main
 import (
 	"code.google.com/p/go.net/websocket"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 const (
@@ -35,6 +35,7 @@ func (this *User) Close() {
 	}
 	UserList.RemoveUser(this)
 	this.Conn.Close()
+	Debug(this, "关闭了连接")
 }
 
 //读取用户的输入
@@ -42,7 +43,7 @@ func (this *User) Read() {
 	for {
 		select {
 		case message := <-this.ReadCh:
-			fmt.Println(message)
+			Debug("收到客户端", this, "发送的信息:", message)
 
 			switch message.MessageType {
 			case 1: //设置用户名
@@ -69,6 +70,7 @@ func (this *User) Read() {
 					Content:     Tips[UserLoginSuccess],
 					Time:        "",
 				}
+				Debug(this, "设置用户名成功")
 			case 2: //群发消息
 				for _, u := range UserList.Users {
 					u.SendCh <- Message{
@@ -89,7 +91,7 @@ func (this *User) Send() {
 	for {
 		select {
 		case message := <-this.SendCh:
-			fmt.Println(message)
+			Debug("给客户端", this, "发送消息:", message)
 			this.Conn.Write(JsonEncode(message))
 		}
 	}
@@ -165,7 +167,7 @@ func handle(ws *websocket.Conn) {
 		ReadCh: make(chan Message),
 		SendCh: make(chan Message),
 	}
-	fmt.Println("user conn", user)
+	Debug("用户连上线了:", user)
 
 	go user.Read()
 	go user.Send()
@@ -192,10 +194,18 @@ func handle(ws *websocket.Conn) {
 	}
 }
 
+var DebugLog *log.Logger
+
+func Debug(v ...interface{}) {
+	DebugLog.Println(v...)
+}
+
 func main() {
 	UserList = Users{
 		Users: make(map[string]*User),
 	}
+
+	DebugLog = log.New(os.Stdout, "[DEBUG]", log.LstdFlags)
 
 	http.Handle("/", websocket.Handler(handle))
 	if err := http.ListenAndServe(":1234", nil); err != nil {

@@ -9,6 +9,7 @@
                 border: 1px solid #ccc;
                 width:500px;
                 height: 200px;
+                overflow: auto;
             }
             #message {
                 width: 200px;
@@ -68,7 +69,7 @@
                     var d = JSON.parse(e.data);
                     switch (d.MessageType) {
                         case    2://收到群发的消息
-                            $("#show-message").append("<p>"+d.FromUser+":"+d.Content+"</p>");
+                            $("#show-message").append("<p>" + d.FromUser + ":" + d.Content + "</p>");
                         case  10010:
                             $("#login-username").html("欢迎你：" + d.ToUser)
                             $("#main").show();
