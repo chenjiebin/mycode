@@ -2,7 +2,6 @@ package main
 
 import (
 	"code.google.com/p/go.net/websocket"
-	"container/list"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -26,12 +25,16 @@ type User struct {
 	Conn   *websocket.Conn
 	ReadCh chan Message
 	SendCh chan Message
-	Quit   chan bool
 }
 
 //关闭与用户的连接
 func (this *User) Close() {
-
+	if len(this.Name) == 0 {
+		this.Conn.Close()
+		return
+	}
+	UserList.RemoveUser(this)
+	this.Conn.Close()
 }
 
 //读取用户的输入
@@ -40,6 +43,43 @@ func (this *User) Read() {
 		select {
 		case message := <-this.ReadCh:
 			fmt.Println(message)
+
+			switch message.MessageType {
+			case 1: //设置用户名
+				if len(this.Name) > 0 {
+					continue
+				}
+				if UserList.IsExist(message.Content) {
+					this.SendCh <- Message{
+						MessageType: ErrUserIsExist,
+						FromUser:    "0",
+						ToUser:      "",
+						Content:     Tips[ErrUserIsExist],
+						Time:        "",
+					}
+					continue
+				}
+				this.Name = message.Content
+				UserList.Add(this)
+
+				this.SendCh <- Message{
+					MessageType: UserLoginSuccess,
+					FromUser:    "0",
+					ToUser:      this.Name,
+					Content:     Tips[UserLoginSuccess],
+					Time:        "",
+				}
+			case 2: //群发消息
+				for _, u := range UserList.Users {
+					u.SendCh <- Message{
+						MessageType: 2,
+						FromUser:    this.Name,
+						ToUser:      u.Name,
+						Content:     message.Content,
+						Time:        "",
+					}
+				}
+			}
 		}
 	}
 }
@@ -49,26 +89,37 @@ func (this *User) Send() {
 	for {
 		select {
 		case message := <-this.SendCh:
+			fmt.Println(message)
 			this.Conn.Write(JsonEncode(message))
-			//case <-this.Quit:
-
-			//	break
 		}
 	}
 }
 
-//用户集合存储
-var Users *list.List
+//用户群对象
+var UserList Users
+
+//用户群
+type Users struct {
+	Users map[string]*User
+}
+
+//增加用户
+func (this *Users) Add(u *User) {
+	if this.IsExist(u.Name) {
+		return
+	}
+	this.Users[u.Name] = u
+}
 
 //检测用户是否存在
-func IsExist(Name string) bool {
-	for e := Users.Front(); e != nil; e = e.Next() {
-		user := e.Value.(User)
-		if user.Name == Name {
-			return true
-		}
-	}
-	return false
+func (this *Users) IsExist(Name string) bool {
+	_, ok := this.Users[Name]
+	return ok
+}
+
+//移除用户
+func (this *Users) RemoveUser(u *User) {
+	delete(this.Users, u.Name)
 }
 
 //消息结构
@@ -108,56 +159,21 @@ func JsonDecodeByString(strmsg string) (message Message, err error) {
 func handle(ws *websocket.Conn) {
 	var err error
 	var user *User
-	//设置用户名
-	for {
-		var reciveMsg string
-		if err = websocket.Message.Receive(ws, &reciveMsg); err != nil {
-			fmt.Println("Can't receive")
-			return
-		}
-		message, err := JsonDecodeByString(reciveMsg)
-		if err != nil {
-			websocket.Message.Send(ws, "message error")
-			continue
-		}
-		if IsExist(message.Content) {
-			var returnMsg = Message{
-				MessageType: ErrUserIsExist,
-				FromUser:    "0",
-				ToUser:      "",
-				Content:     Tips[ErrUserIsExist],
-				Time:        "",
-			}
-			ws.Write(JsonEncode(returnMsg))
-			continue
-		}
-		user = &User{
-			Name:   message.Content,
-			Conn:   ws,
-			ReadCh: make(chan Message),
-			SendCh: make(chan Message),
-			Quit:   make(chan bool),
-		}
-		Users.PushBack(*user)
-		break
+	user = &User{
+		Name:   "",
+		Conn:   ws,
+		ReadCh: make(chan Message),
+		SendCh: make(chan Message),
 	}
+	fmt.Println("user conn", user)
 
 	go user.Read()
 	go user.Send()
 
-	var returnMsg = Message{
-		MessageType: UserLoginSuccess,
-		FromUser:    "0",
-		ToUser:      user.Name,
-		Content:     Tips[UserLoginSuccess],
-		Time:        "",
-	}
-	user.SendCh <- returnMsg
-
 	for {
 		var reciveMsg string
 		if err = websocket.Message.Receive(ws, &reciveMsg); err != nil {
-			fmt.Println("Can't receive")
+			user.Close()
 			break
 		}
 		message, err := JsonDecodeByString(reciveMsg)
@@ -177,7 +193,9 @@ func handle(ws *websocket.Conn) {
 }
 
 func main() {
-	Users = list.New()
+	UserList = Users{
+		Users: make(map[string]*User),
+	}
 
 	http.Handle("/", websocket.Handler(handle))
 	if err := http.ListenAndServe(":1234", nil); err != nil {

@@ -4,11 +4,32 @@
         <meta charset="UTF-8" />
         <title>WebSocket客户端</title>
         <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        <style>
+            #show-message {
+                border: 1px solid #ccc;
+                width:500px;
+                height: 200px;
+            }
+            #message {
+                width: 200px;
+            }
+            #main {
+                display: none;
+            }
+        </style>
     </head>
     <body>
-        <p>
-            请输入昵称：<input id="message" type="text" value="陈杰斌"> <button onclick="send();">提交</button> 
-        </p> 
+        <p id="login">
+            请输入昵称：<input id="username" type="text" value="陈杰斌"> <button onclick="login();">登录</button> 
+        </p>
+        <div id="main">
+            <p id="login-username"></p>
+            <div id="show-message"></div>
+            <br />
+            <input type="text" id="message" />
+            <button onclick="send();">发送</button>
+        </div>
+
         <script type="text/javascript">
             //消息类
             var Message = {
@@ -43,17 +64,38 @@
                     console.log("connection closed (" + e.code + ")");
                 }
                 sock.onmessage = function (e) {
-                    alert(JSON.parse(e.data));
                     console.log("message received: " + e.data);
+                    var d = JSON.parse(e.data);
+                    switch (d.MessageType) {
+                        case    2://收到群发的消息
+                            $("#show-message").append("<p>"+d.FromUser+":"+d.Content+"</p>");
+                        case  10010:
+                            $("#login-username").html("欢迎你：" + d.ToUser)
+                            $("#main").show();
+                            $("#login").hide();
+                            break;
+
+                    }
                 }
             };
-            function send() {
+
+            function login() {
                 message = Message.createNew({
                     messageType: 1,
                     toUser: "",
+                    content: $("#username").val(),
+                });
+                console.log(JSON.stringify(message));
+                sock.send(JSON.stringify(message));
+            }
+
+            function send() {
+                message = Message.createNew({
+                    messageType: 2,
+                    toUser: "",
                     content: $("#message").val(),
                 });
-                alert(JSON.stringify(message));
+                console.log(JSON.stringify(message));
                 sock.send(JSON.stringify(message));
             }
         </script>
