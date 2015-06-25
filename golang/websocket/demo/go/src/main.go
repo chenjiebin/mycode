@@ -1,3 +1,8 @@
+//聊天服务端
+//剩余问题
+//1.UserList并发问题
+//2.单条发送信息问题
+//3.MessageType问题
 package main
 
 import (
