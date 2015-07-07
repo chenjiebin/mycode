@@ -6,8 +6,8 @@
 package main
 
 import (
+	"./message"
 	"code.google.com/p/go.net/websocket"
-	"encoding/json"
 	"log"
 	"net/http"
 	"os"
@@ -28,8 +28,8 @@ var Tips = map[int]string{
 type User struct {
 	Name   string
 	Conn   *websocket.Conn
-	ReadCh chan Message
-	SendCh chan Message
+	ReadCh chan message.Message
+	SendCh chan message.Message
 }
 
 //关闭与用户的连接
@@ -47,16 +47,16 @@ func (this *User) Close() {
 func (this *User) Read() {
 	for {
 		select {
-		case message := <-this.ReadCh:
-			Debug("收到客户端", this, "发送的信息:", message)
+		case msg := <-this.ReadCh:
+			Debug("收到客户端", this, "发送的信息:", msg)
 
-			switch message.MessageType {
+			switch msg.MessageType {
 			case 1: //设置用户名
 				if len(this.Name) > 0 {
 					continue
 				}
-				if UserList.IsExist(message.Content) {
-					this.SendCh <- Message{
+				if UserList.IsExist(msg.Content) {
+					this.SendCh <- message.Message{
 						MessageType: ErrUserIsExist,
 						FromUser:    "0",
 						ToUser:      "",
@@ -65,10 +65,10 @@ func (this *User) Read() {
 					}
 					continue
 				}
-				this.Name = message.Content
+				this.Name = msg.Content
 				UserList.Add(this)
 
-				this.SendCh <- Message{
+				this.SendCh <- message.Message{
 					MessageType: UserLoginSuccess,
 					FromUser:    "0",
 					ToUser:      this.Name,
@@ -78,11 +78,11 @@ func (this *User) Read() {
 				Debug(this, "设置用户名成功")
 			case 2: //群发消息
 				for _, u := range UserList.Users {
-					u.SendCh <- Message{
+					u.SendCh <- message.Message{
 						MessageType: 2,
 						FromUser:    this.Name,
 						ToUser:      u.Name,
-						Content:     message.Content,
+						Content:     msg.Content,
 						Time:        "",
 					}
 				}
@@ -95,9 +95,9 @@ func (this *User) Read() {
 func (this *User) Send() {
 	for {
 		select {
-		case message := <-this.SendCh:
-			Debug("给客户端", this, "发送消息:", message)
-			this.Conn.Write(JsonEncode(message))
+		case msg := <-this.SendCh:
+			Debug("给客户端", this, "发送消息:", msg)
+			this.Conn.Write(message.JsonEncode(msg))
 		}
 	}
 }
@@ -129,39 +129,6 @@ func (this *Users) RemoveUser(u *User) {
 	delete(this.Users, u.Name)
 }
 
-//消息结构
-type Message struct {
-	MessageType int
-	FromUser    string
-	ToUser      string
-	Content     string
-	Time        string
-}
-
-//消息json编码成字节
-func JsonEncode(message Message) []byte {
-	byteMessage, _ := json.Marshal(message)
-	return byteMessage
-}
-
-//二进制消息json解码成结构体
-func JsonDecode(byteMessage []byte) (message Message, err error) {
-	err = json.Unmarshal(byteMessage, &message)
-	if err != nil {
-		return
-	}
-	return
-}
-
-//字符串消息json解码成结构体
-func JsonDecodeByString(strmsg string) (message Message, err error) {
-	message, err = JsonDecode([]byte(strmsg))
-	if err != nil {
-		return
-	}
-	return
-}
-
 //tcp连接句柄，主要用来接受新用户的连接
 func handle(ws *websocket.Conn) {
 	var err error
@@ -169,8 +136,8 @@ func handle(ws *websocket.Conn) {
 	user = &User{
 		Name:   "",
 		Conn:   ws,
-		ReadCh: make(chan Message),
-		SendCh: make(chan Message),
+		ReadCh: make(chan message.Message),
+		SendCh: make(chan message.Message),
 	}
 	Debug("用户连上线了:", user)
 
@@ -183,9 +150,9 @@ func handle(ws *websocket.Conn) {
 			user.Close()
 			break
 		}
-		message, err := JsonDecodeByString(reciveMsg)
+		msg, err := message.JsonDecodeByString(reciveMsg)
 		if err != nil {
-			var returnMsg = Message{
+			var returnMsg = message.Message{
 				MessageType: ErrMsgFormatError,
 				FromUser:    "0",
 				ToUser:      user.Name,
@@ -195,7 +162,7 @@ func handle(ws *websocket.Conn) {
 			user.SendCh <- returnMsg
 			continue
 		}
-		user.ReadCh <- message
+		user.ReadCh <- msg
 	}
 }
 
