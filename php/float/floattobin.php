@@ -1,36 +1,35 @@
 <?php
 
-//将小数转换成二进制表示方式
-//function floatToBin($f) {
-//    
-//}
-//
-//$r = "";
-//$f = 0.07;
-//for ($i = 0; $i < 27; $i++) {
-//    $f = number_format($f * 2, 2);
-//    echo $i, " ", $f;
-//    if ($f > 1) {
-//        $r .= "1";
-//        $f = $f - 1;
-//        echo " 1";
-//    } else {
-//        $r .= "0";
-//        echo " 0";
-//    }
-//    echo "<br />";
-//}
-//
-//echo $r;
-
-$r = 0;
-$s = "000100011110101110000101000";
-for ($i = 0; $i < 27; $i++) {
-    if ($s[$i] == 1) {
-        $r = $r + pow(2, ($i + 1) * - 1);
+//将小数0.07转化成二进制
+$bin  = "";
+$int  = 7;
+$base = 100;
+echo "<table border='1'>";
+echo "<td width='50'>位数</td>";
+echo "<td width='50'>x2</td>";
+echo "<td width='50'>位值</td>";
+for ($i = 0; $i <= 60; $i++) {
+    echo "<tr>";
+    echo "<td>$i</td>";
+    $int = $int * 2;
+    echo "<td>$int</td>";
+    if ($int == 100) {
+        $bin.="1";
+        echo "<td>1</td>";
+        break;
     }
+    if ($int > 100) {
+        $bin.="1";
+        $int = $int - $base;
+        echo "<td>1</td>";
+    } else {
+        $bin .= "0";
+        echo "<td>0</td>";
+    }
+    echo "</td>";
+    echo "</tr>";
 }
-echo $r;exit();
+echo "</table>";
+echo $bin;
 
 
-//echo decbin(123);
