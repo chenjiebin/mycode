@@ -4,6 +4,7 @@ date_default_timezone_set("Asia/Shanghai");
 
 echo getMonthTotalTime(1425139200);
 
+
 //根据时间戳获取当月有多少秒
 
 function getMonthTotalTime($time) {
@@ -28,11 +29,9 @@ function getMonthTotalTime($time) {
                 $days = 28;
             }
             break;
-
         default :
             $days = 31;
             break;
     }
     return $days;
 }
-
