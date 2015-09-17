@@ -1,10 +1,11 @@
+//一些数学函数测试
 package main
 
 import (
 	"fmt"
-	"git.oschina.net/iceup/goyaf/lib"
+	"math"
 )
 
 func main() {
-	fmt.Println(lib.Round(1.11111111, 0))
+	fmt.Println(math.MaxInt64)
 }
