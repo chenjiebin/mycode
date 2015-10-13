@@ -8,11 +8,9 @@ import (
 )
 
 func foo() {
-	// bla...bla...bla...
 	fmt.Println("foo")
 }
 func bar(a, b, c int) {
-	// bla...bla...bla...
 	fmt.Println(a, b, c)
 }
 
@@ -26,7 +24,7 @@ func Call(m map[string]interface{}, name string, params ...interface{}) (result 
 	for k, param := range params {
 		in[k] = reflect.ValueOf(param)
 	}
-	result = f[name].Call(in)
+	result = f.Call(in)
 	return
 }
 
