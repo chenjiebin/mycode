@@ -19,9 +19,11 @@ class PHPExcelReadFilter implements PHPExcel_Reader_IReadFilter {
     public $endRow;
 
     public function readCell($column, $row, $worksheetName = '') {
+        //如果endRow没有设置表示读取全部
         if (!$this->endRow) {
             return true;
         }
+        //只读取指定的行
         if ($row >= $this->startRow && $row <= $this->endRow) {
             return true;
         }
@@ -55,6 +57,7 @@ function readFromExcel($excelFile, $excelType = null, $startRow = 1, $endRow = n
     $excelReader = \PHPExcel_IOFactory::createReader("Excel2007");
     $excelReader->setReadDataOnly(true);
 
+    //如果有指定行数，则设置过滤器
     if ($startRow && $endRow) {
         $perf           = new PHPExcelReadFilter();
         $perf->startRow = $startRow;
