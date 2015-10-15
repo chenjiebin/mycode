@@ -14,9 +14,9 @@ class computer extends Thread {
     public function run() {
         while ($this->runing) {
             if (is_null($this->params)) {
-                echo "线程[{$this->id}]等待任务...\n";
+                echo "线程({$this->id})等待任务...\n";
             } else {
-                echo "线程[{$this->id}] 收到任务参数::{$this->params}.\n";
+                echo "线程({$this->id}) 收到任务参数::{$this->params}.\n";
                 $this->params = null;
             }
             sleep(1);
@@ -41,7 +41,7 @@ for ($i = 0; $i < 10; $i++) {
             //参数为空则说明线程空闲
             if (is_null($worker->params)) {
                 $worker->params = $params;
-                echo "[{$worker->id}]线程空闲,放入参数{$params}.\n";
+                echo "({$worker->id})线程空闲,放入参数{$params}.\n";
                 break 2;
             }
         }
@@ -54,7 +54,7 @@ while (count($pool)) {
     //遍历检查线程组运行结束
     foreach ($pool as $key => $worker) {
         if ($worker->params == '') {
-            echo "[{$worker->id}]线程运行完成,退出.\n";
+            echo "({$worker->id})线程运行完成,退出.\n";
             //设置结束标志
             $worker->runing = false;
             unset($pool[$key]);
