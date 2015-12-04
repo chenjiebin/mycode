@@ -40,3 +40,6 @@
 
 /golang/goyaf/bin/*
 /php/nbproject/
+/java/http/WebApplication1/nbproject/private/
+/java/http/WebApplication1/dist/
+/java/http/WebApplication1/build/
