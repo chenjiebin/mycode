@@ -46,9 +46,61 @@
 	write		与没有任何标志位的send等价
 
 
-	? 报文和字节流的区别，SOCK_SEQPACKET具体示例
-	? 
+	#include <netinet/in.h>
+	地址格式
+	struct sockaddr {
+		sa_family_t		sa_family;	
+		char			sa_data[];
+	}
+	linux中可以自由的添加额外的成员并且定义sa_data成员的大小
+	struct sockaddr {
+		sa_family_t		sa_family;
+		char			sa_data[14];
+	}
+	在IPv4因特网域（AF_INET）中，套接字地址用结构sockaddr_in表示
+	struct in_addr {
+		in_addr_t		s_addr; 	 //IPv4 address 
+	}
+	struct sockaddr_in {
+		sa_family_t		sin_family;
+		in_port_t		sin_port;
+		struct in_addr 	sin_addr;   //IPv4 address 
+	}
+	在IPv6使用sockaddr_in6
+	struct_in6_addr {
+		uint8_t		s6_addr[16];
+	}
+
+
+
+
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

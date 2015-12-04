@@ -1,6 +1,7 @@
 #include <arpa/inet.h>
 
 /*
+	? 报文和字节流的区别，SOCK_SEQPACKET具体示例
 	? 16.3.1 字节序是处理器架构特性(大端、小端)
 
 	TCP/IP协议栈使用大端字节序
