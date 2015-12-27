@@ -10,6 +10,10 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		for k, v := range r.Header {
+			fmt.Println(k, v)
+		}
+
 		r.ParseForm()
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
