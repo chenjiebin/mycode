@@ -1,6 +1,4 @@
 //使用单线程方式进行下载
-//存在的问题：下载慢
-
 package main
 
 import (
@@ -61,3 +59,5 @@ func (this *Downloader) Download(url string) (body string, err error) {
 	body = string(bodyBytes)
 	return
 }
+
+//存在的问题：下载慢

@@ -1,9 +1,9 @@
 //使用多协程方式进行下载
-//
 package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
@@ -16,15 +16,21 @@ func main() {
 		urls[i] = "http://so.tv.sohu.com/list_p1122_p2122106_p3_p40_p5_p6_p73_p8_p9_p10" + strconv.Itoa(i+1) + "_p11_p12_p13.html"
 	}
 
+	//dowload response
 	respChan := make(chan *http.Response, 100)
+	//proc result
+	procRsChan := make(chan string, 100)
 
 	var down = &Downloader{respChan: respChan}
 	for i := 0; i < len(urls); i++ {
 		go down.Download(urls[i])
 	}
 
-	var proc = &Proc{respChan: respChan}
+	var proc = &Proc{respChan: respChan, procRsChan: procRsChan}
 	go proc.Run()
+
+	var pipeline = &Pipeline{procRsChan: procRsChan}
+	go pipeline.Run()
 
 	for {
 		time.Sleep(1 * 1e9)
@@ -60,20 +66,53 @@ func (this *Downloader) Download(url string) (err error) {
 
 //页面分析器
 type Proc struct {
-	respChan chan *http.Response //结果集通道
+	respChan   chan *http.Response
+	procRsChan chan string
 }
 
 //启动页面分析器
 func (this *Proc) Run() {
 	for {
 		resp := <-this.respChan
-		this.Proc(resp)
+		this.proc(resp)
 	}
 }
 
 //具体分析方法
-func (this *Proc) Proc(resp *http.Response) {
+func (this *Proc) proc(resp *http.Response) (err error) {
 	fmt.Println(resp.Request.URL.String(), "proc")
+
+	defer resp.Body.Close()
+
+	var bodyBytes []byte
+	bodyBytes, err = ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("err: ", err)
+		return
+	}
+
+	body := string(bodyBytes)
+	this.procRsChan <- body
+	return
+}
+
+//存储器
+type Pipeline struct {
+	procRsChan chan string
+}
+
+//启动存储器
+func (this *Pipeline) Run() {
+	for {
+		procRs := <-this.procRsChan
+		this.pipeline(procRs)
+	}
+}
+
+//处理页面分析后的结果
+func (this *Pipeline) pipeline(procRs string) (err error) {
+	fmt.Println(len(procRs))
+	return
 }
 
 //存在的问题：
