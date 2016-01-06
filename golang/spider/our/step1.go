@@ -1,20 +1,31 @@
+//使用单线程方式进行下载
+//存在的问题：下载慢
+
 package main
 
 import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 	"strings"
 )
 
 func main() {
-	var down = &Downloader{}
-	str, _ := down.Download()
-	fmt.Println(str)
-}
+	urls := [100]string{}
+	for i := 0; i < 100; i++ {
+		urls[i] = "http://so.tv.sohu.com/list_p1122_p2122106_p3_p40_p5_p6_p73_p8_p9_p10" + strconv.Itoa(i+1) + "_p11_p12_p13.html"
+	}
 
-//调度器
-type Sched struct {
+	fmt.Println("start")
+
+	var down = &Downloader{}
+	for i := 0; i < len(urls); i++ {
+		down.Download(urls[i])
+		fmt.Println(urls[i])
+	}
+
+	fmt.Println("finish")
 }
 
 //下载器
@@ -22,9 +33,9 @@ type Downloader struct {
 }
 
 //下载页面
-func (this *Downloader) Download() (body string, err error) {
+func (this *Downloader) Download(url string) (body string, err error) {
 	var req *http.Request
-	req, err = http.NewRequest("GET", "http://www.163.com/", strings.NewReader(""))
+	req, err = http.NewRequest("GET", url, strings.NewReader(""))
 	if err != nil {
 		fmt.Println("err: ", err)
 		return
