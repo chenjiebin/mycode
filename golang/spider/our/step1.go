@@ -60,4 +60,5 @@ func (this *Downloader) Download(url string) (body string, err error) {
 	return
 }
 
-//存在的问题：下载慢
+//存在的问题
+//单协程下载，下载慢
