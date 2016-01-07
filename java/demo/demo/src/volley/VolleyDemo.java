@@ -16,21 +16,20 @@ import com.android.volley.toolbox.Volley;
 public class VolleyDemo {
 
     public void httpGet() {
-       RequestQueue mQueue = Volley.newRequestQueue(android.content.Context);
-        
-        StringRequest stringRequest = new StringRequest("http://www.baidu.com",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+//       RequestQueue mQueue = Volley.newRequestQueue(android.content.Context);
+//        
+//        StringRequest stringRequest = new StringRequest("http://www.baidu.com",
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//
+//                    }
+//                }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//
+//                    }
+//                });
 
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-        
-        
     }
 }

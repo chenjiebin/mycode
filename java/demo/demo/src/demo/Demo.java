@@ -6,7 +6,9 @@
 package demo;
 
 //import json.Json;
-import volley.VolleyDemo;
+//import volley.VolleyDemo;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  *
@@ -18,12 +20,15 @@ public class Demo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        //json测试
 //        Json json = new Json();
 //        json.encode();
 //        json.decode();
 
-        VolleyDemo volley = new VolleyDemo();
-        volley.httpGet();
+        //volley http请求测试
+//        VolleyDemo volley = new VolleyDemo();
+//        volley.httpGet();
 
     }
 
