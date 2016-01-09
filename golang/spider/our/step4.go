@@ -35,7 +35,7 @@ func main() {
 	}
 
 	//休眠10秒等待下载和处理完成
-	time.Sleep(10 * 1e9)
+	//	time.Sleep(10 * 1e9)
 
 	//退出下载协程和页面分析协程
 	downQuitChan <- 1
@@ -61,7 +61,7 @@ type Downloader struct {
 	quitChan chan int            //接收退出消息
 }
 
-//启动页面分析器
+//启动下载器
 func (this *Downloader) Run() {
 OuterLoop:
 	for {
