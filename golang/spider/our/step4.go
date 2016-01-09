@@ -15,11 +15,15 @@ func main() {
 	urlChan := make(chan string, 100)
 	//dowload response
 	respChan := make(chan *http.Response, 100)
+	//quit chan
+	downQuitChan := make(chan int, 1)
+	//quit chan
+	procQuitChan := make(chan int, 1)
 
-	var down = &Downloader{urlChan: urlChan, respChan: respChan}
+	var down = &Downloader{urlChan: urlChan, respChan: respChan, quitChan: downQuitChan}
 	go down.Run()
 
-	var proc = &Proc{respChan: respChan}
+	var proc = &Proc{respChan: respChan, quitChan: procQuitChan}
 	go proc.Run()
 
 	urls := [100]string{}
@@ -30,27 +34,46 @@ func main() {
 		urlChan <- url
 	}
 
+	//休眠10秒等待下载和处理完成
+	time.Sleep(10 * 1e9)
+
+	//退出下载协程和页面分析协程
+	downQuitChan <- 1
+	procQuitChan <- 1
+
+	//看看退出后urlChan和respChan数量
+	for i := 0; i < 5; i++ {
+		fmt.Println("sleeping...")
+		time.Sleep(1 * 1e9)
+	}
+	fmt.Println("urlChan len", len(urlChan))
+	fmt.Println("respChan len", len(respChan))
+
 	for {
 		time.Sleep(1 * 1e9)
 	}
-
-}
-
-type Sche struct {
 }
 
 //下载器
 type Downloader struct {
 	urlChan  chan string         //url通道
 	respChan chan *http.Response //结果集通道
+	quitChan chan int            //接收退出消息
 }
 
 //启动页面分析器
 func (this *Downloader) Run() {
+OuterLoop:
 	for {
-		url := <-this.urlChan
-		go this.Download(url)
+		select {
+		case url := <-this.urlChan:
+			go this.Download(url)
+		case <-this.quitChan:
+			break OuterLoop
+		}
 	}
+
+	fmt.Println("downloader exit")
 }
 
 //下载页面
@@ -76,15 +99,22 @@ func (this *Downloader) Download(url string) (err error) {
 
 //页面分析器
 type Proc struct {
-	respChan chan *http.Response
+	respChan chan *http.Response //结果集通道
+	quitChan chan int            //接收退出消息
 }
 
 //启动页面分析器
 func (this *Proc) Run() {
+OuterLoop:
 	for {
-		resp := <-this.respChan
-		this.proc(resp)
+		select {
+		case resp := <-this.respChan:
+			this.proc(resp)
+		case <-this.quitChan:
+			break OuterLoop
+		}
 	}
+	fmt.Println("proc exit")
 }
 
 //具体分析方法
