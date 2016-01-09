@@ -77,5 +77,5 @@ func (this *Proc) Proc(resp *http.Response) {
 	fmt.Println(resp.Request.URL.String(), "proc")
 }
 
-//存在的问题
-//下载完成后没有退出
+//可能存在的问题
+//当正在下载的时候，我们需要中断服务重新启动，希望程序友好的退出。
