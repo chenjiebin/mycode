@@ -21,6 +21,10 @@ func main() {
 	for i := 0; i < len(urls); i++ {
 		down.Download(urls[i])
 		fmt.Println(urls[i])
+
+		//		result, _ := down.Download(urls[i])
+		//		fmt.Println(result)
+		//		break
 	}
 
 	fmt.Println("finish")
