@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>js this</title>
+        <script type="text/javascript">
+            function request() {
+                alert(this);
+                var bar = function() {
+                    alert(this);
+                }
+            }
+
+            var httpRequest = {};
+            httpRequest.request = function() {
+                alert(this);
+                var bar = function() {
+                    alert(this);
+                }
+            };
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
