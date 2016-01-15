@@ -1,7 +1,9 @@
 <?php
 
 class Foo {
+
     public $a = 1;
+
 }
 
 function Bar($foo) {

@@ -1,23 +1,30 @@
 package main
 
 import (
-	"github.com/fogleman/pt/pt"
-	"log"
+	"fmt"
+	"os"
 )
 
 func main() {
-	scene := pt.Scene{}
-	wall := pt.SpecularMaterial(pt.HexColor(0xFCFAE1), 2)
-	scene.Add(pt.NewSphere(pt.Vector{4, 7, 3}, 2, pt.LightMaterial(pt.Color{1, 1, 1}, 1, pt.NoAttenuation)))
-	scene.Add(pt.NewCube(pt.Vector{-30, -1, -30}, pt.Vector{-8, 10, 30}, wall))
-	scene.Add(pt.NewCube(pt.Vector{-30, -1, -30}, pt.Vector{30, 0.376662, 30}, wall))
-	material := pt.GlossyMaterial(pt.Color{}, 1.5, pt.Radians(30))
-	mesh, err := pt.LoadOBJ("examples/gopher.obj", material)
-	if err != nil {
-		log.Fatalln("LoadOBJ error:", err)
+	//声明变量
+	var name string
+	//赋值
+	name = "meiqu"
+	//声明并赋值
+	//	name := "meiqu"
+
+	//循环条件没有小刮号
+	for i := 1; i < 10; i++ {
+
 	}
-	mesh.SmoothNormals()
-	scene.Add(mesh)
-	camera := pt.LookAt(pt.Vector{8, 3, 0.5}, pt.Vector{-1, 2.5, 0.5}, pt.Vector{0, 1, 0}, 45)
-	pt.IterativeRender("out%03d.png", 10, &scene, &camera, 2560/4, 1440/4, -1, 16, 4)
+}
+
+func demo() (name string, err error) {
+switch i { case 0:
+fmt.Printf("0") case 1:
+fmt.Printf("1") case 2:
+fallthrough case 3:
+fmt.Printf("3") case 4, 5, 6:
+fmt.Printf("4, 5, 6") default:
+            fmt.Printf("Default")
 }
