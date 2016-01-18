@@ -2,22 +2,27 @@ package main
 
 import (
 	"bufio"
-	//	"fmt"
+	"fmt"
 	"image"
+	"image/color"
 	"image/draw"
 	"image/png"
 	"io/ioutil"
 	"log"
+	"math"
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/golang/freetype"
+	"github.com/golang/freetype/truetype"
 	"golang.org/x/image/font"
+	"golang.org/x/image/math/fixed"
 )
 
 var (
-	dpi        float64 = 150
-	fontfile   string  = "./msyh2.ttf"
+	dpi        float64 = 138
+	fontfile   string  = "./msyh.ttf"
 	hinting    string  = "none"
 	size       float64 = 12
 	spacing    float64 = 1.5
@@ -26,9 +31,30 @@ var (
 
 func createWatermark(w http.ResponseWriter, r *http.Request) {
 	var keyword string
+	var scr uint8 = 70
+	var scg uint8 = 67
+	var scb uint8 = 68
+	var t int
+	var err error
 	r.ParseForm()
 	if len(r.Form["k"]) > 0 {
 		keyword = r.Form["k"][0]
+	}
+	if len(r.Form["scr"]) > 0 {
+		t, err = strconv.Atoi(r.Form["scr"][0])
+		scr = uint8(t)
+	}
+	if len(r.Form["scg"]) > 0 {
+		t, err = strconv.Atoi(r.Form["scg"][0])
+		scg = uint8(t)
+	}
+	if len(r.Form["scb"]) > 0 {
+		t, err = strconv.Atoi(r.Form["scb"][0])
+		scb = uint8(t)
+	}
+	if err != nil {
+		fmt.Fprintln(w, "阴影色参数错误，数值0~255之间")
+		return
 	}
 
 	// Read the font data.
@@ -49,41 +75,41 @@ func createWatermark(w http.ResponseWriter, r *http.Request) {
 	rgba := image.NewRGBA(image.Rect(0, 0, 331, 61))
 	draw.Draw(rgba, rgba.Bounds(), bg, image.ZP, draw.Src)
 
-	c2 := freetype.NewContext()
-	c2.SetDPI(dpi)
-	c2.SetFont(f)
-	c2.SetFontSize(size)
-	c2.SetClip(rgba.Bounds())
-	c2.SetDst(rgba)
-	c2.SetSrc(image.Black)
-	c2.SetHinting(font.HintingNone)
-
-	// Draw the text.
-	pt2 := freetype.Pt(11, 2+int(c2.PointToFixed(size)>>6))
-	_, err = c2.DrawString(keyword, pt2)
-	if err != nil {
-		log.Println(err)
-		return
+	//阴影
+	d2 := &font.Drawer{
+		Dst: rgba,
+		Src: &image.Uniform{color.RGBA{scr, scg, scb, 255}},
+		Face: truetype.NewFace(f, &truetype.Options{
+			Size:    size,
+			DPI:     dpi,
+			Hinting: font.HintingNone,
+		}),
 	}
-	pt2.Y += c2.PointToFixed(size * spacing)
-
-	c := freetype.NewContext()
-	c.SetDPI(dpi)
-	c.SetFont(f)
-	c.SetFontSize(size)
-	c.SetClip(rgba.Bounds())
-	c.SetDst(rgba)
-	c.SetSrc(image.White)
-	c.SetHinting(font.HintingNone)
-	// Draw the text.
-	pt := freetype.Pt(10, 1+int(c.PointToFixed(size)>>6))
-	_, err = c.DrawString(keyword, pt)
-	if err != nil {
-		log.Println(err)
-		return
+	y2 := 2 + int(math.Ceil(size*dpi/72))
+	d2.Dot = fixed.Point26_6{
+		X: fixed.I(331) - d2.MeasureString(keyword) - fixed.I(2),
+		Y: fixed.I(y2),
 	}
-	pt.Y += c.PointToFixed(size * spacing)
+	d2.DrawString(keyword)
 
+	//画白字
+	d := &font.Drawer{
+		Dst: rgba,
+		Src: image.White,
+		Face: truetype.NewFace(f, &truetype.Options{
+			Size:    size,
+			DPI:     dpi,
+			Hinting: font.HintingNone,
+		}),
+	}
+	y := int(math.Ceil(size * dpi / 72))
+	d.Dot = fixed.Point26_6{
+		X: fixed.I(331) - d.MeasureString(keyword) - fixed.I(3),
+		Y: fixed.I(y),
+	}
+	d.DrawString(keyword)
+
+	//输出内容
 	b := bufio.NewWriter(w)
 	err = png.Encode(b, rgba)
 	if err != nil {
