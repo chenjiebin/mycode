@@ -2,7 +2,7 @@ package lib
 
 import (
 	"fmt"
-	//"testing"
+	"testing"
 )
 
 //功能测试
