@@ -16,7 +16,7 @@ type Men struct {
 }
 
 const (
-	URL = "172.16.27.135:27017"
+	URL = "172.16.27.134:27017"
 )
 
 func main() {
