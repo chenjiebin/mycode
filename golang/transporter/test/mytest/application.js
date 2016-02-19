@@ -1,0 +1,1 @@
+Source({name:"localmongo"}).save({name:"es"});

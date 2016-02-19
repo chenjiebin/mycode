@@ -1,0 +1,26 @@
+# api:
+#   interval: 60s
+#   uri: "http://requestb.in/13gerls1"
+#   key: "48593282-b38d-4bf5-af58-f7327271e73d"
+#   pid: "something-static"
+nodes:
+  localmongo:
+    type: mongo
+    uri: mongodb://172.16.27.134:27017/foo
+    namespace: foo.bar
+    tail: true
+    debug: true
+  es:
+    type: elasticsearch
+    uri: http://172.16.27.134:9200/
+    namespace: foo.bar
+    debug: true
+  timeseries:
+    type: influx
+    uri: influxdb://root:root@localhost:8086/compose
+  debug:
+    type: file
+    uri: stdout://
+  foofile:
+    type: file
+    uri: file:///tmp/foo
