@@ -1,1 +1,3 @@
-Source({name:"localmongo"}).save({name:"es"});
+Source({name:"localmongo"})
+.transform({filename: "transformers/addFullName.js", "namespace": "transformer./.*/"})
+.save({name:"es"});
