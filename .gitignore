@@ -11,6 +11,7 @@
 /nbproject/
 
 *.DS_Store
+
 /java/MyLib/nbproject/private/
 /java/MyLib/build/
 /java/WebApplication1/nbproject/private/
