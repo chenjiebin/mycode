@@ -5,6 +5,11 @@ import (
 	"os"
 )
 
+language: node_js
+node_js:
+  - '0.10'
+  - '0.11'
+
 func main() {
 	//声明变量
 	var name string
