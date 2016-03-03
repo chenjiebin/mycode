@@ -14,9 +14,9 @@ type Book struct {
 }
 
 type User struct {
-	Id      int
-	Name    string
-	Message string
+	Id      int    `json:"id"`
+	Name    string `json:"name"`
+	Message string `json:"message"`
 }
 
 func main() {
