@@ -1,31 +1,71 @@
-/* 
- * File:   main.c
- * Author: chenjiebin
- *
- * Created on October 16, 2014, 12:42 PM
- */
-
+/* main.c */
 #include <stdio.h>
-#include <stdlib.h>
+#include "main.h"
+#include "stack.h"
+#include "maze.h"
+struct point predecessor[MAX_ROW][MAX_COL] = {
+    {
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1}},
+    {
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1}},
+    {
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1}},
+    {
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1}},
+    {
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1}},
+};
 
-/*
- * 
- */
-int main(int argc, char** argv) {
-    int count[4];
-    
-    count[0] = 7;
-    count[1] = count[0] *2;
-    ++count[2];
-    
-    int i;
-    
-    for (i = 0;i < 4;i++) {
-        printf("count[%d]=%d\n", i, count[i]);
-    }
-    
-    printf("Hello, world.\n");
-
-    return (EXIT_SUCCESS);
+void visit(int row, int col, struct point pre) {
+    struct point visit_point = {row, col};
+    maze[row][col] = 2;
+    predecessor[row][col] = pre;
+    push(visit_point);
 }
 
+int main(void) {
+    struct point p = {0, 0};
+    maze[p.row][p.col] = 2;
+    push(p);
+    while (!is_empty()) {
+        p = pop();
+        if (p.row == MAX_ROW - 1 /* goal */ && p.col == MAX_COL - 1)
+            break;
+        if (p.col + 1 < MAX_COL /* right */
+                && maze[p.row][p.col + 1] == 0)
+            visit(p.row, p.col + 1, p);
+        if (p.row + 1 < MAX_ROW /* down */ && maze[p.row + 1][p.col] == 0) visit(p.row + 1, p.col, p);
+        if (p.col - 1 >= 0 /* left */ && maze[p.row][p.col - 1] == 0) visit(p.row, p.col - 1, p);
+        if (p.row - 1 >= 0 /* up */ && maze[p.row - 1][p.col] == 0) visit(p.row - 1, p.col, p);
+    }
+    print_maze();
+    if (p.row == MAX_ROW - 1 && p.col == MAX_COL - 1) {
+        printf("(%d, %d)\n", p.row, p.col);
+        while (predecessor[p.row][p.col].row != -1) {
+            p = predecessor[p.row][p.col];
+        } else
+        }
+        printf("(%d, %d)\n", p.row, p.col);
+    printf("No path!\n");
+    return 0;
+}

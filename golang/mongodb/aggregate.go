@@ -27,6 +27,13 @@ func main() {
 	collection := db.C("shoporders")      //如果该集合已经存在的话，则直接返回
 
 	pipe := collection.Pipe([]bson.M{{"$match": bson.M{"uid": "2016022511161867652"}}})
+
+	//	results := []bson.M{}
+	//	fmt.Println(pipe.All(&results))
+	//	for _, row := range results {
+	//		fmt.Println(row, "\n")
+	//	}
+
 	iter := pipe.Iter()
 
 	var result []struct {

@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	getNow()
+	getDayStart(1457409600)
 }
 
 func getNow() {
@@ -44,9 +44,23 @@ func getYear() {
 	fmt.Println(t.Year())
 }
 
+func getMonth() {
+	m := time.Now().Month()
+	fmt.Println(m, int(m))
+}
+
 //获取今天开始时间戳
 func getTodayStartTimeUnix() int64 {
 	t, _ := time.Parse("2006-01-02 15:04:05", time.Now().Format("2006-01-02")+" 00:00:00")
 	fmt.Println(t.Unix() - 8*3600)
 	return t.Unix() - 8*3600
+}
+
+func getDayStart(ts int64) {
+	t := time.Unix(ts, 0).Format("2006-01-02")
+	sts, err := time.Parse("2006-01-02", t)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(sts.Unix())
 }

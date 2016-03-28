@@ -2,34 +2,13 @@ package main
 
 import (
 	"fmt"
-	"os"
 )
 
-language: node_js
-node_js:
-  - '0.10'
-  - '0.11'
-
 func main() {
-	//声明变量
-	var name string
-	//赋值
-	name = "meiqu"
-	//声明并赋值
-	//	name := "meiqu"
+	a := []byte{0, 1, 1, 1, 1}
+	b := []byte{0, 1, 1, 1, 0}
 
-	//循环条件没有小刮号
-	for i := 1; i < 10; i++ {
-
+	for k, v := range a {
+		fmt.Println(v | b[k])
 	}
-}
-
-func demo() (name string, err error) {
-switch i { case 0:
-fmt.Printf("0") case 1:
-fmt.Printf("1") case 2:
-fallthrough case 3:
-fmt.Printf("3") case 4, 5, 6:
-fmt.Printf("4, 5, 6") default:
-            fmt.Printf("Default")
 }
