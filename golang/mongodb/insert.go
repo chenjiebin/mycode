@@ -1,4 +1,8 @@
-// 演示mongodb插入操作
+// 演示mongodb插入数据操作
+// 主要使用Insert函数
+// 函数原型
+// func (*Collection) Insert
+// 	func (c *Collection) Insert(docs ...interface{}) error
 package main
 
 import (
@@ -8,24 +12,150 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-var (
-	host = "172.16.27.134"
-	port = 27017
-)
-
-func main() {
-	session, err := mgo.Dial("172.16.27.134:27017")
+// get mongodb db
+func getDB() *mgo.Database {
+	session, err := mgo.Dial("172.16.27.134:10001")
 	if err != nil {
 		panic(err)
 	}
-	defer session.Close()
+
 	session.SetMode(mgo.Monotonic, true)
 	db := session.DB("test")
+	return db
+}
 
-	collection := db.C("user") //如果该集合已经存在的话，则直接返回
+func main() {
+	insert()
+	insertMuti()
+	insertArray()
+	insertNesting()
+	insertMap()
+	insertObjectId()
+}
 
-	err = collection.Insert(&record{Index: "Ale", Data: {"goods_id": "1", "user_id": "100"}, Time: 1456814139})
+// 插入单挑数据
+func insert() {
+	db := getDB()
+
+	c := db.C("user")
+	type User struct {
+		Name string "bson:`name`"
+		Age  int    "bson:`age`"
+	}
+
+	err := c.Insert(&User{Name: "Tom", Age: 20})
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println(err)
+}
+
+// 插入多条记录
+func insertMuti() {
+	db := getDB()
+
+	c := db.C("user")
+	type User struct {
+		Name string "bson:`name`"
+		Age  int    "bson:`age`"
+	}
+
+	err := c.Insert(&User{Name: "Tom", Age: 20}, &User{Name: "Anny", Age: 28})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(err)
+}
+
+// 插入数组格式
+func insertArray() {
+	db := getDB()
+	c := db.C("user")
+
+	type User struct {
+		Name   string   "bson:`name`"
+		Age    int      "bson:`age`"
+		Groups []string "bson:`groups`"
+	}
+
+	err := c.Insert(&User{
+		Name:   "Tom",
+		Age:    20,
+		Groups: []string{"news", "sports"},
+	})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(err)
+}
+
+// 插入嵌套数据
+func insertNesting() {
+	db := getDB()
+
+	c := db.C("user")
+
+	type Toy struct {
+		Name string "bson:`name`"
+	}
+	type User struct {
+		Name string "bson:`name`"
+		Age  int    "bson:`age`"
+		Toys []Toy
+	}
+
+	err := c.Insert(&User{
+		Name: "Tom",
+		Age:  20,
+		Toys: []Toy{Toy{Name: "dog"}},
+	})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(err)
+}
+
+// 插入map格式的数据
+func insertMap() {
+	db := getDB()
+	c := db.C("user")
+
+	user := map[string]interface{}{
+		"name":   "Tom",
+		"age":    20,
+		"groups": []string{"news", "sports"},
+		"toys": []map[string]interface{}{
+			map[string]interface{}{
+				"name": "dog",
+			},
+		},
+	}
+
+	err := c.Insert(&user)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(err)
+}
+
+// 插入关联其它集合ObjectId的数据
+// 要使用bson.ObjectIdHex函数对字符串进行转化
+// 函数原型
+// func ObjectIdHex
+//	func ObjectIdHex(s string) ObjectId
+func insertObjectId() {
+	db := getDB()
+	c := db.C("user")
+
+	user := map[string]interface{}{
+		"name":     "Tom",
+		"age":      20,
+		"group_id": bson.ObjectIdHex("540046baae59489413bd7759"),
+	}
+
+	err := c.Insert(&user)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(err)
 }
