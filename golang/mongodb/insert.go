@@ -33,7 +33,7 @@ func main() {
 	insertObjectId()
 }
 
-// 插入单挑数据
+// 插入单条数据
 func insert() {
 	db := getDB()
 
