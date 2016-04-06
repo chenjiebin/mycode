@@ -17,6 +17,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"os"
 	"strconv"
 	"sync"
 	"time"
@@ -191,11 +192,12 @@ func (b *BulkIndexer) startHttpSender() {
 				// Copy for the potential re-send.
 				bufCopy := bytes.NewBuffer(buf.Bytes())
 				err := b.Sender(buf)
-
+				//				fmt.Println("BulkIndexer startHttpSender b.Sender(buf):", err)
 				// Perhaps a b.FailureStrategy(err)  ??  with different types of strategies
 				//  1.  Retry, then panic
 				//  2.  Retry then return error and let runner decide
 				//  3.  Retry, then log to disk?   retry later?
+				//				fmt.Println("BulkIndexer startHttpSender b.RetryForSeconds:", b.RetryForSeconds)
 				if err != nil {
 					if b.RetryForSeconds > 0 {
 						time.Sleep(time.Second * time.Duration(b.RetryForSeconds))
@@ -206,6 +208,7 @@ func (b *BulkIndexer) startHttpSender() {
 							continue
 						}
 					}
+					//					fmt.Println("BulkIndexer startHttpSender &ErrorBuffer{err, buf}:", &ErrorBuffer{err, buf})
 					if b.ErrorChannel != nil {
 						b.ErrorChannel <- &ErrorBuffer{err, buf}
 					}
@@ -219,12 +222,15 @@ func (b *BulkIndexer) startHttpSender() {
 // start a timer for checking back and forcing flush ever BulkDelaySeconds seconds
 // even if we haven't hit max messages/size
 func (b *BulkIndexer) startTimer() {
+	//	fmt.Println("BulkIndexer startTimer b.BufferDelayMax:", b.BufferDelayMax)
 	ticker := time.NewTicker(b.BufferDelayMax)
 	go func() {
 		for {
 			select {
 			case <-ticker.C:
 				b.mu.Lock()
+				//				fmt.Println("BulkIndexer startTimer b.buf.Len():", b.buf.Len())
+				//				fmt.Println("BulkIndexer startTimer b.needsTimeBasedFlush:", b.needsTimeBasedFlush)
 				// don't send unless last sendor was the time,
 				// otherwise an indication of other thresholds being hit
 				// where time isn't needed
@@ -249,9 +255,14 @@ func (b *BulkIndexer) startDocChannel() {
 	// writes to buffer
 	go func() {
 		for docBytes := range b.bulkChannel {
+			//			fmt.Println("BulkIndexer startDocChannel docBytes:", string(docBytes))
 			b.mu.Lock()
 			b.docCt += 1
 			b.buf.Write(docBytes)
+			//			fmt.Println("BulkIndexer startDocChannel b.buf.Len:", b.buf.Len())
+			//			fmt.Println("BulkIndexer startDocChannel b.BulkMaxBuffer:", b.BulkMaxBuffer)
+			//			fmt.Println("BulkIndexer startDocChannel b.docCt:", b.docCt)
+			//			fmt.Println("BulkIndexer startDocChannel b.BulkMaxDocs:", b.BulkMaxDocs)
 			if b.buf.Len() >= b.BulkMaxBuffer || b.docCt >= b.BulkMaxDocs {
 				b.needsTimeBasedFlush = false
 				//log.Printf("Send due to size:  docs=%d  bufsize=%d", b.docCt, b.buf.Len())
@@ -343,9 +354,19 @@ func (b *BulkIndexer) Send(buf *bytes.Buffer) error {
 		return err
 	}
 	// check for response errors, bulk insert will give 200 OK but then include errors in response
+	//	fmt.Println("BulkIndexer Send body:", string(body))
 	jsonErr := json.Unmarshal(body, &response)
+	//	fmt.Println("BulkIndexer Send response:", response)
 	if jsonErr == nil {
 		if response.Errors {
+			// log err data
+			var errStatus float64 = 400
+			for _, r := range response.Items {
+				rIndex := r["index"].(map[string]interface{})
+				if errStatus == rIndex["status"].(float64) {
+					fmt.Fprintln(os.Stderr, "err data:", r)
+				}
+			}
 			b.numErrors += uint64(len(response.Items))
 			return fmt.Errorf("Bulk Insertion Error. Failed item count [%d]", len(response.Items))
 		}
@@ -399,6 +420,8 @@ func WriteBulkBytes(op string, index string, _type string, id, parent, ttl strin
 	}
 	buf.WriteString(`}}`)
 	buf.WriteRune('\n')
+	//	fmt.Println("WriteBulkBytes buf:", buf.String())
+
 	//buf.WriteByte('\n')
 	switch v := data.(type) {
 	case *bytes.Buffer:
@@ -415,5 +438,6 @@ func WriteBulkBytes(op string, index string, _type string, id, parent, ttl strin
 		buf.Write(body)
 	}
 	buf.WriteRune('\n')
+	//	fmt.Println("WriteBulkBytes buf:", buf.String())
 	return buf.Bytes(), nil
 }

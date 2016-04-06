@@ -73,13 +73,14 @@ Complete beginners guide
     - using the homebrew package manager `brew install hg` [Homebrew Guide/Install](http://brew.sh/)
 - install the Mac OS X binary build from https://golang.org/dl/
 - follow instructions on http://golang.org/doc/install
-- VERY IMPORANT: Go has a required directory structure which the GOPATH needs to point to. Instructions can be found on http://golang.org/doc/code.html or by typing `go help gopath` in terminal.
+- VERY IMPORTANT: Go has a required directory structure which the GOPATH needs to point to. Instructions can be found on http://golang.org/doc/code.html or by typing `go help gopath` in terminal.
 - setup the directory structure in $GOPATH
     - `cd $GOPATH; mkdir src pkg bin`
     - create the github.com path and compose `mkdir -p src/github.com/compose; cd src/github.com/compose`
     - clone transporter `git clone https://github.com/compose/transporter; cd transporter`
-    - run go get to get all the dependencies `go get -a ./cmd/...`
-    - now you can build `go build -a ./cmd/...`
+    - make sure godep is installed, `go get github.com/tools/godep`
+    - run `godep restore` to get all the dependencies as specified in `Godeps.json`
+    - now you can build with `godep go build -a ./cmd/...`
 
 At this point you should be able to run transporter via `$GOPATH/bin/transporter`,  you may need to add $GOPATH to your PATH environment variable. Something along the lines of `export PATH="$GOPATH/bin:$PATH"` should work.
 

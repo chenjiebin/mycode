@@ -5,15 +5,13 @@
 #   pid: "something-static"
 nodes:
   localmongo:
-    type: mongo
-    uri: mongodb://172.16.27.134:27017/foo
-    namespace: foo.bar
+    type: mongodb
+    uri: mongodb://172.16.27.134:10001/foo
     tail: true
-    debug: true
+    debug: false	
   es:
     type: elasticsearch
     uri: http://172.16.27.134:9200/
-    namespace: foo.bar
     debug: true
   timeseries:
     type: influx
