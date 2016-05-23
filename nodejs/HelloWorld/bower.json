@@ -1,0 +1,21 @@
+{
+  "name": "helloworld",
+  "description": "A test kraken application",
+  "main": "index.js",
+  "author": "jiebin",
+  "moduleType": [
+    "amd"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "^2.1.16"
+  }
+}
