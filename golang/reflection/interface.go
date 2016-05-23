@@ -32,6 +32,11 @@ func main() {
 	user = &User{id: 22, name: "iceup"}
 	fmt.Println(user) //就是检查一下myType对象内容
 
+	fmt.Printf("%T\n", user)
+	u := user.(*User)
+	fmt.Printf("%+v\n", u)
+	fmt.Println(reflect.TypeOf(user))
+
 	reflect.ValueOf(user).MethodByName("Hello").Call(nil)
 
 	val := reflect.ValueOf(user).MethodByName("SayHello").Call(nil)[0]

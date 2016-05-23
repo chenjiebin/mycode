@@ -10,4 +10,6 @@ func main() {
 		arrs[i] = i
 	}
 	fmt.Println(arrs)
+
+	fmt.Println(arrs[5:6])
 }

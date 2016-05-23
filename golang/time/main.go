@@ -6,10 +6,11 @@ import (
 )
 
 func main() {
-	getDayStart(1457409600)
+	fmt.Println(time.Now().Unix())
 }
 
 func getNow() {
+
 	// 获取当前时间
 	fmt.Println(time.Now())
 	// output: 2016-03-09 09:47:49.900023477 +0800 CST
