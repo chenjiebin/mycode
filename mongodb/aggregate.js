@@ -19,9 +19,18 @@ db.shoporders.aggregate(
     ]                   
 )
 
-
+select count(0) from orders group by commodity,user
 db.shoporders.aggregate(
     [
         { $group: { _id: {commodity: "$list.commodity", user: "$user"}, count: { $sum: 1 } } }
     ]                   
 )
+
+select count(0) from orders where ... group by commodity
+db.shoporders.aggregate(
+    [
+        { $match: { "pay":  {"$exists": true} } },
+        { $group: { _id:  "$list.commodity", count: { $sum: 1 } } }
+    ]                   
+)
+db.getCollection('shoporders').find({"list.commodity":ObjectId("56b0333ec9bad9c91442d77f"), "pay":{"$exists":true}})
