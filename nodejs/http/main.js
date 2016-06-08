@@ -2,6 +2,8 @@ var http = require('http');
 
 http.createServer(function(request, response) {
     console.log(request.method);
+    console.log(2.1 / 3 == 0.7);
+    console.log(parseFloat(2.1 / 3).toFixed(2) == parseFloat(0.7).toFixed(2));
     if (request.method === 'GET' && request.url === '/echo') {
         var body = [];
         request.on('data', function(chunk) {

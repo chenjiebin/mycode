@@ -1,0 +1,567 @@
+<!doctype html>  
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	
+	<title>Angle - Bootstrap Admin App + MeteorJS</title>
+	
+	<meta name="description" content="">
+	<meta name="author" content="@themicon">
+	<meta name="copyright" content="@themicon">
+	<meta name="generator" content="Documenter v2.0 http://rxa.li/documenter">
+	<meta name="date" content="2015-06-04T00:00:00+02:00">
+	
+	<link rel="stylesheet" href="assets/css/documenter_style.css" media="all">
+	<link rel="stylesheet" href="assets/js/google-code-prettify/prettify.css" media="screen">
+	<script src="assets/js/google-code-prettify/prettify.js"></script>
+
+	
+	
+	<script src="assets/js/jquery.js"></script>
+	
+	<script src="assets/js/jquery.scrollTo.js"></script>
+	<script src="assets/js/jquery.easing.js"></script>
+	
+	<script>document.createElement('section');var duration='500',easing='swing';</script>
+	<script src="assets/js/script.js"></script>
+	
+	<style>
+		html{background-color:#FFFFFF;color:#656565;}
+		::-moz-selection{background:#FCFCFD;color:#31BCE7;}
+		::selection{background:#FCFCFD;color:#31BCE7;}
+		#documenter_sidebar #documenter_logo{background-image:url();}
+		a{color:#31BCE7;}
+		.btn {
+			border-radius:3px;
+		}
+		.btn-primary {
+			  background-image: -moz-linear-gradient(top, #31BCE7, #31BCE7);
+			  background-image: -ms-linear-gradient(top, #31BCE7, #31BCE7);
+			  background-image: -webkit-gradient(linear, 0 0, 0 31BCE7%, from(#F5F7FA), to(#31BCE7));
+			  background-image: -webkit-linear-gradient(top, #31BCE7, #31BCE7);
+			  background-image: -o-linear-gradient(top, #31BCE7, #31BCE7);
+			  background-image: linear-gradient(top, #31BCE7, #31BCE7);
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#31BCE7', endColorstr='#31BCE7', GradientType=0);
+			  border-color: #31BCE7 #31BCE7 #bfbfbf;
+			  color:#FFFFFF;
+		}
+		.btn-primary:hover,
+		.btn-primary:active,
+		.btn-primary.active,
+		.btn-primary.disabled,
+		.btn-primary[disabled] {
+		  border-color: #31BCE7 #31BCE7 #bfbfbf;
+		  background-color: #31BCE7;
+		}
+		hr{border-top:1px solid #EBEBEB;border-bottom:1px solid #FFFFFF;}
+		#documenter_sidebar, #documenter_sidebar ul a{background-color:#F5F7FA;color:#3A3F51;}
+		#documenter_sidebar ul a{-webkit-text-shadow:1px 1px 0px #E1E2E3;-moz-text-shadow:1px 1px 0px #E1E2E3;text-shadow:1px 1px 0px #E1E2E3;}
+		#documenter_sidebar ul{border-top:1px solid #E1E2E3;}
+		#documenter_sidebar ul a{border-top:1px solid #E1E2E3;border-bottom:1px solid #E1E2E3;color:#3A3F51;}
+		#documenter_sidebar ul a:hover{background:#FCFCFD;color:#31BCE7;border-top:1px solid #FCFCFD;}
+		#documenter_sidebar ul a.current{background:#FCFCFD;color:#31BCE7;border-top:1px solid #FCFCFD;}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+	</style>
+	
+</head>
+<body class="documenter-project-angle">
+	<div id="documenter_sidebar">
+		<a href="#documenter_cover" id="documenter_logo"></a>
+		<ul id="documenter_nav">
+			<li><a class="current" href="#documenter_cover">Start</a></li>
+				
+			<li><a href="#overview" title="Overview">Overview</a></li>
+			<li><a href="#getting_started" title="Getting started">Getting started</a></li>
+			<li><a href="#angularjs" title="AngularJS">AngularJS</a>
+				<ul>
+					<li><a href="#angularjs_structure_nbsp">Structure&nbsp;</a>
+					<li><a href="#angularjs_layout_and_routes">Layout and Routes</a>
+					<li><a href="#angularjs_packages">Packages</a>
+				</ul>
+			</li>
+			<li><a href="#jquery" title="jQUery">jQUery</a>
+				<ul>
+					<li><a href="#jquery_structure">Structure</a>
+					<li><a href="#jquery_layout">Layout</a>
+					<li><a href="#jquery_strongroutes_strong">Routes</a>
+					<li><a href="#jquery_templates">Templates</a>
+					<li><a href="#jquery_packages">Packages</a>
+				</ul>
+			</li>
+
+		</ul>
+		<div id="documenter_copyright">Copyright @themicon 2015<br>
+		made with the <a href="http://rxa.li/documenter">Documenter v2.0</a> 
+		</div>
+	</div>
+	<div id="documenter_content">
+	<section id="documenter_cover">
+	<h1>Angle</h1>
+	<h2>Bootstrap Admin App + MeteorJS</h2>
+	<div id="documenter_buttons">
+		<a href="https://wrapbootstrap.com/user/themicon" class="btn btn-primary btn-large">Support</a> 
+	</div>
+	<hr>
+	<ul>
+	<li>created: 04/21/2015</li>
+	<li>latest update: 06/04/2015</li>
+	<li>by: @themicon</li>
+	<li><a href=""></a></li>
+	
+	</ul>
+	<p></p>
+	</section>
+	
+	<section id="overview">
+	<div class="page-header"><h3>Overview</h3><hr class="notop"></div>
+<div>
+	This document aims to explain the best way to work with the product and its components and it&#39;s focused on both project of MeteorJS included for:</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>jQuery/HTML5 based on jQuery Seed project </strong></div>
+<div>
+	<strong>AngularJS based on AngularJS Seed project</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	More information about each project feature can be found on their respective documentation.</div>
+<div>
+	&nbsp;</div>
+<div>
+	All usage reference for Meteor can be found here&nbsp;<a href="https://docs.meteor.com/">https://docs.meteor.com/</a></div>
+<div>
+	&nbsp;</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>All the best and enjoy coding.</strong></div>
+</section>
+<section id="getting_started">
+	<div class="page-header"><h3>Getting started</h3><hr class="notop"></div>
+<p>
+	<strong>Download MeteorJS</strong></p>
+<div>
+	Start downloading METEOR framework for your platform at&nbsp;<a href="https://www.meteor.com/install">https://www.meteor.com/install</a></div>
+<p>
+	<strong>Start the application</strong></p>
+<div>
+	Run the following command in the meteor project root folder</div>
+<pre class="prettyprint lang-plain linenums">
+meteor</pre>
+<div>
+	<p>
+		<strong>Open your browser</strong></p>
+	<p>
+		If eveything goes fine, your application should be ready at&nbsp;<a href="http://localhost:3000/">http://localhost:3000/</a></p>
+	<p>
+		&nbsp;</p>
+	<p>
+		<strong>General tips</strong></p>
+</div>
+<ul>
+	<li>
+		Do not start from scratch, use an existing asset and modify it to learn how it works.</li>
+	<li>
+		Explore the sources for ideas and sample code.</li>
+	<li>
+		Use Firebug or Chrome Developer Tools to find bugs on your website. Using one of those tools will help you to save time analyzing the site and finding elements structure, like classes, id or tags</li>
+	<li>
+		Quick tip: open your site with Chrome, press F12 and go to console tab, reload your page and if something goes wrong you will see your page errors in red text.</li>
+	<li>
+		In case of error messages, someone might have seen it too, so you can try a Google search for a quick fix.</li>
+</ul>
+</section>
+<section id="angularjs">
+	<div class="page-header"><h3>AngularJS</h3><hr class="notop"></div>
+<h4 id="angularjs_structure_nbsp">Structure&nbsp;</h4>
+<div>
+	&nbsp;</div>
+<div>
+	We have followed the structure described in this <a href="http://meteortips.com/tutorial/structure-application/">tutorial</a></div>
+<div>
+	Anyway, it&#39;s not exacly the same as MeteorJs doesn&#39;t have a strict folder structure.</div>
+<div>
+	&nbsp;</div>
+<pre class="prettyprint lang-plain linenums">
++---client
+|   +---angle
+|   |   +---js
+|   |   |   \---modules
+|   |   |       +---controllers
+|   |   |       +---directives
+|   |   |       \---services
+|   |   \---less
+|   |       +---app
+|   |       +---bootstrap
+|   |       |   \---mixins
+|   |       \---themes
+|   +---lib
+|   |   \---js
+|   +---vendor
+|   \---views
+|       \---partials
++---private
+|   \---i18n
++---public
+|   +---img
+|   \---vendor
+\---server</pre>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>client</strong>: contains the modules loaded in the client.&nbsp;</div>
+<div>
+	&nbsp;</div>
+<div>
+	&nbsp; - <strong>angle</strong>: contains the main theme files for used in the Angularjs Seed project using the same structure for Javascript and Less styles</div>
+<div>
+	&nbsp;</div>
+<div>
+	&nbsp; - <strong>lib</strong>: contains the script that are loaded before other scripts. Here is the main module declaration</div>
+<div>
+	&nbsp;</div>
+<div>
+	&nbsp; - <strong>vendor</strong>: contains the vendor files loaded when the application start. Not lazy loaded.</div>
+<div>
+	&nbsp;</div>
+<div>
+	&nbsp; - <strong>views</strong>: contains the HTML views used in the application</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>private</strong>: this folder is only accesible from the server.</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>puiblic</strong>: accesible from the client side. It can contain the the main assets like images, fonts, etc</div>
+<div>
+	&nbsp;</div>
+<div>
+	&nbsp; - <strong>vendor</strong>: This is folder is special because here is where we place vendor assets that are loaded using the ocLazyLoad module</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>server</strong>: contains the script that runs only in the server.</div>
+<div>
+	&nbsp;</div>
+<h4 id="angularjs_layout_and_routes">Layout and Routes</h4>
+<div>
+	&nbsp;</div>
+<div>
+	Layout and routes are managed by AngularJS at the client side using the UI Router module.</div>
+<div>
+	The index.html file only contains the necessary markup to start an AngularJS application</div>
+<div>
+	&nbsp;</div>
+<div>
+	Index markup</div>
+<div>
+	&nbsp;</div>
+<div>
+	<pre class="prettyprint lang-html linenums">
+&lt;head&gt;
+   &lt;base href=&quot;/&quot;&gt;
+   &lt;meta charset=&quot;utf-8&quot;&gt;
+   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;
+   &lt;meta name=&quot;description&quot; content=&quot;{{app.description}}&quot;&gt;
+   &lt;meta name=&quot;keywords&quot; content=&quot;app, responsive, angular, bootstrap, dashboard, admin&quot;&gt;
+   &lt;title data-ng-bind=&quot;::pageTitle()&quot;&gt;Angle - Angular Bootstrap Admin Template&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body data-ng-class=&quot;{ &#39;layout-fixed&#39; :    app.layout.isFixed,
+                       &#39;aside-collapsed&#39; : app.layout.isCollapsed,
+                       &#39;layout-boxed&#39; :    app.layout.isBoxed,
+                       &#39;layout-fs&#39;:        app.useFullLayout,
+                       &#39;hidden-footer&#39;:    app.hiddenFooter,
+                       &#39;layout-h&#39;:         app.layout.horizontal,
+                       &#39;aside-float&#39;:      app.layout.isFloat}&quot;&gt;
+
+  &lt;div data-ui-view=&quot;&quot; data-autoscroll=&quot;false&quot; class=&quot;wrapper&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;</pre>
+	<div>
+		&nbsp;</div>
+</div>
+<div>
+	<div>
+		&nbsp;</div>
+	<div>
+		The applicatin is started using the angular bootstrap method.</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<strong>_onready.js</strong></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<pre class="prettyprint lang-js linenums">
+function onReady() {
+  angular.bootstrap(document, [&#39;angle&#39;]);
+}
+window.onReady = onReady;</pre>
+		<div>
+			&nbsp;</div>
+		<div>
+			<strong>app.init.js</strong></div>
+		<div>
+			&nbsp;</div>
+		<div>
+			<pre class="prettyprint lang-js linenums">
+if (Meteor.isCordova)
+  angular.element(document).on(&quot;deviceready&quot;, onReady);
+else
+  angular.element(document).ready(onReady);</pre>
+		</div>
+		<div>
+			&nbsp;</div>
+	</div>
+</div>
+<h4 id="angularjs_packages">Packages</h4>
+<div>
+	<p>
+		This application use the following packages</p>
+	<div>
+		meteor-platform</div>
+	<div>
+		autopublish</div>
+	<div>
+		insecure</div>
+	<div>
+		<strong>less</strong></div>
+	<div>
+		<strong>urigo:angular</strong></div>
+	<div>
+		<strong>http</strong></div>
+	<div>
+		<strong>cfs:http-methods</strong></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		To learn or find more Meteor packages you must visit&nbsp;<a href="https://atmospherejs.com/">AtmosphereJS</a></div>
+	<div>
+		&nbsp;</div>
+	<p>
+		<strong>Angular Meteor</strong></p>
+	<div>
+		&nbsp;</div>
+	<div>
+		This is package that combines the transformative power of Angular and the easy to manage Meteor framework.</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		You can find more information about features provide at&nbsp;<a href="http://angularjs.meteor.com/">its website</a></div>
+</div>
+<p>
+	&nbsp;</p>
+</section>
+<section id="jquery">
+	<div class="page-header"><h3>jQUery</h3><hr class="notop"></div>
+<h4 id="jquery_structure">Structure</h4>
+<pre class="prettyprint lang-plain linenums">
++---client
+|   +---angle
+|   |   +---js
+|   |   |   +---custom
+|   |   |   \---modules
+|   |   \---less
+|   |       +---app
+|   |       +---bootstrap
+|   |       \---themes
+|   +---lib
+|   |   \---vendor
+|   \---templates
++---lib
++---localize
+|   \---i18n
+\---public
+    +---fonts
+    \---img</pre>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>client</strong>: contains only assets that are accesible from the client side</div>
+<div>
+	&nbsp; - <strong>angle</strong>: contains the scripts and less files for the theme</div>
+<div>
+	&nbsp; - <strong>lib</strong>: contains vendor assets and scripts loaded before anything else at client side</div>
+<div>
+	&nbsp; - <strong>templates</strong>: contains the html files for each page</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>lib</strong>: contains scripts that are accesible at the client and server side and are also loaded before anything else</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>localize</strong>: contains the json files for translation</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>public</strong>: this folder contains public assets like fonts,images, etc</div>
+<div>
+	&nbsp;</div>
+<h4 id="jquery_layout">Layout</h4>
+<div>
+	&nbsp;</div>
+<div>
+	This project uses the following layout configuration defining each part loaded from the templates directory</div>
+<div>
+	&nbsp;</div>
+<div>
+	layout.html</div>
+<div>
+	&nbsp;</div>
+<div>
+	<pre class="prettyprint lang-html linenums">
+&lt;template name=&quot;layout&quot;&gt;
+      &lt;div class=&quot;wrapper&quot;&gt;
+
+         &lt;!-- top navbar--&gt;
+         {{&gt; topnavbar }}
+
+         &lt;!-- sidebar--&gt;
+         {{&gt; sidebar }}
+
+         &lt;!-- offsidebar--&gt;
+         {{&gt; offsidebar}}
+
+         &lt;!-- Main section--&gt;
+         &lt;section&gt;
+            &lt;!-- Page content--&gt;
+            &lt;div class=&quot;content-wrapper&quot;&gt;
+               {{&gt; yield }}
+            &lt;/div&gt;
+         &lt;/section&gt;
+
+         &lt;!-- Page footer--&gt;
+         {{&gt; footer }}
+      &lt;/div&gt;
+&lt;/template&gt;</pre>
+	<div>
+		&nbsp;</div>
+	<h4 id="jquery_strongroutes_strong"><strong>Routes</strong></h4>
+	<div>
+		&nbsp;</div>
+	<div>
+		Routes are defined in the following script and uses the <strong>Iron Router</strong> package.</div>
+	<div>
+		Due to the location of the file all routes here works for client and server side, if you need only cliente side routes, just add them in a new file within the cliente folder.</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<strong>/lib/routes.js</strong></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<pre class="prettyprint lang-js linenums">
+Router.map(function(){
+
+  this.route(&#39;singleview&#39;, {
+    path: &#39;/&#39;
+  });
+
+  this.route(&#39;submenu&#39;, {
+    path: &#39;/sub/menu&#39;
+  });
+
+});</pre>
+		<div>
+			&nbsp;</div>
+	</div>
+</div>
+<div>
+	&nbsp;</div>
+<div class="alert alert-info">
+	Reminder: Meteor has its &nbsp;own script injection system. Because of that you don&#39;t have add your own script tags. All scripts in each folder are automatically added by Meteor into the app.</div>
+<div>
+	&nbsp;</div>
+<h4 id="jquery_templates">Templates</h4>
+<div>
+	<div>
+		jQuery&#39;s dom.ready doesn&#39;t work as usual in a METEORJS templates scenario. Becuase of that we&#39;ve built a simple snippet that will collect all module functions to be executed when templates are ready, similar to a dom.ready handler but can be executed manually later.</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<strong>/client/lib/app.init.js</strong> defines the module handler</div>
+	<div>
+		<strong>/lib/rendered.js</strong>&nbsp; is where&nbsp;App.run() is executed to catch the ready state of the main layout</div>
+</div>
+<div>
+	&nbsp;</div>
+<div>
+	Usage example:</div>
+<div>
+	&nbsp;</div>
+<div>
+	<pre class="prettyprint lang-js linenums">
+(function(window, document, $, undefined){
+
+  App.ready(function(){
+
+    // Your code here
+
+  });
+
+})(window, document, window.jQuery);</pre>
+</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>The&nbsp;rendered callback</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	Optionally you can use the Template rendered callback method to run javascript for each template.</div>
+<div>
+	&nbsp;</div>
+<div>
+	Example file <strong>/client/templates/singleview.js</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	<pre class="prettyprint lang-js linenums">
+Template.<strong>singleview</strong>.rendered = function(){
+
+  // Code for the <strong>singleview</strong> template
+
+};</pre>
+</div>
+<div>
+	&nbsp;</div>
+<h4 id="jquery_packages">Packages</h4>
+<div>
+	This project uses the following packages</div>
+<div>
+	&nbsp;</div>
+<div>
+	<div>
+		meteor-platform</div>
+	<div>
+		autopublish</div>
+	<div>
+		insecure</div>
+	<div>
+		<strong>iron:router</strong></div>
+	<div>
+		<strong>zimme:iron-router-active</strong></div>
+	<div>
+		<strong>tap:i18n</strong></div>
+	<div>
+		<strong>less</strong></div>
+	<div>
+		&nbsp;</div>
+</div>
+<div>
+	&nbsp;</div>
+</section>
+
+	</div>
+</body>
+</html>

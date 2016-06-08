@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>js beautySubstring</title>
+        <script type="text/javascript">
+            // 截取一段字符串,考虑一个中午为2个长度
+            function beautySubstring(str, len, hasDot) {
+                var newLength = 0;
+                var newStr = "";
+                var chineseRegex = /[^\x00-\xff]/g;
+                var singleChar = "";
+                var strLength = str.replace(chineseRegex, "**").length;
+                for (var i = 0; i < strLength; i++) {
+                    singleChar = str.charAt(i).toString();
+                    if (singleChar.match(chineseRegex) != null)
+                    {
+                        newLength += 2;
+                    }
+                    else
+                    {
+                        newLength++;
+                    }
+                    if (newLength > len)
+                    {
+                        break;
+                    }
+                    newStr += singleChar;
+                }
+
+                if (hasDot && strLength > len)
+                {
+                    newStr += "...";
+                }
+                return newStr;
+            }
+
+            var str = "你好，hello world;";
+
+            console.log(beautySubstring(str, 10));
+        </script>
+
+    </head>
+    <body>
+
+    </body>
+</html>

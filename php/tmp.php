@@ -1,44 +1,24 @@
-<script>
+<html>
+    <head>
+        <script src="http://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    </head>
 
-
-
-    var temp = function(doc) {
-        console.log("transformer: " + JSON.stringify(doc));
-
-        var config = [
-            {
-                "ns": "foo.user",
-                "fields": ["_id", "age"]
-            },
-            {
-                "ns": "foo.order",
-                "fields": ["_id", "order"]
-            }
-        ];
-
-        var contains = function(array, item) {
-            for (var i = 0; i < array.length; i++) {
-                if (array[i] === item) {
-                    return true;
+    <body>
+        <script>
+            $.ajax({
+                url: "http://192.168.1.119:10001/api/course/list/",
+                type: 'POST',
+                data: JSON.stringify({"start_time": 1456761600}),
+                cache: false,
+                dataType: "json",
+                success: function(result) {
+                    alert(result.status);
+                    alert(result.message);
+                },
+                error: function(err) {
+                    alert(err)
                 }
-            }
-            return false;
-        }
-
-        for (var i in config) {
-            if (doc.ns === config[i].ns) {
-                for (var field in doc.data) {
-                    if (!contains(config[i].fields, field)) {
-                        delete doc.data[field];
-                    }
-                }
-                break;
-            }
-        }
-
-        console.log("transformer: " + JSON.stringify(doc));
-        return doc;
-    }
-
-    temp({"data": {"_id": {"$oid": "56fb983f5c0d0011f971e7f5"}, "order": "1234", "user": "cjb"}, "ns": "foo.order", "op": "insert", "ts": 1461121116});
-</script>
+            });
+        </script>
+    </body>
+</html>

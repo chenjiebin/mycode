@@ -1,0 +1,13 @@
+{
+  "name": "jquery-localize-i18n",
+  "homepage": "https://github.com/coderifous/jquery-localize",
+  "_release": "f1d0e4bb1f",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f1d0e4bb1f0d492b13d64375dfb0ac1f7dcda334"
+  },
+  "_source": "git://github.com/coderifous/jquery-localize.git",
+  "_target": "*",
+  "_originalSource": "jquery-localize-i18n"
+}
