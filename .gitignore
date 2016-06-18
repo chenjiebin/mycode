@@ -46,5 +46,7 @@
 /java/http/WebApplication1/build/
 /javascript/nbproject/private/
 /html/nbproject/
-html/.idea/
+
+.idea
+nbproject
 
