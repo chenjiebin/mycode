@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>最幽默 - 生活多一些欢乐</title>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!--<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
 
@@ -16,9 +16,24 @@
     <![endif]-->
 
     <style>
+        html {
+            font-size: 100%;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%
+        }
+
+        article, aside, details, figcaption, figure, footer, header, nav, section {
+            display: block
+        }
+
         body {
-            background: #eeeeee;
+            margin: 0;
+            font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            line-height: 20px;
             color: #555555;
+            background-color: #eeeeee;
+            overflow-x: hidden;
         }
 
         a {
@@ -31,6 +46,21 @@
             text-decoration: none
         }
 
+        ul, ol {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        li {
+            line-height: 20px;
+        }
+
+        .header {
+            background: #fff;
+            margin-bottom: 20px;
+        }
+
         .logo h1 {
             font-size: 28px;
         }
@@ -39,6 +69,11 @@
             height: 60px;
             line-height: 60px;
             text-align: right;
+        }
+
+        .d-article {
+            padding-left: 0px;
+            padding-right: 0px;
         }
 
         article h2 {
@@ -52,29 +87,160 @@
             margin-bottom: 20px;
         }
 
-        aside h3 {
-            height: 20px;
-            font-size: 15px;
+        .pagination {
+            width: 100%;
+            margin-top: 0px;
+            text-align: center;
         }
+
+        .pagination ul {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            margin-left: 0;
+            margin-bottom: 0
+        }
+
+        .pagination ul > li {
+            display: inline
+        }
+
+        .pagination ul > li > a, .pagination ul > li > span {
+            margin: 0 1px;
+            float: left;
+            padding: 4px 12px 3px;
+            line-height: 20px;
+            text-decoration: none;
+            background-color: #fff;
+            color: #666
+        }
+
+        .pagination ul > li > a:hover, .pagination ul > li > a:focus {
+            background-color: #ccc;
+            color: #444
+        }
+
+        .pagination ul > .active > a, .pagination ul > .active > span {
+            background-color: #428BCA;
+            color: #fff
+        }
+
+        .pagination ul > .active > a, .pagination ul > .active > span {
+            cursor: default
+        }
+
+        .pagination ul > li > span, .pagination ul > .disabled > span, .pagination ul > .disabled > a, .pagination ul > .disabled > a:hover, .pagination ul > .disabled > a:focus {
+            color: #999999;
+            background-color: transparent;
+            cursor: default
+        }
+
+        .aside {
+            padding-right: 0px;
+            padding-left: 20px;
+        }
+
+        .widget {
+            clear: both;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
+
+        .widget h3 {
+            font-size: 15px;
+            position: relative;
+            margin: 0;
+            line-height: 25px;
+            padding: 6px 15px;
+            font-size: 15px;
+            background-color: #F7F7F7;
+            border-bottom: 1px solid #eaeaea;
+            font-weight: normal;
+        }
+
+        .widget_recent_entries li {
+            border-bottom: solid 1px #eee;
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+
+        .d_tags {
+            padding: 12px 13px 10px 15px;
+        }
+
+        .d_tags a {
+            opacity: 0.80;
+            filter: alpha(opacity=80);
+            color: #fff;
+            background-color: #428BCA;
+            display: inline-block;
+            margin: 0 5px 5px 0;
+            padding: 0 6px;
+            line-height: 21px;
+        }
+
+        .d_tags a:nth-child(9n) {
+            background-color: #4A4A4A;
+        }
+
+        .d_tags a:nth-child(9n+1) {
+            background-color: #428BCA;
+        }
+
+        .d_tags a:nth-child(9n+2) {
+            background-color: #5CB85C;
+        }
+
+        .d_tags a:nth-child(9n+3) {
+            background-color: #D9534F;
+        }
+
+        .d_tags a:nth-child(9n+4) {
+            background-color: #567E95;
+        }
+
+        .d_tags a:nth-child(9n+5) {
+            background-color: #B433FF;
+        }
+
+        .d_tags a:nth-child(9n+6) {
+            background-color: #00ABA9;
+        }
+
+        .d_tags a:nth-child(9n+7) {
+            background-color: #B37333;
+        }
+
+        .d_tags a:nth-child(9n+8) {
+            background-color: #FF6600;
+        }
+
+        footer {
+            background-color: #fff;
+            padding: 20px;
+        }
+
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="col-md-8 logo">
-        <h1>
-            <a href="/">最幽默</a>
-            <small>生活多一些欢乐</small>
-        </h1>
-    </div>
+<div class="container-fluid header">
+    <div class="container">
+        <div class="col-md-8 logo">
+            <h1>
+                <a href="/">最幽默</a>
+                <small>生活多一些欢乐</small>
+            </h1>
+        </div>
 
-    <div class="col-md-4 menu">
-        <a href="#" class="btn" data-toggle="modal" data-target="#modalLogin">登录</a>
-        <a href="#" class="btn" data-toggle="modal" data-target="#modalReg">注册</a>
+        <div class="col-md-4 menu">
+            <a href="#" class="btn" data-toggle="modal" data-target="#modalLogin">登录</a>
+            <a href="#" class="btn" data-toggle="modal" data-target="#modalReg">注册</a>
+        </div>
     </div>
 </div>
 
 <section class="container">
-    <div class="col-md-8">
+    <div class="col-md-8 d-article">
         <article class="img-rounded">
             <header>
                 <h2>
@@ -85,52 +251,16 @@
                 </h2>
             </header>
             <p class="note">
+                1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？
+            </p>
+            <img src="http://i1.mhimg.com/M00/2E/B7/CgAAhldlc8eALfjTAADn5UjUDno182.jpg"/>
+        </article>
+        <article class="img-rounded">
             <p>
-                1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？</p>
-            <p></p>
-            <p> 2、人人都想去云间筑高楼，而我只想在你胸口种草莓。</p>
-            <p></p>
-            <p> 3、每次荒废时光不好好努力的时候心里其实特别慌，坐也不是站也不是，所以只好躺着了。</p>
-            <p></p>
-            <p> 4、我一直以为自己除了吃什么都不会。。。艹， 没想到我竟然还会饿！</p>
-            <p></p>
-            <p> 5、不带套那种感觉真好，但是手机不耐摔啊！</p>
-            <p></p>
-            <p> 6、于千万人之中遇见你，于千万年之中，时间的无涯的荒野里，没有早一步，也没有晚一步，刚巧赶上了，那也没有别的话可说，惟有轻轻地问一声：“在电梯里抽烟的能不能去死啊？”</p>
-            <p></p>
-            <p> 7、我对爱情的想法很简单：不求比翼，但求双飞。</p>
-            <p></p>
-            <p> 8、看我不顺眼？你可以装瞎，也可以自杀。</p>
-            <p></p>
-            <p> 9、如果你送我礼物，那我就和你。。。说下收货地址。</p>
-            <p></p>
-            <p> 10、闹钟你个挨千刀的，把人准时叫醒算什么本事，你有本事让我准时睡着啊！</p>
+                一个上京赶考的穷书生到破庙避雨，偶遇一位小姐，书生和小姐吟诗作对，非常投契，当晚他们便私定了终身。
+                第二天，书生不得不继续赶路，他和小姐依依惜别，并许诺：“若我考中状元，必定登门迎娶。”
+                小姐等书生一走，便将他的名字记录在册，嘴里还自言自语道：“这已经是第60个书生了！总会有一个会考中的吧？！”
             </p>
-            <img src="http://image.haha.mx/2016/06/17/middle/2243135_80bf3c7d6adb559ca0534cc00f3baa2f_1466175143.jpg"/>
-        </article>
-        <article class="img-rounded">
-            <p class="note">
-            <p>1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？</p>
-            <p></p>
-            <p> 2、人人都想去云间筑高楼，而我只想在你胸口种草莓。</p>
-            <p></p>
-            <p> 3、每次荒废时光不好好努力的时候心里其实特别慌，坐也不是站也不是，所以只好躺着了。</p>
-            <p></p>
-            <p> 4、我一直以为自己除了吃什么都不会。。。艹， 没想到我竟然还会饿！</p>
-            <p></p>
-            <p> 5、不带套那种感觉真好，但是手机不耐摔啊！</p>
-            <p></p>
-            <p> 6、于千万人之中遇见你，于千万年之中，时间的无涯的荒野里，没有早一步，也没有晚一步，刚巧赶上了，那也没有别的话可说，惟有轻轻地问一声：“在电梯里抽烟的能不能去死啊？”</p>
-            <p></p>
-            <p> 7、我对爱情的想法很简单：不求比翼，但求双飞。</p>
-            <p></p>
-            <p> 8、看我不顺眼？你可以装瞎，也可以自杀。</p>
-            <p></p>
-            <p> 9、如果你送我礼物，那我就和你。。。说下收货地址。</p>
-            <p></p>
-            <p> 10、闹钟你个挨千刀的，把人准时叫醒算什么本事，你有本事让我准时睡着啊！</p>
-            </p>
-            <img src="http://image.haha.mx/2016/06/17/middle/2243135_80bf3c7d6adb559ca0534cc00f3baa2f_1466175143.jpg"/>
         </article>
         <article class="img-rounded">
             <header>
@@ -196,42 +326,103 @@
             <img src="http://image.haha.mx/2016/06/17/middle/2243135_80bf3c7d6adb559ca0534cc00f3baa2f_1466175143.jpg"/>
             </p>
         </article>
+        <div class="pagination">
+            <ul>
+                <li class="prev-page"><a href="http://www.01happy.com/page/6/">上一页</a></li>
+                <li><a href="http://www.01happy.com/">1</a></li>
+                <li><span>···</span></li>
+                <li><a href="http://www.01happy.com/page/3/">3</a></li>
+                <li><a href="http://www.01happy.com/page/4/">4</a></li>
+                <li><a href="http://www.01happy.com/page/5/">5</a></li>
+                <li><a href="http://www.01happy.com/page/6/">6</a></li>
+                <li class="active"><span>7</span></li>
+                <li><a href="http://www.01happy.com/page/8/">8</a></li>
+                <li><a href="http://www.01happy.com/page/9/">9</a></li>
+                <li><a href="http://www.01happy.com/page/10/">10</a></li>
+                <li><a href="http://www.01happy.com/page/11/">11</a></li>
+                <li><span> ... </span></li>
+                <li class="next-page"><a href="http://www.01happy.com/page/8/">下一页</a></li>
+            </ul>
+        </div>
     </div>
-    <aside class="col-md-4">
-        <div class="widget widget_recent_entries"><h3 class="widget_tit">最新文章</h3>
+    <aside class="col-md-4 aside">
+        <div class="widget widget_recent_entries">
+            <h3 class="widget_tit">最新笑话</h3>
             <ul>
                 <li>
-                    <a href="http://www.01happy.com/golang-go-get-unrecognized-import-path/">golang go
-                        get出现unrecognized import path</a>
+                    <a href="http://www.01happy.com/golang-go-get-unrecognized-import-path/"> 爆笑之逗B剧场第一季</a>
                 </li>
                 <li>
-                    <a href="http://www.01happy.com/two-ways-of-cross-domain-request/">详解跨域请求的两种方式，支持post请求</a>
+                    <a href="http://www.01happy.com/two-ways-of-cross-domain-request/">幽默的污婆和二公</a>
                 </li>
                 <li>
-                    <a href="http://www.01happy.com/golang-example/">golang代码示例汇总持续更新</a>
+                    <a href="http://www.01happy.com/golang-example/">让人没脾气的爆冷小屁孩</a>
                 </li>
                 <li>
-                    <a href="http://www.01happy.com/golang-mongodb-isodate/">golang和mongodb中的ISODate时间交互问题</a>
+                    <a href="http://www.01happy.com/golang-mongodb-isodate/">爆笑,逗B搞笑可不是盖的</a>
                 </li>
                 <li>
-                    <a href="http://www.01happy.com/golang-scan-file/">golang扫描目录下的所有文件</a>
+                    <a href="http://www.01happy.com/golang-scan-file/">有女,有男,有笑点.你会醉的</a>
                 </li>
                 <li>
-                    <a href="http://www.01happy.com/golang-json-encode-and-decode/">golang中json编码和解码</a>
+                    <a href="http://www.01happy.com/golang-json-encode-and-decode/">爆寒的冻人冷段儿,要降温了</a>
                 </li>
                 <li>
-                    <a href="http://www.01happy.com/golang-reverse-string/">golang中反转（reverse）字符串</a>
+                    <a href="http://www.01happy.com/golang-reverse-string/">逗B爆笑,喜欢逗B的人很多的</a>
                 </li>
                 <li>
-                    <a href="http://www.01happy.com/golang-mongodb-update/">golang mongodb修改（update） demo</a>
+                    <a href="http://www.01happy.com/golang-mongodb-update/">网络与生活的幽默段子</a>
                 </li>
             </ul>
+        </div>
+        <div class="widget widget_tags">
+            <h3 class="widget_tit title_style_2">标签云</h3>
+            <div class="d_tags">
+                <a href="http://www.01happy.com/tag/wordpress/">爆笑男女 (10)</a>
+                <a href="http://www.01happy.com/tag/git/">git (10)</a>
+                <a href="http://www.01happy.com/tag/centos/">冷笑话(9)</a>
+                <a href="http://www.01happy.com/tag/yaf/">社会 (9)</a>
+                <a href="http://www.01happy.com/tag/rabbitmq/">爆笑签名 (8)</a>
+                <a href="http://www.01happy.com/tag/%e5%9b%be%e7%89%87%e5%a4%84%e7%90%86/">文艺 (7)</a>
+                <a href="http://www.01happy.com/tag/netbeans/">哲理 (6)</a>
+                <a href="http://www.01happy.com/tag/%e8%bf%9b%e7%a8%8b/">短信笑话 (6)</a>
+                <a href="http://www.01happy.com/tag/nginx/">影视台词 (5)</a>
+                <a href="http://www.01happy.com/tag/mysql/">幽默笑话(5)</a>
+                <a href="http://www.01happy.com/tag/code-demo/">节日笑话 (5)</a>
+                <a href="http://www.01happy.com/tag/%e6%96%87%e4%bb%b6%e6%9d%83%e9%99%90/">国际 (4)</a>
+                <a href="http://www.01happy.com/tag/wordpress/">爆笑男女 (10)</a>
+                <a href="http://www.01happy.com/tag/git/">git (10)</a>
+                <a href="http://www.01happy.com/tag/centos/">冷笑话(9)</a>
+                <a href="http://www.01happy.com/tag/yaf/">社会 (9)</a>
+                <a href="http://www.01happy.com/tag/rabbitmq/">爆笑签名 (8)</a>
+                <a href="http://www.01happy.com/tag/%e5%9b%be%e7%89%87%e5%a4%84%e7%90%86/">文艺 (7)</a>
+                <a href="http://www.01happy.com/tag/netbeans/">哲理 (6)</a>
+                <a href="http://www.01happy.com/tag/%e8%bf%9b%e7%a8%8b/">短信笑话 (6)</a>
+                <a href="http://www.01happy.com/tag/nginx/">影视台词 (5)</a>
+                <a href="http://www.01happy.com/tag/mysql/">幽默笑话(5)</a>
+                <a href="http://www.01happy.com/tag/code-demo/">节日笑话 (5)</a>
+                <a href="http://www.01happy.com/tag/%e6%96%87%e4%bb%b6%e6%9d%83%e9%99%90/">国际 (4)</a>
+                <a href="http://www.01happy.com/tag/wordpress/">爆笑男女 (10)</a>
+                <a href="http://www.01happy.com/tag/git/">git (10)</a>
+                <a href="http://www.01happy.com/tag/centos/">冷笑话(9)</a>
+                <a href="http://www.01happy.com/tag/yaf/">社会 (9)</a>
+                <a href="http://www.01happy.com/tag/rabbitmq/">爆笑签名 (8)</a>
+                <a href="http://www.01happy.com/tag/%e5%9b%be%e7%89%87%e5%a4%84%e7%90%86/">文艺 (7)</a>
+                <a href="http://www.01happy.com/tag/netbeans/">哲理 (6)</a>
+                <a href="http://www.01happy.com/tag/%e8%bf%9b%e7%a8%8b/">短信笑话 (6)</a>
+                <a href="http://www.01happy.com/tag/nginx/">影视台词 (5)</a>
+                <a href="http://www.01happy.com/tag/mysql/">幽默笑话(5)</a>
+                <a href="http://www.01happy.com/tag/code-demo/">节日笑话 (5)</a>
+                <a href="http://www.01happy.com/tag/%e6%96%87%e4%bb%b6%e6%9d%83%e9%99%90/">国际 (4)</a>
+            </div>
         </div>
     </aside>
 </section>
 
-<footer class="container">
-    版权所有，保留一切权利！ © 2016 <a href="http://www.01happy.com">快乐编程</a>
+<footer class="container-fluid">
+    <div class="container">
+        版权所有，保留一切权利！ © 2016 <a href="http://www.01happy.com">最幽默</a>
+    </div>
 </footer>
 
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
