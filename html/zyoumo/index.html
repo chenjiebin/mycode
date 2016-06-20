@@ -56,19 +56,10 @@
             line-height: 20px;
         }
 
-        .header {
-            background: #fff;
-            margin-bottom: 20px;
-        }
-
-        .logo h1 {
+        .navbar-header h1 {
             font-size: 28px;
-        }
-
-        .menu {
-            height: 60px;
-            line-height: 60px;
-            text-align: right;
+            margin-top: auto;
+            margin-bottom: auto;
         }
 
         .d-article {
@@ -223,21 +214,29 @@
     </style>
 </head>
 <body>
-<div class="container-fluid header">
+<nav class="navbar navbar-default">
     <div class="container">
-        <div class="col-md-8 logo">
-            <h1>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h1 class="navbar-brand">
                 <a href="/">最幽默</a>
                 <small>生活多一些欢乐</small>
             </h1>
         </div>
-
-        <div class="col-md-4 menu">
-            <a href="#" class="btn" data-toggle="modal" data-target="#modalLogin">登录</a>
-            <a href="#" class="btn" data-toggle="modal" data-target="#modalReg">注册</a>
+        <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" class="btn" data-toggle="modal" data-target="#modalLogin">登录</a></li>
+                <li><a href="#" class="btn" data-toggle="modal" data-target="#modalReg">注册</a></li>
+            </ul>
         </div>
     </div>
-</div>
+</nav>
 
 <section class="container">
     <div class="col-md-8 d-article">
