@@ -76,27 +76,23 @@
                     <img src="http://i1.mhimg.com/M00/2E/B7/CgAAhldlc8eALfjTAADn5UjUDno182.jpg"/>
                 </div>
                 <div class="article-act">
-                    <button type="button" class="btn btn-default" style="color: #66b946;">
+                    <button type="button" class="btn btn-default" style="color: #66b946; padding: 3px 6px;">
                         <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 100
                     </button>
-                    <button type="button" class="btn btn-default" style="color: #fb5e4e;">
-                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 20
+                    <button type="button" class="btn btn-default" style="color: #fb5e4e; padding: 3px 6px;">
+                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 200
+                    </button>
+                    <button type="button" class="btn btn-default" style="color: #888; padding: 3px 6px;">
+                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 1000
                     </button>
 
-                    <!--<div class="bdsharebuttonbox pull-right"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>-->
-                    <!--<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>-->
-
-                    <div class="bdsharebuttonbox pull-right" style="padding: 3px 0;"><a href="#" class="bds_more" data-cmd="more"></a><a href="#"
-                                                                                                      class="bds_qzone"
-                                                                                                      data-cmd="qzone"
-                                                                                                      title="分享到QQ空间"></a><a
-                            href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq"
-                                                                                               data-cmd="tqq"
-                                                                                               title="分享到腾讯微博"></a><a
-                            href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#"
-                                                                                                class="bds_weixin"
-                                                                                                data-cmd="weixin"
-                                                                                                title="分享到微信"></a>
+                    <div class="bdsharebuttonbox pull-right">
+                        <a href="#" class="bds_more" data-cmd="more"></a>
+                        <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                        <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                        <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
                     </div>
                     <script>
                         window._bd_share_config = {
@@ -112,6 +108,18 @@
                         };
                         with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
                     </script>
+                </div>
+                <div class="article-comment row" style="padding: 20px 20px 0 15px;">
+                    <form action="http://www.01happy.com/wp-comments-post.php" method="post" id="commentform">
+                        <div>
+                            <textarea style="width: 100%;" placeholder="写点什么..."></textarea>
+                        </div>
+                        <div class="pull-right" style="height: auto; clear: both;display: block;">
+                            <button class="btn btn-primary" type="submit" name="submit" id="submit"
+                                    tabindex="5"><i class="icon-ok-circle icon-white icon12"></i> 提交评论
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </article>
 
