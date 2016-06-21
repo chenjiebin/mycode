@@ -15,215 +15,7 @@
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <style>
-        html {
-            font-size: 100%;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%
-        }
-
-        article, aside, details, figcaption, figure, footer, header, nav, section {
-            display: block
-        }
-
-        body {
-            margin: 0;
-            font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 12px;
-            line-height: 20px;
-            color: #555555;
-            background-color: #eeeeee;
-            overflow-x: hidden;
-        }
-
-        a {
-            color: #428BD1;
-            text-decoration: none;
-        }
-
-        a:hover, a:focus {
-            color: #3071A9;
-            text-decoration: none
-        }
-
-        ul, ol {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-
-        li {
-            line-height: 20px;
-        }
-
-        .navbar-header h1 {
-            font-size: 28px;
-            margin-top: auto;
-            margin-bottom: auto;
-        }
-
-        .d-article {
-
-        }
-
-        article h2 {
-            font-size: 18px;
-            margin-top: 0px;
-        }
-
-        article {
-            background: #ffffff;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .article-user-img img {
-            width: 50px;
-        }
-
-        .article-img img {
-            max-width: 100%;
-        }
-
-        .pagination {
-            width: 100%;
-            margin-top: 0px;
-            text-align: center;
-        }
-
-        .pagination ul {
-            display: inline-block;
-            *display: inline;
-            *zoom: 1;
-            margin-left: 0;
-            margin-bottom: 0
-        }
-
-        .pagination ul > li {
-            display: inline
-        }
-
-        .pagination ul > li > a, .pagination ul > li > span {
-            margin: 0 1px;
-            float: left;
-            padding: 4px 12px 3px;
-            line-height: 20px;
-            text-decoration: none;
-            background-color: #fff;
-            color: #666
-        }
-
-        .pagination ul > li > a:hover, .pagination ul > li > a:focus {
-            background-color: #ccc;
-            color: #444
-        }
-
-        .pagination ul > .active > a, .pagination ul > .active > span {
-            background-color: #428BCA;
-            color: #fff
-        }
-
-        .pagination ul > .active > a, .pagination ul > .active > span {
-            cursor: default
-        }
-
-        .pagination ul > li > span, .pagination ul > .disabled > span, .pagination ul > .disabled > a, .pagination ul > .disabled > a:hover, .pagination ul > .disabled > a:focus {
-            color: #999999;
-            background-color: transparent;
-            cursor: default
-        }
-
-        .aside {
-
-        }
-
-        .widget {
-            clear: both;
-            margin-bottom: 10px;
-            background-color: #fff;
-        }
-
-        .widget h3 {
-            font-size: 15px;
-            position: relative;
-            margin: 0;
-            line-height: 25px;
-            padding: 6px 15px;
-            font-size: 15px;
-            background-color: #F7F7F7;
-            border-bottom: 1px solid #eaeaea;
-            font-weight: normal;
-        }
-
-        .widget_recent_entries li {
-            border-bottom: solid 1px #eee;
-            padding: 8px 15px;
-            font-size: 14px;
-        }
-
-        .d_tags {
-            padding: 12px 13px 10px 15px;
-        }
-
-        .d_tags a {
-            opacity: 0.80;
-            filter: alpha(opacity=80);
-            color: #fff;
-            background-color: #428BCA;
-            display: inline-block;
-            margin: 0 5px 5px 0;
-            padding: 0 6px;
-            line-height: 21px;
-        }
-
-        .d_tags a:nth-child(9n) {
-            background-color: #4A4A4A;
-        }
-
-        .d_tags a:nth-child(9n+1) {
-            background-color: #428BCA;
-        }
-
-        .d_tags a:nth-child(9n+2) {
-            background-color: #5CB85C;
-        }
-
-        .d_tags a:nth-child(9n+3) {
-            background-color: #D9534F;
-        }
-
-        .d_tags a:nth-child(9n+4) {
-            background-color: #567E95;
-        }
-
-        .d_tags a:nth-child(9n+5) {
-            background-color: #B433FF;
-        }
-
-        .d_tags a:nth-child(9n+6) {
-            background-color: #00ABA9;
-        }
-
-        .d_tags a:nth-child(9n+7) {
-            background-color: #B37333;
-        }
-
-        .d_tags a:nth-child(9n+8) {
-            background-color: #FF6600;
-        }
-
-        footer {
-            background-color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-
-        @media (min-width: 992px) {
-            .d-article {
-                padding-right: 5px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -253,21 +45,18 @@
 <section class="container">
     <div class="row">
         <div class="col-md-8 d-article">
+
             <article class="img-rounded">
-                <div class="article-user" style="margin-bottom: 10px;">
-                    <div class="article-user-img" style="width: 50px;
-    height: 50px;
-    float: left;
-    display: inline;
-    position: relative;">
+                <div class="article-user">
+                    <div class="article-user-img">
                         <img class="img-circle"
                              src="http://images1.maxthon.cn/avatar/27/436/27436223/1461852157.gif">
                     </div>
-                    <div class="article-user-main" style="margin-top: -2px; margin-left: 60px;">
-                        <div class="article-user-name" style="height: 25px; line-height: 25px; font-size: 14px;">
+                    <div class="article-user-main">
+                        <div class="article-user-name">
                             阿拉伯养猪大户
                         </div>
-                        <div class="article-time" style="height: 25px; line-height: 25px;">2016年6月20日 13:14</div>
+                        <div class="article-time">2016年6月20日 13:14</div>
                     </div>
                 </div>
                 <header>
@@ -278,148 +67,16 @@
                         </a>
                     </h2>
                 </header>
-                <p class="note">
-                    1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？
-                </p>
+                <div class="article-content">
+                    <p class="note">
+                        1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？
+                    </p>
+                </div>
                 <div class="article-img">
                     <img src="http://i1.mhimg.com/M00/2E/B7/CgAAhldlc8eALfjTAADn5UjUDno182.jpg"/>
                 </div>
             </article>
-            <article class="img-rounded">
-                <div class="article-user" style="margin-bottom: 10px;">
-                    <div class="article-user-img" style="width: 50px;
-    height: 50px;
-    float: left;
-    display: inline;
-    position: relative;">
-                        <img class="img-circle"
-                             src="http://images1.maxthon.cn/avatar/27/436/27436223/1461852157.gif">
-                    </div>
-                    <div class="article-user-main" style="margin-top: -2px; margin-left: 60px;">
-                        <div class="article-user-name" style="height: 25px; line-height: 25px; font-size: 14px;">
-                            阿拉伯养猪大户
-                        </div>
-                        <div class="article-time" style="height: 25px; line-height: 25px;">2016年6月20日 13:14</div>
-                    </div>
-                </div>
-                <header>
-                    <h2>
-                        <a href="http://www.01happy.com/golang-go-get-unrecognized-import-path/"
-                           title="爆笑,逗B搞笑可不是盖的 - 最幽默">
-                            爆笑,逗B搞笑可不是盖的
-                        </a>
-                    </h2>
-                </header>
-                <p class="note">
-                    1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？
-                </p>
-                <div class="article-img">
-                    <img src="http://i1.mhimg.com/M00/2E/B7/CgAAhldlc8eALfjTAADn5UjUDno182.jpg"/>
-                </div>
-            </article>
-            <article class="img-rounded">
-                <div class="article-user" style="margin-bottom: 10px;">
-                    <div class="article-user-img" style="width: 50px;
-    height: 50px;
-    float: left;
-    display: inline;
-    position: relative;">
-                        <img class="img-circle"
-                             src="http://images1.maxthon.cn/avatar/27/436/27436223/1461852157.gif">
-                    </div>
-                    <div class="article-user-main" style="margin-top: -2px; margin-left: 60px;">
-                        <div class="article-user-name" style="height: 25px; line-height: 25px; font-size: 14px;">
-                            阿拉伯养猪大户
-                        </div>
-                        <div class="article-time" style="height: 25px; line-height: 25px;">2016年6月20日 13:14</div>
-                    </div>
-                </div>
-                <header>
-                    <h2>
-                        <a href="http://www.01happy.com/golang-go-get-unrecognized-import-path/"
-                           title="爆笑,逗B搞笑可不是盖的 - 最幽默">
-                            爆笑,逗B搞笑可不是盖的
-                        </a>
-                    </h2>
-                </header>
-                <p class="note">
-                    1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？
-                </p>
-                <div class="article-img">
-                    <img src="http://i1.mhimg.com/M00/2E/B7/CgAAhldlc8eALfjTAADn5UjUDno182.jpg"/>
-                </div>
-            </article>
-            <article class="img-rounded">
-                <p>
-                    一个上京赶考的穷书生到破庙避雨，偶遇一位小姐，书生和小姐吟诗作对，非常投契，当晚他们便私定了终身。
-                    第二天，书生不得不继续赶路，他和小姐依依惜别，并许诺：“若我考中状元，必定登门迎娶。”
-                    小姐等书生一走，便将他的名字记录在册，嘴里还自言自语道：“这已经是第60个书生了！总会有一个会考中的吧？！”
-                </p>
-            </article>
-            <article class="img-rounded">
-                <header>
-                    <h2>
-                        <a href="http://www.01happy.com/golang-go-get-unrecognized-import-path/"
-                           title="爆笑,逗B搞笑可不是盖的 - 最幽默">
-                            爆笑,逗B搞笑可不是盖的
-                        </a>
-                    </h2>
-                </header>
-                <p class="note">
-                <p>1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？</p>
-                <p></p>
-                <p> 2、人人都想去云间筑高楼，而我只想在你胸口种草莓。</p>
-                <p></p>
-                <p> 3、每次荒废时光不好好努力的时候心里其实特别慌，坐也不是站也不是，所以只好躺着了。</p>
-                <p></p>
-                <p> 4、我一直以为自己除了吃什么都不会。。。艹， 没想到我竟然还会饿！</p>
-                <p></p>
-                <p> 5、不带套那种感觉真好，但是手机不耐摔啊！</p>
-                <p></p>
-                <p> 6、于千万人之中遇见你，于千万年之中，时间的无涯的荒野里，没有早一步，也没有晚一步，刚巧赶上了，那也没有别的话可说，惟有轻轻地问一声：“在电梯里抽烟的能不能去死啊？”</p>
-                <p></p>
-                <p> 7、我对爱情的想法很简单：不求比翼，但求双飞。</p>
-                <p></p>
-                <p> 8、看我不顺眼？你可以装瞎，也可以自杀。</p>
-                <p></p>
-                <p> 9、如果你送我礼物，那我就和你。。。说下收货地址。</p>
-                <p></p>
-                <p> 10、闹钟你个挨千刀的，把人准时叫醒算什么本事，你有本事让我准时睡着啊！</p>
-                <img src="http://image.haha.mx/2016/06/17/middle/2243135_80bf3c7d6adb559ca0534cc00f3baa2f_1466175143.jpg"/>
-                </p>
-            </article>
-            <article class="img-rounded">
-                <header>
-                    <h2>
-                        <a href="http://www.01happy.com/golang-go-get-unrecognized-import-path/"
-                           title="爆笑,逗B搞笑可不是盖的 - 最幽默">
-                            爆笑,逗B搞笑可不是盖的
-                        </a>
-                    </h2>
-                </header>
-                <p class="note">
-                <p>1、都说君子动口不动手。我想问问用嘴唆手指头算动口还是动手？</p>
-                <p></p>
-                <p> 2、人人都想去云间筑高楼，而我只想在你胸口种草莓。</p>
-                <p></p>
-                <p> 3、每次荒废时光不好好努力的时候心里其实特别慌，坐也不是站也不是，所以只好躺着了。</p>
-                <p></p>
-                <p> 4、我一直以为自己除了吃什么都不会。。。艹， 没想到我竟然还会饿！</p>
-                <p></p>
-                <p> 5、不带套那种感觉真好，但是手机不耐摔啊！</p>
-                <p></p>
-                <p> 6、于千万人之中遇见你，于千万年之中，时间的无涯的荒野里，没有早一步，也没有晚一步，刚巧赶上了，那也没有别的话可说，惟有轻轻地问一声：“在电梯里抽烟的能不能去死啊？”</p>
-                <p></p>
-                <p> 7、我对爱情的想法很简单：不求比翼，但求双飞。</p>
-                <p></p>
-                <p> 8、看我不顺眼？你可以装瞎，也可以自杀。</p>
-                <p></p>
-                <p> 9、如果你送我礼物，那我就和你。。。说下收货地址。</p>
-                <p></p>
-                <p> 10、闹钟你个挨千刀的，把人准时叫醒算什么本事，你有本事让我准时睡着啊！</p>
-                <img src="http://image.haha.mx/2016/06/17/middle/2243135_80bf3c7d6adb559ca0534cc00f3baa2f_1466175143.jpg"/>
-                </p>
-            </article>
+
             <div class="pagination">
                 <ul>
                     <li class="prev-page"><a href="http://www.01happy.com/page/6/">上一页</a></li>
