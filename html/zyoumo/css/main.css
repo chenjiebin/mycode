@@ -113,6 +113,21 @@ article {
     padding: 3px 6px;
 }
 
+.article-comment {
+    padding: 20px 20px 0 15px;
+}
+
+.article-comment textarea {
+    width: 100%;
+    border-color: #cccccc;
+}
+
+.cm-sub-div {
+    height: auto;
+    clear: both;
+    display: block;
+}
+
 /* 内容左边文章样式 - 分页样式 */
 .pagination {
     width: 100%;

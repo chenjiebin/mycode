@@ -82,6 +82,9 @@
                     <button type="button" class="btn btn-default despise" style="color: #fb5e4e;">
                         <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 200
                     </button>
+                    <button type="button" class="btn btn-default" style="color: #888; padding: 3px 6px;">
+                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 1000
+                    </button>
 
                     <div class="bdsharebuttonbox pull-right">
                         <a href="#" class="bds_more" data-cmd="more"></a>
@@ -105,6 +108,18 @@
                         };
                         with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
                     </script>
+                    <div class="article-comment row">
+                        <form action="http://www.01happy.com/wp-comments-post.php" method="post" id="commentform">
+                            <div>
+                                <textarea placeholder="写点什么..."></textarea>
+                            </div>
+                            <div class="cm-sub-div pull-right">
+                                <button class="btn btn-primary" type="submit" name="submit" id="submit"
+                                        tabindex="5"><i class="icon-ok-circle icon-white icon12"></i> 提交评论
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </article>
 
