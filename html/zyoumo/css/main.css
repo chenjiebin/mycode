@@ -101,8 +101,16 @@ article {
     line-height: 24px;
 }
 
+.article-img {
+    margin-bottom: 20px;
+}
+
 .article-img img {
     max-width: 100%;
+}
+
+.article-act button {
+    padding: 3px 6px;
 }
 
 /* 内容左边文章样式 - 分页样式 */
