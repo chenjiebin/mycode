@@ -120,6 +120,7 @@ article {
 .article-comment-post textarea {
     width: 100%;
     border-color: #cccccc;
+    height: 60px;
 }
 
 .cm-sub-div {
@@ -192,6 +193,14 @@ article {
 
 .c-parent .comment-act a {
     display: none;
+}
+
+.article-comment-list .article-comment-post {
+    padding: 5px 15px 0 15px;
+}
+
+.c-parent .article-comment-post {
+    padding: 5px 15px 5px 15px;
 }
 
 /* 评论列表相关 end */
