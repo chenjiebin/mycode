@@ -128,6 +128,98 @@ article {
     display: block;
 }
 
+/* 评论列表相关 */
+.commentlist {
+
+}
+
+.comment {
+    padding: 12px 0 10px 0;
+}
+
+.c-avatar {
+    width: 36px;
+    height: 36px;
+    background-color: #FFF;
+    float: left;
+    display: inline;
+    position: relative
+}
+
+.c-avatar .avatar {
+    display: block
+}
+
+.c-main {
+    margin-top: -2px;
+    margin-left: 48px;
+}
+
+.c-main p {
+    font-size: 12px;
+    margin-bottom: 0
+}
+
+.c-meta {
+    color: #bbb
+}
+
+.c-author {
+    margin-right: 10px
+}
+
+.comment-reply-link {
+    margin-left: 6px;
+    color: #428BCA;
+}
+
+.comment-reply-link:hover {
+    color: #D9534F
+}
+
+.comment pre {
+    margin: 3px 0 5px;
+    padding: 7px 10px;
+    border-radius: 1px
+}
+
+.depth-1 {
+    border-bottom: #f2f2f2 1px solid
+}
+
+.depth-1.odd {
+    background-color: #fefefe
+}
+
+.depth-2 {
+    margin-right: 48px
+}
+
+.depth-2, .depth-4, .depth-6, .depth-8 {
+    background-color: #fbfbfb
+}
+
+.depth-3, .depth-5, .depth-7, .depth-9 {
+    background-color: #fff
+}
+
+.children .comment {
+    padding: 12px 12px 10px 10px;
+    margin: 10px 0 0 50px;
+    border-left: 2px solid #eeeeee
+}
+
+.children .c-main p {
+    font-size: 12px;
+    margin-right: 0
+}
+
+.children .c-meta {
+    padding-top: 1px
+}
+
+/* 评论列表相关 end */
+
 /* 内容左边文章样式 - 分页样式 */
 .pagination {
     width: 100%;
@@ -270,5 +362,15 @@ footer {
 @media (min-width: 992px) {
     .d-article {
         padding-right: 5px;
+    }
+}
+
+@media (max-width: 640px) {
+    .depth-2 .children .comment {
+        margin-left: 0;
+    }
+
+    .children .comment.depth-2 {
+        margin-left: 10px;
     }
 }
