@@ -135,6 +135,11 @@ article {
 
 .comment-li {
     padding: 12px 0 10px 0;
+    border-top: 1px solid #eeeeee;
+}
+
+.comment-li-1 {
+    border-top: none;
 }
 
 .c-avatar {
@@ -154,31 +159,39 @@ article {
     margin-left: 40px;
 }
 
-.comment-reply-link {
-    margin-left: 5px;
-}
-
 .comment-time {
     color: #aaaaaa;
 }
 
+.comment-act {
+    text-align: right;
+    height: 20px;
+}
+
+.comment-reply-link {
+    margin-left: 5px;
+}
+
 .c-parent {
     margin: 0px;
-    padding: 3px;
-    border: 1px solid #cccccc;
+    padding: 5px 10px 0;
+    border-top: 1px solid #eeeeee;
+    border-left: 1px solid #eeeeee;
+    border-right: 1px solid #eeeeee;
     background-color: #fbfbfb;
 }
 
-.c-parent .c-meta {
-    padding: 5px 5px 0px;
+.c-parent-first {
+    margin-top: 10px;
 }
 
-.c-parent .c-content {
-    padding: 5px;
+.c-parent-last {
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 10px;
 }
 
-.c-parent-1 {
-    margin: 8px 1px 1px 1px;
+.c-parent .comment-act a {
+    display: none;
 }
 
 /* 评论列表相关 end */
