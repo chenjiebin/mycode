@@ -123,6 +123,10 @@ article {
     height: 60px;
 }
 
+.article-comment-post .cm-sub-div button {
+    font-size: 12px;
+}
+
 .cm-sub-div {
     height: auto;
     clear: both;
