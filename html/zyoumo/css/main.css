@@ -169,6 +169,14 @@ article {
     background-color: #fbfbfb;
 }
 
+.c-parent .c-meta {
+    padding: 5px 5px 0px;
+}
+
+.c-parent .c-content {
+    padding: 5px;
+}
+
 .c-parent-1 {
     margin: 8px 1px 1px 1px;
 }
