@@ -38,12 +38,19 @@ ul, ol {
 li {
     line-height: 20px;
 }
+.navbar {
+    font-size: 14px;
+}
 
 /* 导航样式 */
 .navbar-header h1 {
     font-size: 28px;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+.navbar-collapse a {
+    text-align: center;
 }
 
 /* 内容左边文章样式 */

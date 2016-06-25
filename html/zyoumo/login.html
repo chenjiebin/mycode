@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>最幽默 - 生活多一些欢乐</title>
+    <title>登录 - 最幽默</title>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!--<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
 
@@ -35,8 +35,8 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="login.html">登录</a></li>
-                <li><a href="#">注册</a></li>
+                <li><a href="#" class="btn" data-toggle="modal" data-target="#modalLogin">登录</a></li>
+                <li><a href="#" class="btn" data-toggle="modal" data-target="#modalReg">注册</a></li>
             </ul>
         </div>
     </div>
@@ -109,12 +109,12 @@
                         with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
                     </script>
                     <div class="article-comment-post row">
-                        <form action="http://www.01happy.com/wp-comments-post.php" method="post">
+                        <form action="http://www.01happy.com/wp-comments-post.php" method="post" id="commentform">
                             <div>
                                 <textarea placeholder="写点什么..."></textarea>
                             </div>
                             <div class="cm-sub-div pull-right">
-                                <button class="btn btn-primary" type="submit" name="submit"
+                                <button class="btn btn-primary" type="submit" name="submit" id="submit"
                                         tabindex="5">提交评论
                                 </button>
                             </div>
@@ -147,12 +147,12 @@
                                             <a class="comment-reply-link" href="#">回复</a>
                                         </div>
                                         <div class="article-comment-post row">
-                                            <form action="http://www.01happy.com/wp-comments-post.php" method="post">
+                                            <form action="http://www.01happy.com/wp-comments-post.php" method="post" id="commentform">
                                                 <div>
                                                     <textarea placeholder="写点什么..."></textarea>
                                                 </div>
                                                 <div class="cm-sub-div pull-right">
-                                                    <button class="btn btn-primary" type="submit" name="submit"
+                                                    <button class="btn btn-primary" type="submit" name="submit" id="submit"
                                                             tabindex="5"><i class="icon-ok-circle icon-white icon12"></i> 提交评论
                                                     </button>
                                                 </div>
@@ -199,12 +199,12 @@
                                 </div>
 
                                 <div class="article-comment-post row">
-                                    <form action="http://www.01happy.com/wp-comments-post.php" method="post">
+                                    <form action="http://www.01happy.com/wp-comments-post.php" method="post" id="commentform">
                                         <div>
                                             <textarea placeholder="写点什么..."></textarea>
                                         </div>
                                         <div class="cm-sub-div pull-right">
-                                            <button class="btn btn-primary" type="submit" name="submit"
+                                            <button class="btn btn-primary" type="submit" name="submit" id="submit"
                                                     tabindex="5"><i class="icon-ok-circle icon-white icon12"></i> 提交评论
                                             </button>
                                         </div>
@@ -303,7 +303,7 @@
         </div>
         <aside class="col-md-4 aside">
             <div class="widget widget_recent_entries">
-                <h3 class="widget_tit">热门笑话</h3>
+                <h3 class="widget_tit">最新笑话</h3>
                 <ul>
                     <li>
                         <a href="http://www.01happy.com/golang-go-get-unrecognized-import-path/"> 爆笑之逗B剧场第一季</a>
