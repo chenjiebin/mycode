@@ -109,8 +109,25 @@ article {
     max-width: 100%;
 }
 
-.article-act button {
-    padding: 3px 6px;
+.article-act .praise, .article-act .despise, .article-act .comment {
+    padding: 1px 2px;
+    line-height: 28px;
+}
+
+.article-act .praise:hover, .article-act .despise:hover, .article-act .comment:hover {
+    font-size: 14px;
+}
+
+.article-act .praise {
+    color: #66b946;
+}
+
+.article-act .despise {
+    color: #fb5e4e;
+}
+
+.article-act .comment {
+    color: #888888;
 }
 
 .article-comment-post {
