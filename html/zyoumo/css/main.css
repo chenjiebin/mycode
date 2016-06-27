@@ -363,6 +363,15 @@ article {
     background-color: #FF6600;
 }
 
+/* 登录页面 */
+
+.login {
+    background: #ffffff;
+    margin-bottom: 50px;
+}
+
+/* 登录页面 end */
+
 /* 底部样式 */
 footer {
     background-color: #fff;
