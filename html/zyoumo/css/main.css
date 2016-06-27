@@ -11,7 +11,7 @@ article, aside, details, figcaption, figure, footer, header, nav, section {
 
 body {
     margin: 0;
-    font: 12px "宋体", "Arial Narrow", HELVETICA;
+    font: 12px "Lucida Grande", Lucida Sans Unicode, Hiragino Sans GB, WenQuanYi Micro Hei, Verdana, Aril, sans-serif;
     line-height: 20px;
     color: #555555;
     background-color: #eeeeee;
@@ -194,6 +194,10 @@ article {
 
 .comment-time {
     color: #aaaaaa;
+}
+
+.c-content {
+    font-size: 13px;
 }
 
 .comment-act {
