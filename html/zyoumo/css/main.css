@@ -367,7 +367,8 @@ article {
 
 .login {
     background: #ffffff;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    padding: 100px 30px;
 }
 
 /* 登录页面 end */
