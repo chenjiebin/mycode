@@ -372,7 +372,6 @@ article {
 }
 
 /* 登录页面 */
-
 .login {
     background: #ffffff;
     margin-bottom: 20px;
@@ -384,8 +383,14 @@ article {
     margin-bottom: 20px;
     padding: 100px 30px;
 }
-
 /* 登录页面 end */
+
+/* 分享内容编辑页面 */
+.share-content {
+    background: #ffffff;
+    padding: 30px;
+}
+/* 分享内容编辑页面 end */
 
 /* 底部样式 */
 footer {
