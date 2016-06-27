@@ -13,7 +13,7 @@ var oauth = function (req, res, next) {
     var url = client.getAuthorizeURL('http://www.kuiyinapp.com/wechat/user/oauthcallback', 'state', 'snsapi_userinfo');
     console.log(url);
     // https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5e6a0b67b76db0ac&redirect_uri=http%3A%2F%2Fwww.kuiyinapp.com%2Fwechat%2Fuser%2Foauthcallback&response_type=code&scope=snsapi_userinfo&state=state#wechat_redirect
-    
+
     // res.send(url);
     res.redirect(url);
 };
@@ -34,6 +34,20 @@ var oauthCallback = function (req, res, next) {
         //     scope: 'snsapi_userinfo',
         //     create_at: 1467000238398 } }
 
+        // 关于UnionID机制
+        // 1、请注意，网页授权获取用户基本信息也遵循UnionID机制。即如果开发者有在多个公众号，或在公众号、移动应用之间统一用户帐号的需求，需要前往微信开放平台（open.weixin.qq.com）绑定公众号后，才可利用UnionID机制来满足上述需求。
+        // 2、UnionID机制的作用说明：如果开发者拥有多个移动应用、网站应用和公众帐号，可通过获取用户基本信息中的unionid来区分用户的唯一性，因为同一用户，对同一个微信开放平台下的不同应用（移动应用、网站应用和公众帐号），unionid是相同的。
+        // 如果绑定到了开发平台,则有一个unionid字段
+        // null { data:
+        // { access_token: 'bs_oRoULF7t1yZ_xuqrXqVUvS3Nm73g3-sDGjON_z-abulbVwhuGFCuxNAXZBV9Af6eBiM1y74KMAi3KvHNd1LUs-RpGqcjdZhkdeBwXv3A',
+        //     expires_in: 7200,
+        //     refresh_token: 'KZMOQeuJSJjdk4DScrzbcxXgrzObmy8tSA1cQ2KNv20ZYuJXa1VxmAUnnFQcEpgkmymKks3tudaQ2Wdtu29cXO1syrIgL4L1bNlr_nr78PI',
+        //     openid: 'omX4nt7SS_HAiumR7fHIEPB0dS8M',
+        //     scope: 'snsapi_userinfo',
+        //     unionid: 'oqYxpwE5pkwb8OP_wzhKHtKf-008',
+        //     create_at: 1467006876742 } }
+
+
         client.getUser(result.data.openid, function (err, result) {
             console.log(err, result);
             // null { openid: 'omX4nt7SS_HAiumR7fHIEPB0dS8M',
@@ -45,6 +59,19 @@ var oauthCallback = function (req, res, next) {
             //     country: 'China',
             //     headimgurl: 'http://wx.qlogo.cn/mmopen/ajNVdqHZLLBia65RdX7Lx7faML4kO5Gt7r9iarsMB3kn76Sgj73qicbhNWAa3IVt7kc32qvviaV2H6G9CwQgZxNj6w/0',
             //     privilege: [] }
+
+            // 如果绑定到了开发平台,则有一个unionid字段
+            // null { openid: 'omX4nt7SS_HAiumR7fHIEPB0dS8M',
+            //     nickname: '陈杰斌',
+            //     sex: 1,
+            //     language: 'zh_CN',
+            //     city: 'Xiamen',
+            //     province: 'Fujian',
+            //     country: 'China',
+            //     headimgurl: 'http://wx.qlogo.cn/mmopen/ajNVdqHZLLBia65RdX7Lx7faML4kO5Gt7r9iarsMB3kn76Sgj73qicbhNWAa3IVt7kc32qvviaV2H6G9CwQgZxNj6w/0',
+            //     privilege: [],
+            //     unionid: 'oqYxpwE5pkwb8OP_wzhKHtKf-008' }
+
         });
     });
 
