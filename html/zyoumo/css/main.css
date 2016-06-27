@@ -11,8 +11,7 @@ article, aside, details, figcaption, figure, footer, header, nav, section {
 
 body {
     margin: 0;
-    font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
+    font: 12px "宋体", "Arial Narrow", HELVETICA;
     line-height: 20px;
     color: #555555;
     background-color: #eeeeee;
@@ -38,6 +37,7 @@ ul, ol {
 li {
     line-height: 20px;
 }
+
 .navbar {
     font-size: 14px;
 }
@@ -53,7 +53,7 @@ li {
     text-align: center;
 }
 
-.navbar-default .navbar-nav>.nav-edit-li>a {
+.navbar-default .navbar-nav > .nav-edit-li > a {
     color: #D9534F;
 }
 
