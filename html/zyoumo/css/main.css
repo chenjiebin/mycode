@@ -53,6 +53,10 @@ li {
     text-align: center;
 }
 
+.navbar-default .navbar-nav>.nav-edit-li>a {
+    color: #D9534F;
+}
+
 /* 内容左边文章样式 */
 .d-article {
 
