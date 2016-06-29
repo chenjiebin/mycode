@@ -6,6 +6,7 @@ var url = require('url');
 var getHost = function (req, res, next) {
     // 查看req对象
     console.log(req);
+    console.log(req.protocol);
     console.log(req.headers.host);
     console.log(req.originalUrl);
     res.end(req.originalUrl);
