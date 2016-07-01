@@ -3,6 +3,7 @@
 var express = require('express');
 var kraken = require('kraken-js');
 
+global.appRoot = process.cwd();
 
 var options, app;
 

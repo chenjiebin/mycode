@@ -23,7 +23,8 @@
     "mongoose": "^4.5.2",
     "requirejs": "^2.1.22",
     "wechat-api": "^1.28.0",
-    "wechat-oauth": "^1.1.1"
+    "wechat-oauth": "^1.1.1",
+    "wechat-pay": "^0.2.3"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
