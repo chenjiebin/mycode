@@ -91,10 +91,9 @@ var oauthCallback = function (req, res, next) {
             //     privilege: [],
             //     unionid: 'oqYxpwE5pkwb8OP_wzhKHtKf-008' }
 
+            res.end(req.url);
         });
     });
-
-    res.send(req.url);
 };
 
 
