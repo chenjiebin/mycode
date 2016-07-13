@@ -25,14 +25,14 @@ app = module.exports = express();
 app.use(kraken(options));
 
 // session相关,将session存储到mongodb
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
-app.use(session({
-    secret: 'iqjmvh-178fd-fwh8f-cfenp',
-    resave: true,
-    saveUninitialized: true,
-    store: new MongoStore({url: 'mongodb://192.168.1.119:27017/test'})
-}));
+//const session = require('express-session');
+//const MongoStore = require('connect-mongo')(session);
+//app.use(session({
+//    secret: 'iqjmvh-178fd-fwh8f-cfenp',
+//    resave: true,
+//    saveUninitialized: true,
+//    store: new MongoStore({url: 'mongodb://192.168.1.119:27017/test'})
+//}));
 
 app.on('start', function () {
     console.log('Application ready to serve requests.');
