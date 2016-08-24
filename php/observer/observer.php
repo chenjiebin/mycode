@@ -24,7 +24,7 @@ class ConcreteObserver extends Observer {
 
     public function update() {
         $this->setObserverState($this->concreteSubject->getSubjectState());
-        echo $this->getObserverState();
+        echo $this->name . ' ' . $this->getObserverState() . '<br />';
     }
 
     public function getObserverState() {
