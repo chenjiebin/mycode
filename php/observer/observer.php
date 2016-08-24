@@ -89,6 +89,7 @@ class ConcreteSubject extends subject {
 
     function setSubjectState($subjectState) {
         $this->subjectState = $subjectState;
+        $this->notify();
     }
 
 }
@@ -99,4 +100,3 @@ $subject->attach(new ConcreteObserver($subject, "observer 2"));
 $subject->attach(new ConcreteObserver($subject, "observer 3"));
 
 $subject->setSubjectState("1");
-$subject->notify();
