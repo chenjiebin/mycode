@@ -18,6 +18,7 @@ func main() {
 	if err != nil {
 		log.Fatal("marshaling error: ", err)
 	}
+	log.Println("data:", data)
 	newTest := &Test{}
 	err = proto.Unmarshal(data, newTest)
 	if err != nil {

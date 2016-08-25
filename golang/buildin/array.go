@@ -12,4 +12,5 @@ func main() {
 	fmt.Println(arrs)
 
 	fmt.Println(arrs[5:6])
+	fmt.Println(arrs[9:10])
 }
